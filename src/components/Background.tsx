@@ -105,8 +105,8 @@ const AuroraMesh = () => {
           // Soft edge blending
           float alpha = 1.0 - smoothstep(0.5, 1.0, length(vUv - 0.5) * 2.0);
           
-          // Make it extremely dark and subtle for background
-          gl_FragColor = vec4(color * 0.15, alpha);
+          // Use full color intensity for light theme
+          gl_FragColor = vec4(color, alpha * 0.5);
         }
       `,
       transparent: true,
@@ -130,10 +130,10 @@ const AuroraMesh = () => {
 
 export const Background: React.FC = () => {
   return (
-    <div className="fixed inset-0 z-0 bg-black overflow-hidden pointer-events-none">
+    <div className="fixed inset-0 z-0 bg-white overflow-hidden pointer-events-none">
       {/* Noise Texture */}
       <div 
-        className="absolute inset-0 opacity-[0.03] z-10" 
+        className="absolute inset-0 opacity-[0.4] z-10" 
         style={{
           backgroundImage: 'url("data:image/svg+xml,%3Csvg viewBox=%220 0 200 200%22 xmlns=%22http://www.w3.org/2000/svg%22%3E%3Cfilter id=%22noiseFilter%22%3E%3CfeTurbulence type=%22fractalNoise%22 baseFrequency=%220.65%22 numOctaves=%223%22 stitchTiles=%22stitch%22/%3E%3C/filter%3E%3Crect width=%22100%25%22 height=%22100%25%22 filter=%22url(%23noiseFilter)%22/%3E%3C/svg%3E")',
           backgroundRepeat: 'repeat',
@@ -141,14 +141,12 @@ export const Background: React.FC = () => {
       />
       
       {/* React Three Fiber Canvas for WebGL Aurora */}
-      <div className="absolute inset-0 z-0">
+      <div className="absolute inset-0 z-0 opacity-80">
         <Canvas camera={{ position: [0, 0, 5], fov: 75 }}>
           <AuroraMesh />
         </Canvas>
       </div>
       
-      {/* Vignette Overlay for cinematic feel */}
-      <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,transparent_0%,black_100%)] z-10 opacity-60" />
     </div>
   );
 };
