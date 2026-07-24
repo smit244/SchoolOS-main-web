@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Mail, Phone, MapPin, Send, MessageSquare, CheckCircle, Sparkles } from 'lucide-react';
+import { motion } from 'framer-motion';
 
 export const Contact: React.FC = () => {
   const [formSubmitted, setFormSubmitted] = useState(false);
@@ -18,137 +19,149 @@ export const Contact: React.FC = () => {
   };
 
   return (
-    <section id="contact" className="py-24 bg-white relative border-t border-slate-200">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section id="contact" className="py-24 relative overflow-hidden">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
           
-          <div className="lg:col-span-5 space-y-8">
-            <div className="space-y-4">
-              <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full glass-ios border border-blue-200 text-xs font-bold text-blue-600">
-                <Sparkles className="w-4 h-4" />
-                <span>SCHEDULE YOUR LIVE 1-ON-1 DEMO</span>
-              </div>
-              <h2 className="font-display text-3xl sm:text-5xl font-extrabold text-slate-900 tracking-tight">
-                Experience All 34 SchoolOS <span className="text-gradient-blue">Modules Live</span>
+          <div className="lg:col-span-5 space-y-10">
+            <div className="space-y-6">
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/60 border border-slate-200/50 backdrop-blur-xl shadow-sm text-sm font-semibold text-slate-700"
+              >
+                <Sparkles className="w-4 h-4 text-vision-blueGlow" />
+                <span>Schedule a live demo</span>
+              </motion.div>
+              <h2 className="font-display text-4xl sm:text-5xl font-bold text-slate-900 tracking-tight leading-tight">
+                Experience SchoolOS <br />
+                <span className="text-transparent bg-clip-text bg-gradient-to-r from-vision-blueGlow to-vision-cyan">live in action.</span>
               </h2>
-              <p className="text-base text-slate-600">
-                Our senior technology consultants will demonstrate how SchoolOS automates student records, fees, biometrics, exams, and mobile apps for your institution.
+              <p className="text-lg text-slate-600 font-light max-w-md">
+                Our technology consultants will demonstrate how SchoolOS automates student records, fees, biometrics, and exams for your institution.
               </p>
             </div>
 
-            <div className="space-y-4 text-sm text-slate-700">
-              <div className="flex items-center gap-4 p-4 glass-ios-card rounded-2xl border border-slate-200">
-                <div className="w-10 h-10 rounded-xl bg-blue-100 flex items-center justify-center text-blue-600 font-bold">
-                  <Mail className="w-5 h-5" />
+            <div className="space-y-4">
+              <div className="flex items-center gap-4 p-5 bg-white/60 border border-slate-200/50 backdrop-blur-xl rounded-[1.5rem] shadow-sm">
+                <div className="w-12 h-12 rounded-2xl bg-slate-100 flex items-center justify-center text-slate-700">
+                  <Mail className="w-6 h-6" />
                 </div>
                 <div>
-                  <div className="text-xs text-slate-500 font-semibold">Official Sales & Support Email</div>
-                  <div className="font-extrabold text-slate-900">support@schoolos.app</div>
+                  <div className="text-sm text-slate-500 font-medium">Sales & Support</div>
+                  <div className="font-bold text-slate-900">support@schoolos.app</div>
                 </div>
               </div>
 
-              <div className="flex items-center gap-4 p-4 glass-ios-card rounded-2xl border border-slate-200">
-                <div className="w-10 h-10 rounded-xl bg-emerald-100 flex items-center justify-center text-emerald-600 font-bold">
-                  <MessageSquare className="w-5 h-5" />
+              <div className="flex items-center gap-4 p-5 bg-white/60 border border-slate-200/50 backdrop-blur-xl rounded-[1.5rem] shadow-sm">
+                <div className="w-12 h-12 rounded-2xl bg-slate-100 flex items-center justify-center text-slate-700">
+                  <MessageSquare className="w-6 h-6" />
                 </div>
                 <div>
-                  <div className="text-xs text-slate-500 font-semibold">WhatsApp Executive Hotline</div>
-                  <div className="font-extrabold text-slate-900">+91 98765 43210 (24/7 Active)</div>
+                  <div className="text-sm text-slate-500 font-medium">WhatsApp Executive</div>
+                  <div className="font-bold text-slate-900">+91 98765 43210 (24/7)</div>
                 </div>
               </div>
 
-              <div className="flex items-center gap-4 p-4 glass-ios-card rounded-2xl border border-slate-200">
-                <div className="w-10 h-10 rounded-xl bg-cyan-100 flex items-center justify-center text-cyan-600 font-bold">
-                  <MapPin className="w-5 h-5" />
+              <div className="flex items-center gap-4 p-5 bg-white/60 border border-slate-200/50 backdrop-blur-xl rounded-[1.5rem] shadow-sm">
+                <div className="w-12 h-12 rounded-2xl bg-slate-100 flex items-center justify-center text-slate-700">
+                  <MapPin className="w-6 h-6" />
                 </div>
                 <div>
-                  <div className="text-xs text-slate-500 font-semibold">Headquarters</div>
-                  <div className="font-extrabold text-slate-900">SchoolOS Tech Park, Cyber City, India</div>
+                  <div className="text-sm text-slate-500 font-medium">Headquarters</div>
+                  <div className="font-bold text-slate-900">Tech Park, Cyber City</div>
                 </div>
               </div>
             </div>
           </div>
 
-          <div className="lg:col-span-7 glass-ios-card p-8 sm:p-10 rounded-4xl border border-slate-200/90 shadow-ios-float relative">
+          <div className="lg:col-span-7 bg-white/80 border border-slate-200/50 backdrop-blur-2xl p-8 sm:p-12 rounded-[2.5rem] shadow-[0_20px_50px_rgba(0,0,0,0.05)] relative overflow-hidden">
+            <div className="absolute inset-0 bg-gradient-to-br from-vision-blueGlow/5 to-transparent pointer-events-none" />
+            
             {formSubmitted ? (
-              <div className="text-center py-12 space-y-4 animate-in zoom-in duration-300">
-                <div className="w-16 h-16 rounded-full bg-emerald-100 text-emerald-600 flex items-center justify-center mx-auto">
+              <motion.div 
+                initial={{ opacity: 0, scale: 0.9 }}
+                animate={{ opacity: 1, scale: 1 }}
+                className="text-center py-16 space-y-6 relative z-10"
+              >
+                <div className="w-20 h-20 rounded-full bg-vision-cyan/10 text-vision-cyan flex items-center justify-center mx-auto border border-vision-cyan/20">
                   <CheckCircle className="w-10 h-10" />
                 </div>
-                <h3 className="text-2xl font-bold text-slate-900">Demo Request Confirmed!</h3>
-                <p className="text-sm text-slate-600 max-w-md mx-auto">
-                  Thank you, <span className="text-slate-900 font-bold">{formData.name}</span>. Our education advisor will call you within 2 hours to walk through SchoolOS for <span className="text-slate-900 font-bold">{formData.schoolName || 'your institution'}</span>.
+                <h3 className="text-3xl font-bold text-slate-900">Demo Requested!</h3>
+                <p className="text-base text-slate-600 max-w-md mx-auto font-light">
+                  Thank you, <span className="text-slate-900 font-semibold">{formData.name}</span>. Our advisor will call you within 2 hours to walk through SchoolOS for <span className="text-slate-900 font-semibold">{formData.schoolName || 'your institution'}</span>.
                 </p>
                 <button
                   onClick={() => setFormSubmitted(false)}
-                  className="px-6 py-2.5 rounded-xl bg-slate-100 border border-slate-300 text-xs font-bold text-slate-900 hover:bg-slate-200"
+                  className="mt-4 px-8 py-3 rounded-2xl bg-white border border-slate-200 text-sm font-bold text-slate-700 hover:bg-slate-50 transition-colors shadow-sm"
                 >
                   Submit Another Inquiry
                 </button>
-              </div>
+              </motion.div>
             ) : (
-              <form onSubmit={handleSubmit} className="space-y-4">
-                <h3 className="text-xl font-extrabold text-slate-900 mb-2">Book Your Free Live 1-on-1 Demo</h3>
+              <form onSubmit={handleSubmit} className="space-y-6 relative z-10">
+                <h3 className="text-2xl font-bold text-slate-900 mb-6">Book Your Free Live Demo</h3>
                 
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                  <div className="space-y-1">
-                    <label className="text-xs font-bold text-slate-700">Full Name *</label>
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                  <div className="space-y-2">
+                    <label className="text-sm font-semibold text-slate-700">Full Name *</label>
                     <input
                       type="text"
                       required
                       placeholder="Dr. Rajesh Sharma"
                       value={formData.name}
                       onChange={(e) => setFormData({...formData, name: e.target.value})}
-                      className="w-full p-3 rounded-2xl bg-white border border-slate-200 text-xs text-slate-900 placeholder-slate-400 focus:outline-none focus:border-blue-600"
+                      className="w-full p-4 rounded-2xl bg-white/50 border border-slate-200 text-slate-900 placeholder-slate-400 focus:outline-none focus:border-vision-blueGlow focus:ring-2 focus:ring-vision-blueGlow/20 transition-all shadow-sm"
                     />
                   </div>
 
-                  <div className="space-y-1">
-                    <label className="text-xs font-bold text-slate-700">Work Email Address *</label>
+                  <div className="space-y-2">
+                    <label className="text-sm font-semibold text-slate-700">Work Email *</label>
                     <input
                       type="email"
                       required
                       placeholder="principal@school.edu"
                       value={formData.email}
                       onChange={(e) => setFormData({...formData, email: e.target.value})}
-                      className="w-full p-3 rounded-2xl bg-white border border-slate-200 text-xs text-slate-900 placeholder-slate-400 focus:outline-none focus:border-blue-600"
+                      className="w-full p-4 rounded-2xl bg-white/50 border border-slate-200 text-slate-900 placeholder-slate-400 focus:outline-none focus:border-vision-blueGlow focus:ring-2 focus:ring-vision-blueGlow/20 transition-all shadow-sm"
                     />
                   </div>
                 </div>
 
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                  <div className="space-y-1">
-                    <label className="text-xs font-bold text-slate-700">Phone / WhatsApp Number *</label>
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                  <div className="space-y-2">
+                    <label className="text-sm font-semibold text-slate-700">Phone Number *</label>
                     <input
                       type="tel"
                       required
                       placeholder="+91 98765 43210"
                       value={formData.phone}
                       onChange={(e) => setFormData({...formData, phone: e.target.value})}
-                      className="w-full p-3 rounded-2xl bg-white border border-slate-200 text-xs text-slate-900 placeholder-slate-400 focus:outline-none focus:border-blue-600"
+                      className="w-full p-4 rounded-2xl bg-white/50 border border-slate-200 text-slate-900 placeholder-slate-400 focus:outline-none focus:border-vision-blueGlow focus:ring-2 focus:ring-vision-blueGlow/20 transition-all shadow-sm"
                     />
                   </div>
 
-                  <div className="space-y-1">
-                    <label className="text-xs font-bold text-slate-700">School / College Name *</label>
+                  <div className="space-y-2">
+                    <label className="text-sm font-semibold text-slate-700">Institution Name *</label>
                     <input
                       type="text"
                       required
                       placeholder="Apex International School"
                       value={formData.schoolName}
                       onChange={(e) => setFormData({...formData, schoolName: e.target.value})}
-                      className="w-full p-3 rounded-2xl bg-white border border-slate-200 text-xs text-slate-900 placeholder-slate-400 focus:outline-none focus:border-blue-600"
+                      className="w-full p-4 rounded-2xl bg-white/50 border border-slate-200 text-slate-900 placeholder-slate-400 focus:outline-none focus:border-vision-blueGlow focus:ring-2 focus:ring-vision-blueGlow/20 transition-all shadow-sm"
                     />
                   </div>
                 </div>
 
-                <div className="space-y-1">
-                  <label className="text-xs font-bold text-slate-700">Estimated Student Strength</label>
+                <div className="space-y-2">
+                  <label className="text-sm font-semibold text-slate-700">Student Strength</label>
                   <select
                     value={formData.studentCount}
                     onChange={(e) => setFormData({...formData, studentCount: e.target.value})}
-                    className="w-full p-3 rounded-2xl bg-white border border-slate-200 text-xs text-slate-900 focus:outline-none focus:border-blue-600"
+                    className="w-full p-4 rounded-2xl bg-white/50 border border-slate-200 text-slate-900 focus:outline-none focus:border-vision-blueGlow focus:ring-2 focus:ring-vision-blueGlow/20 transition-all shadow-sm appearance-none"
                   >
                     <option>Under 500 Students</option>
                     <option>500 - 1,500 Students</option>
@@ -159,9 +172,9 @@ export const Contact: React.FC = () => {
 
                 <button
                   type="submit"
-                  className="w-full py-4 rounded-2xl bg-blue-600 hover:bg-blue-700 text-white font-bold text-sm shadow-xl shadow-blue-500/25 hover:scale-105 transition-all flex items-center justify-center gap-2"
+                  className="w-full py-4 mt-4 rounded-2xl bg-slate-900 text-white font-bold text-base shadow-[0_10px_30px_rgba(15,23,42,0.2)] hover:scale-[1.02] active:scale-[0.98] transition-all flex items-center justify-center gap-2 group"
                 >
-                  <Send className="w-4 h-4" />
+                  <Send className="w-5 h-5 group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
                   <span>Request Live 1-on-1 Demo</span>
                 </button>
               </form>
