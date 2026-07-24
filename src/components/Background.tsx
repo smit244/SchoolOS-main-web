@@ -1,7 +1,7 @@
 import React, { useRef, useMemo } from 'react';
 import { Canvas, useFrame } from '@react-three/fiber';
 import * as THREE from 'three';
-import { MathUtils } from 'three';
+import { motion } from 'framer-motion';
 
 const AuroraMesh = () => {
   const meshRef = useRef<THREE.Mesh>(null);
@@ -12,9 +12,10 @@ const AuroraMesh = () => {
     return {
       uniforms: {
         uTime: { value: 0 },
-        uColor1: { value: new THREE.Color('#E0F2FE') }, // Light Sky Blue
-        uColor2: { value: new THREE.Color('#F3E8FF') }, // Light Purple/Lavender
-        uColor3: { value: new THREE.Color('#CFFAFE') }, // Light Cyan
+        // Premium Apple-like colors (very soft)
+        uColor1: { value: new THREE.Color('#3B82F6') }, // Blue
+        uColor2: { value: new THREE.Color('#06B6D4') }, // Cyan
+        uColor3: { value: new THREE.Color('#8B5CF6') }, // Purple
         uMouse: { value: new THREE.Vector2(0, 0) }
       },
       vertexShader: `
@@ -75,11 +76,11 @@ const AuroraMesh = () => {
         void main() {
           vUv = uv;
           
-          // Displace vertices to create fluid motion
+          // Displace vertices to create slow fluid motion
           vec3 pos = position;
-          float noiseFreq = 1.5;
-          float noiseAmp = 0.4;
-          vec3 noisePos = vec3(pos.x * noiseFreq + uTime * 0.1, pos.y * noiseFreq + uTime * 0.1, pos.z);
+          float noiseFreq = 1.0;
+          float noiseAmp = 0.5;
+          vec3 noisePos = vec3(pos.x * noiseFreq + uTime * 0.05, pos.y * noiseFreq + uTime * 0.05, pos.z);
           pos.z += snoise(noisePos) * noiseAmp;
 
           vPosition = pos;
@@ -95,22 +96,23 @@ const AuroraMesh = () => {
         uniform vec3 uColor3;
 
         void main() {
-          // Mix colors based on position and time
-          float mix1 = sin(vPosition.x * 2.0 + uTime * 0.5) * 0.5 + 0.5;
-          float mix2 = cos(vPosition.y * 2.0 + uTime * 0.4) * 0.5 + 0.5;
+          // Mix colors based on position and time (very slow movement)
+          float mix1 = sin(vPosition.x * 2.0 + uTime * 0.1) * 0.5 + 0.5;
+          float mix2 = cos(vPosition.y * 2.0 + uTime * 0.15) * 0.5 + 0.5;
           
           vec3 color = mix(uColor1, uColor2, mix1);
           color = mix(color, uColor3, mix2);
           
           // Soft edge blending
-          float alpha = 1.0 - smoothstep(0.5, 1.0, length(vUv - 0.5) * 2.0);
+          float alpha = 1.0 - smoothstep(0.3, 1.0, length(vUv - 0.5) * 2.0);
           
-          // Use full color intensity for light theme
-          gl_FragColor = vec4(color, alpha * 0.5);
+          // Use very low opacity for premium subtle look on white background
+          gl_FragColor = vec4(color, alpha * 0.08);
         }
       `,
       transparent: true,
-      depthWrite: false
+      depthWrite: false,
+      blending: THREE.NormalBlending
     };
   }, []);
 
@@ -131,17 +133,89 @@ const AuroraMesh = () => {
 export const Background: React.FC = () => {
   return (
     <div className="fixed inset-0 z-0 bg-white overflow-hidden pointer-events-none">
-      {/* Noise Texture */}
+      
+      {/* 2% Opacity Subtle Noise Texture */}
       <div 
-        className="absolute inset-0 opacity-[0.4] z-10" 
+        className="absolute inset-0 opacity-[0.02] z-30" 
         style={{
           backgroundImage: 'url("data:image/svg+xml,%3Csvg viewBox=%220 0 200 200%22 xmlns=%22http://www.w3.org/2000/svg%22%3E%3Cfilter id=%22noiseFilter%22%3E%3CfeTurbulence type=%22fractalNoise%22 baseFrequency=%220.65%22 numOctaves=%223%22 stitchTiles=%22stitch%22/%3E%3C/filter%3E%3Crect width=%22100%25%22 height=%22100%25%22 filter=%22url(%23noiseFilter)%22/%3E%3C/svg%3E")',
           backgroundRepeat: 'repeat',
         }}
       />
       
-      {/* React Three Fiber Canvas for WebGL Aurora */}
-      <div className="absolute inset-0 z-0 opacity-80">
+      {/* DOM-based Animated Orbs (Mesh Gradient Look) */}
+      <div className="absolute inset-0 z-10 overflow-hidden opacity-60">
+        
+        {/* Large Blue Gradient Orb */}
+        <motion.div 
+          animate={{ 
+            x: ['-10%', '10%', '-5%', '-10%'],
+            y: ['-10%', '5%', '10%', '-10%'],
+            scale: [1, 1.1, 0.9, 1]
+          }}
+          transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
+          className="absolute -top-[20%] -left-[10%] w-[70vw] h-[70vw] rounded-full bg-vision-blueGlow/10 blur-[120px]"
+        />
+
+        {/* Soft Cyan Lighting */}
+        <motion.div 
+          animate={{ 
+            x: ['10%', '-10%', '5%', '10%'],
+            y: ['10%', '-5%', '-10%', '10%'],
+            scale: [0.9, 1.1, 1, 0.9]
+          }}
+          transition={{ duration: 25, repeat: Infinity, ease: "linear" }}
+          className="absolute top-[20%] -right-[10%] w-[60vw] h-[60vw] rounded-full bg-vision-cyan/10 blur-[130px]"
+        />
+
+        {/* Purple Ambient Glow (Bottom) */}
+        <motion.div 
+          animate={{ 
+            x: ['-5%', '15%', '-10%', '-5%'],
+            y: ['5%', '-15%', '10%', '5%'],
+            scale: [1, 1.2, 0.8, 1]
+          }}
+          transition={{ duration: 30, repeat: Infinity, ease: "linear" }}
+          className="absolute -bottom-[20%] left-[10%] w-[80vw] h-[80vw] rounded-full bg-vision-purple/10 blur-[150px]"
+        />
+
+        {/* Radial Spotlight Behind Hero */}
+        <motion.div 
+          animate={{ opacity: [0.5, 0.8, 0.5] }}
+          transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
+          className="absolute top-0 left-1/2 -translate-x-1/2 w-[100vw] h-[50vh] bg-[radial-gradient(ellipse_at_top,rgba(255,255,255,1)_0%,rgba(255,255,255,0)_70%)] opacity-80 mix-blend-overlay"
+        />
+        
+        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[80vw] h-[80vh] bg-[radial-gradient(circle_at_top,rgba(59,130,246,0.08)_0%,transparent_60%)] pointer-events-none" />
+
+        {/* Floating Blurred Circles / Translucent Shapes */}
+        <motion.div 
+          animate={{ 
+            y: ['0vh', '-100vh'],
+            x: ['0vw', '10vw', '-5vw', '0vw'],
+            rotate: [0, 180, 360]
+          }}
+          transition={{ duration: 40, repeat: Infinity, ease: "linear" }}
+          className="absolute bottom-0 left-[20%] w-[30vw] h-[30vw] rounded-full border border-white/40 bg-white/10 blur-3xl"
+        />
+
+        <motion.div 
+          animate={{ 
+            y: ['0vh', '-120vh'],
+            x: ['0vw', '-15vw', '10vw', '0vw'],
+            rotate: [0, -180, -360]
+          }}
+          transition={{ duration: 45, repeat: Infinity, ease: "linear", delay: 10 }}
+          className="absolute -bottom-[40%] right-[20%] w-[40vw] h-[40vw] rounded-full border border-vision-cyan/20 bg-vision-cyan/5 blur-[80px]"
+        />
+
+      </div>
+
+      {/* Layered Glass Reflection (Static Overlay) */}
+      <div className="absolute inset-0 z-20 bg-gradient-to-b from-white/30 via-transparent to-white/10 mix-blend-overlay pointer-events-none" />
+      
+      {/* React Three Fiber Canvas for WebGL Aurora Light Waves */}
+      <div className="absolute inset-0 z-0 opacity-50">
         <Canvas camera={{ position: [0, 0, 5], fov: 75 }}>
           <AuroraMesh />
         </Canvas>
