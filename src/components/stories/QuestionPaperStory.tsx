@@ -157,7 +157,7 @@ export const QuestionPaperStory: React.FC = () => {
                   <div>
                     <div className="font-bold text-slate-800 text-sm">FINAL_EXAM_2026.pdf</div>
                     <div className="text-[9px] text-emerald-500 font-bold uppercase tracking-widest flex items-center gap-1 mt-0.5">
-                      <ShieldCheck className="w-3 h-3" /> 256-Bit Encrypted
+                      <ShieldCheck className="w-3 h-3" /> Bcrypt Encryption
                     </div>
                   </div>
                 </div>
