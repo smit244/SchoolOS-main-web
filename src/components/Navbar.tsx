@@ -33,7 +33,7 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenDemo, onOpenTrial }) => {
       <div className={`pointer-events-auto nav-squircle px-3 py-2.5 transition-all duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] flex items-center justify-between gap-4 sm:gap-8 backdrop-blur-2xl saturate-150 ${
         scrolled 
           ? 'w-[95%] max-w-4xl bg-black/60 border border-white/10 shadow-[0_8px_30px_rgba(0,0,0,0.4)]' 
-          : 'w-auto max-w-5xl bg-white/70 border border-white/60 shadow-[0_8px_30px_rgba(0,0,0,0.04)]'
+          : 'w-[95%] max-w-5xl bg-white/70 border border-white/60 shadow-[0_8px_30px_rgba(0,0,0,0.04)]'
       }`}>
         
         {/* Logo */}
