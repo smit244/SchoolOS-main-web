@@ -8,43 +8,47 @@ export default {
   theme: {
     extend: {
       colors: {
-        brand: {
-          DEFAULT: '#4F46E5', // QBMS Indigo
-          dark: '#3730A3',
-          soft: '#EEF2FF',
-          light: '#F5F3FF',
-        },
-        qbms: {
-          amber: '#F59E0B',
-          emerald: '#10B981',
-          pink: '#EC4899',
-          sky: '#0EA5E9',
-          violet: '#8B5CF6',
-          rose: '#F43F5E',
-          navy: '#0E1330',
-          ink: '#1E293B',
-          mut: '#64748B',
-          line: '#E8EAF3',
-          soft: '#F7F8FD',
-        },
-        iconnect: {
-          cyan: '#04BFFA',
-          blue: '#0489DA',
-          bgDark: '#001931',
+        background: '#000000',
+        vision: {
+          glass: 'rgba(255, 255, 255, 0.05)',
+          glassLight: 'rgba(255, 255, 255, 0.1)',
+          glassBorder: 'rgba(255, 255, 255, 0.15)',
+          cyan: '#00F0FF',
+          blueGlow: '#0033FF',
+          purple: '#8A2BE2',
+          text: '#FFFFFF',
+          textMuted: 'rgba(255, 255, 255, 0.6)',
         }
       },
       fontFamily: {
-        sans: ['Inter', 'Hind Vadodara', '-apple-system', 'sans-serif'],
-        display: ['Plus Jakarta Sans', 'Space Grotesk', 'sans-serif'],
+        sans: ['"Inter"', '-apple-system', 'sans-serif'],
+        display: ['"Space Grotesk"', 'sans-serif'],
       },
       boxShadow: {
-        'qbms-card': '0 10px 30px rgba(15, 23, 42, 0.06), 0 0 1px 1px rgba(255, 255, 255, 0.9) inset',
-        'qbms-hover': '0 22px 50px rgba(15, 23, 42, 0.12), 0 0 1px 1px rgba(255, 255, 255, 1) inset',
-        'iconnect-glow': '0 0 40px -10px rgba(4, 191, 250, 0.3)',
+        'glass-panel': '0 8px 32px 0 rgba(0, 0, 0, 0.37), inset 0 0 0 1px rgba(255, 255, 255, 0.1)',
+        'glow-cyan': '0 0 20px rgba(0, 240, 255, 0.5)',
+        'glow-purple': '0 0 30px rgba(138, 43, 226, 0.5)',
+        'dynamic-island': '0 20px 40px rgba(0, 0, 0, 0.5), inset 0 0 0 1px rgba(255, 255, 255, 0.2)',
       },
       borderRadius: {
-        '3xl': '1.5rem',
         '4xl': '2rem',
+        '5xl': '2.5rem',
+        '6xl': '3rem',
+      },
+      backgroundImage: {
+        'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
+        'hero-glow': 'conic-gradient(from 180deg at 50% 50%, #0033FF 0deg, #8A2BE2 180deg, #00F0FF 360deg)',
+      },
+      animation: {
+        'float': 'float 6s ease-in-out infinite',
+        'pulse-slow': 'pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+        'spin-slow': 'spin 12s linear infinite',
+      },
+      keyframes: {
+        float: {
+          '0%, 100%': { transform: 'translateY(0)' },
+          '50%': { transform: 'translateY(-20px)' },
+        }
       }
     },
   },

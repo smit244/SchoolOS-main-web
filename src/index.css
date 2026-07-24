@@ -4,79 +4,100 @@
 
 @layer base {
   body {
-    @apply bg-white text-slate-900 transition-colors duration-300;
+    @apply bg-background text-vision-text selection:bg-vision-cyan selection:text-black overflow-x-hidden;
+    /* Use overscroll-none for smooth scroll integration */
+    overscroll-behavior: none;
   }
 }
 
-/* Custom Scrollbar */
+/* Custom Scrollbar hidden for premium feel, handled by Lenis */
 ::-webkit-scrollbar {
-  width: 8px;
+  display: none;
 }
 
-::-webkit-scrollbar-track {
-  background: #f7f8fd;
+/* Base Glassmorphism - VisionOS Style */
+.glass-panel {
+  background: rgba(20, 20, 25, 0.4);
+  backdrop-filter: blur(40px);
+  -webkit-backdrop-filter: blur(40px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.5), inset 0 0 0 1px rgba(255, 255, 255, 0.05);
 }
 
-::-webkit-scrollbar-thumb {
-  background: #cbd5e1;
-  border-radius: 9999px;
+.glass-panel:hover {
+  background: rgba(30, 30, 40, 0.5);
+  border: 1px solid rgba(255, 255, 255, 0.2);
 }
 
-::-webkit-scrollbar-thumb:hover {
-  background: #4f46e5;
+/* Dynamic Island Navigation */
+.dynamic-island {
+  background: rgba(10, 10, 15, 0.65);
+  backdrop-filter: blur(60px) saturate(150%);
+  -webkit-backdrop-filter: blur(60px) saturate(150%);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 9999px; /* Pill shape initially, we'll use squircle mostly */
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.6), inset 0 1px 1px rgba(255, 255, 255, 0.2);
 }
 
-/* Glassy iOS + QBMS Theme Styles */
-.glass-qbms {
-  background: rgba(255, 255, 255, 0.85);
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
-  border: 1px solid #e8eaf3;
-  box-shadow: 0 10px 30px rgba(15, 23, 42, 0.05);
+.nav-squircle {
+  border-radius: 32px;
 }
 
-.glass-qbms-hover {
-  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+/* Text Gradients */
+.text-glow {
+  text-shadow: 0 0 20px rgba(255, 255, 255, 0.5);
 }
 
-.glass-qbms-hover:hover {
-  transform: translateY(-5px);
-  border-color: rgba(79, 70, 229, 0.3);
-  box-shadow: 0 22px 50px rgba(15, 23, 42, 0.12);
-}
-
-.pill-qbms {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  background: #ffffff;
-  border: 1px solid #e8eaf3;
-  padding: 7px 16px;
-  border-radius: 30px;
-  font-size: 0.85rem;
-  font-weight: 600;
-  color: #4f46e5;
-  box-shadow: 0 6px 16px rgba(15, 23, 42, 0.06);
-}
-
-/* i-Connect Style Gradients */
-.text-gradient-iconnect {
-  background: linear-gradient(135deg, #04BFFA 0%, #0489DA 50%, #4F46E5 100%);
+.text-gradient-cyan {
+  background: linear-gradient(135deg, #FFFFFF 0%, #00F0FF 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
 
-.bg-gradient-iconnect {
-  background: linear-gradient(135deg, #04BFFA 0%, #0489DA 100%);
+/* Noise Texture Overlay */
+.noise-bg {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  pointer-events: none;
+  z-index: 9999;
+  opacity: 0.04;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
 }
 
-.badge-iconnect {
-  background: linear-gradient(135deg, #04BFFA 0%, #0489DA 100%);
-  padding: 2px;
-  border-radius: 9999px;
+/* Background Gradients */
+.bg-aurora {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: -1;
+  background-color: #000;
+  overflow: hidden;
 }
 
-.bg-grid-soft {
-  background-image: radial-gradient(rgba(79, 70, 229, 0.08) 1px, transparent 1px);
-  background-size: 32px 32px;
+.bg-aurora::before,
+.bg-aurora::after {
+  content: "";
+  position: absolute;
+  width: 150vw;
+  height: 150vh;
+  top: -25vh;
+  left: -25vw;
+  background-image: conic-gradient(from 0deg at 50% 50%, 
+    rgba(0, 240, 255, 0.15) 0deg, 
+    rgba(138, 43, 226, 0.15) 120deg, 
+    rgba(0, 51, 255, 0.15) 240deg, 
+    rgba(0, 240, 255, 0.15) 360deg);
+  filter: blur(120px);
+  animation: spin-slow 25s linear infinite;
+}
+
+.bg-aurora::after {
+  animation-direction: reverse;
+  animation-duration: 35s;
+  background-image: radial-gradient(circle at 50% 50%, rgba(0, 240, 255, 0.2), transparent 60%);
 }
