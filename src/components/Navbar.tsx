@@ -27,16 +27,15 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenDemo, onOpenTrial }) => {
       className="fixed top-6 left-0 right-0 z-50 flex justify-center px-4 pointer-events-none"
     >
       {/* Central Floating Dynamic Island */}
-      <div className={`dynamic-island pointer-events-auto nav-squircle px-3 py-2.5 transition-all duration-500 ease-in-out flex items-center justify-between gap-4 sm:gap-8 ${scrolled ? 'w-[95%] max-w-4xl shadow-glow-cyan/20' : 'w-auto max-w-5xl shadow-glow-cyan/10'}`}>
+      <div className={`dynamic-island pointer-events-auto nav-squircle px-3 py-2.5 transition-all duration-500 ease-in-out flex items-center justify-between gap-4 sm:gap-8 ${scrolled ? 'w-[95%] max-w-4xl shadow-[0_10px_30px_rgba(79,70,229,0.15)] bg-white/90 backdrop-blur-xl border-slate-200' : 'w-auto max-w-5xl shadow-sm bg-white/80 backdrop-blur-lg border-slate-200'}`}>
         
         {/* Logo */}
         <a href="#" className="flex items-center gap-2 group shrink-0 pl-2">
-          <div className="w-8 h-8 rounded-[10px] bg-white/10 border border-white/20 flex items-center justify-center text-white font-extrabold group-hover:bg-white/20 transition-all backdrop-blur-md relative overflow-hidden">
-             <div className="absolute inset-0 bg-hero-glow opacity-50 blur-sm group-hover:opacity-100 transition-opacity" />
+          <div className="w-8 h-8 rounded-[10px] bg-[#4F46E5] flex items-center justify-center text-white font-extrabold group-hover:scale-105 transition-all relative overflow-hidden">
              <Sparkles className="w-4 h-4 text-white relative z-10" />
           </div>
-          <span className="font-display text-lg font-bold tracking-tighter text-white hidden sm:block">
-            School<span className="text-vision-cyan">OS</span>
+          <span className="font-display text-lg font-bold tracking-tighter text-slate-900 hidden sm:block">
+            School<span className="text-[#4F46E5]">OS</span>
           </span>
         </a>
 
@@ -46,10 +45,9 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenDemo, onOpenTrial }) => {
             <a 
               key={item} 
               href={`#${item.toLowerCase()}`} 
-              className="px-5 py-2 rounded-2xl text-sm font-medium text-vision-textMuted hover:text-white hover:bg-white/10 transition-all duration-300 relative overflow-hidden group"
+              className="px-5 py-2 rounded-2xl text-sm font-semibold text-slate-600 hover:text-slate-900 hover:bg-slate-100 transition-all duration-300 relative overflow-hidden group"
             >
               <span className="relative z-10">{item}</span>
-              <div className="absolute inset-0 bg-white/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
             </a>
           ))}
         </nav>
@@ -58,16 +56,15 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenDemo, onOpenTrial }) => {
         <div className="flex items-center gap-2 pr-1">
           <button 
             onClick={onOpenDemo}
-            className="hidden sm:block text-sm font-medium text-white/70 hover:text-white px-4 py-2 transition-colors rounded-2xl hover:bg-white/10"
+            className="hidden sm:block text-sm font-bold text-slate-700 hover:text-[#4F46E5] px-4 py-2 transition-colors rounded-2xl hover:bg-indigo-50"
           >
-            Demo
+            Login
           </button>
           
           <button
             onClick={onOpenTrial}
-            className="relative px-5 py-2.5 rounded-[18px] bg-white text-black font-semibold text-sm overflow-hidden group shadow-glow-cyan transition-transform hover:scale-105 active:scale-95 flex items-center gap-2"
+            className="relative px-5 py-2.5 rounded-[18px] bg-[#4F46E5] text-white font-bold text-sm overflow-hidden group shadow-lg shadow-[#4F46E5]/20 transition-transform hover:scale-105 active:scale-95 flex items-center gap-2"
           >
-            <div className="absolute inset-0 bg-gradient-to-r from-vision-cyan to-vision-blueGlow opacity-0 group-hover:opacity-20 transition-opacity duration-300" />
             <span className="relative z-10">Start Free</span>
             <ArrowRight className="w-4 h-4 relative z-10 group-hover:translate-x-1 transition-transform" />
           </button>
@@ -91,23 +88,23 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenDemo, onOpenTrial }) => {
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: -20, scale: 0.95 }}
             transition={{ duration: 0.3 }}
-            className="absolute top-24 left-4 right-4 bg-black/80 backdrop-blur-3xl border border-white/10 rounded-3xl p-6 pointer-events-auto flex flex-col gap-4 shadow-glass-panel"
+            className="absolute top-24 left-4 right-4 bg-white/90 backdrop-blur-3xl border border-slate-200 rounded-3xl p-6 pointer-events-auto flex flex-col gap-4 shadow-xl shadow-slate-200/50"
           >
             {['Features', 'Ecosystem', 'Pricing'].map((item) => (
               <a 
                 key={item} 
                 href={`#${item.toLowerCase()}`}
                 onClick={() => setIsMobileMenuOpen(false)}
-                className="text-lg font-medium text-white/70 hover:text-white py-2 border-b border-white/10"
+                className="text-lg font-bold text-slate-700 hover:text-[#4F46E5] py-2 border-b border-slate-100"
               >
                 {item}
               </a>
             ))}
             <button 
               onClick={() => { setIsMobileMenuOpen(false); onOpenDemo(); }}
-              className="mt-4 w-full py-3 rounded-2xl bg-white/10 font-semibold text-white text-center hover:bg-white/20 transition-colors"
+              className="mt-4 w-full py-3 rounded-2xl bg-slate-100 font-bold text-slate-900 text-center hover:bg-slate-200 transition-colors"
             >
-              Book Demo
+              Login
             </button>
           </motion.div>
         )}
