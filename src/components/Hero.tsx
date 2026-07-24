@@ -1,6 +1,6 @@
-import React, { useRef } from 'react';
-import { motion, useScroll, useTransform } from 'framer-motion';
-import { Sparkles, ArrowRight, Layers, Shield, Zap } from 'lucide-react';
+import React, { useRef, useEffect } from 'react';
+import { motion, useScroll, useTransform, useMotionValue, useSpring } from 'framer-motion';
+import { Sparkles, ArrowRight, Shield, Zap, Activity } from 'lucide-react';
 
 interface HeroProps {
   onOpenDemo: () => void;
@@ -9,19 +9,59 @@ interface HeroProps {
 
 export const Hero: React.FC<HeroProps> = ({ onOpenDemo, onOpenTrial }) => {
   const containerRef = useRef<HTMLDivElement>(null);
+  
+  // Scroll parallax
   const { scrollYProgress } = useScroll({
     target: containerRef,
     offset: ["start start", "end start"]
   });
-
   const y = useTransform(scrollYProgress, [0, 1], [0, 300]);
   const opacity = useTransform(scrollYProgress, [0, 0.8], [1, 0]);
   const scale = useTransform(scrollYProgress, [0, 1], [1, 0.8]);
 
+  // Mouse parallax
+  const mouseX = useMotionValue(0);
+  const mouseY = useMotionValue(0);
+  
+  const springConfig = { damping: 30, stiffness: 100, mass: 1 };
+  const smoothMouseX = useSpring(mouseX, springConfig);
+  const smoothMouseY = useSpring(mouseY, springConfig);
+  
+  const rotateX = useTransform(smoothMouseY, [-1, 1], [10, -10]);
+  const rotateY = useTransform(smoothMouseX, [-1, 1], [-10, 10]);
+  
+  const floatX1 = useTransform(smoothMouseX, [-1, 1], [-20, 20]);
+  const floatY1 = useTransform(smoothMouseY, [-1, 1], [-20, 20]);
+  
+  const floatX2 = useTransform(smoothMouseX, [-1, 1], [30, -30]);
+  const floatY2 = useTransform(smoothMouseY, [-1, 1], [30, -30]);
+
+  useEffect(() => {
+    const handleMouseMove = (e: MouseEvent) => {
+      const { innerWidth, innerHeight } = window;
+      // Normalize mouse coordinates between -1 and 1
+      const x = (e.clientX / innerWidth) * 2 - 1;
+      const y = (e.clientY / innerHeight) * 2 - 1;
+      mouseX.set(x);
+      mouseY.set(y);
+    };
+
+    window.addEventListener('mousemove', handleMouseMove);
+    return () => window.removeEventListener('mousemove', handleMouseMove);
+  }, [mouseX, mouseY]);
+
+  // Staggered text animation variants
+  const wordAnimation = {
+    hidden: { opacity: 0, y: 20 },
+    visible: { opacity: 1, y: 0, transition: { duration: 0.8, ease: [0.16, 1, 0.3, 1] } }
+  };
+
+  const titleWords1 = "The future of".split(" ");
+  
   return (
-    <section ref={containerRef} className="relative w-full min-h-[100vh] flex items-center justify-center pt-32 pb-20 overflow-hidden perspective-[1000px]">
+    <section ref={containerRef} className="relative w-full min-h-[100vh] flex items-center justify-center pt-32 pb-20 overflow-hidden perspective-[2000px]">
       
-      {/* Dynamic Background Glows (mimicking Apple Light Glows) */}
+      {/* Dynamic Background Glows */}
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[60vw] h-[60vw] max-w-[800px] max-h-[800px] bg-vision-purple/30 rounded-full blur-[120px] pointer-events-none animate-pulse-slow" />
       <div className="absolute top-1/4 left-1/4 w-[40vw] h-[40vw] max-w-[600px] max-h-[600px] bg-vision-cyan/30 rounded-full blur-[100px] pointer-events-none animate-spin-slow" />
       <div className="absolute bottom-1/4 right-1/4 w-[50vw] h-[50vw] max-w-[700px] max-h-[700px] bg-vision-blueGlow/30 rounded-full blur-[100px] pointer-events-none" style={{ animation: 'spin 20s linear infinite reverse' }} />
@@ -32,132 +72,175 @@ export const Hero: React.FC<HeroProps> = ({ onOpenDemo, onOpenTrial }) => {
       >
         {/* Top Badge */}
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
+          initial={{ opacity: 0, scale: 0.9 }}
+          animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-          className="inline-flex items-center gap-2 px-5 py-2 rounded-full bg-white/60 border border-slate-200/50 backdrop-blur-xl mb-8 group overflow-hidden relative cursor-pointer shadow-sm"
+          className="inline-flex items-center gap-2 px-5 py-2 rounded-full bg-white/60 border border-slate-200/50 backdrop-blur-xl mb-8 group overflow-hidden relative cursor-pointer shadow-sm hover:scale-105 transition-transform"
         >
           <div className="absolute inset-0 bg-gradient-to-r from-vision-cyan/10 to-vision-purple/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-          <Sparkles className="w-4 h-4 text-vision-blueGlow relative z-10" />
+          <Sparkles className="w-4 h-4 text-vision-blueGlow relative z-10 animate-pulse" />
           <span className="text-sm font-semibold text-slate-700 relative z-10 tracking-wide">Introducing SchoolOS Intelligence</span>
         </motion.div>
 
-        {/* Cinematic Headline */}
+        {/* Cinematic Headline with Staggered Words */}
         <motion.h1 
-          initial={{ opacity: 0, y: 40 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 1, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
-          className="font-display text-[4rem] sm:text-[6rem] lg:text-[7.5rem] font-medium leading-[1.05] tracking-tighter text-transparent bg-clip-text bg-gradient-to-b from-slate-900 to-slate-600 mb-8 max-w-5xl mx-auto"
+          initial="hidden"
+          animate="visible"
+          transition={{ staggerChildren: 0.1 }}
+          className="font-display text-[4rem] sm:text-[6rem] lg:text-[7.5rem] font-medium leading-[1.05] tracking-tighter text-slate-900 mb-8 max-w-5xl mx-auto flex flex-wrap justify-center gap-x-4 sm:gap-x-8"
         >
-          The future of <br className="hidden sm:block" />
-          <span className="relative">
-            <span className="absolute inset-0 bg-gradient-to-r from-vision-blueGlow via-vision-purple to-vision-cyan bg-clip-text text-transparent blur-2xl opacity-30" />
+          {titleWords1.map((word, i) => (
+            <motion.span key={i} variants={wordAnimation} className="inline-block">
+              {word}
+            </motion.span>
+          ))}
+          <motion.span variants={wordAnimation} className="relative inline-block mt-2 sm:mt-0">
+            <span className="absolute inset-0 bg-gradient-to-r from-vision-blueGlow via-vision-purple to-vision-cyan bg-clip-text text-transparent blur-2xl opacity-40 animate-pulse-slow" />
             <span className="relative bg-gradient-to-r from-vision-blueGlow via-vision-purple to-vision-cyan bg-clip-text text-transparent">learning</span>
-          </span> is here.
+          </motion.span>
+          <motion.span variants={wordAnimation} className="inline-block">is</motion.span>
+          <motion.span variants={wordAnimation} className="inline-block">here.</motion.span>
         </motion.h1>
 
         {/* Subheadline */}
         <motion.p 
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 1, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
+          transition={{ duration: 1, delay: 0.6, ease: [0.16, 1, 0.3, 1] }}
           className="text-xl sm:text-2xl text-slate-600 max-w-3xl leading-relaxed font-light mx-auto mb-12"
         >
           An immersive, AI-powered ecosystem designed for modern educational institutions. Manage everything from admissions to exams in one beautiful workspace.
         </motion.p>
 
-        {/* CTAs */}
+        {/* Magnetic CTAs */}
         <motion.div 
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 1, delay: 0.3, ease: [0.16, 1, 0.3, 1] }}
+          transition={{ duration: 1, delay: 0.8, ease: [0.16, 1, 0.3, 1] }}
           className="flex flex-col sm:flex-row items-center justify-center gap-6 mb-16 relative z-20"
         >
           <button
             onClick={onOpenTrial}
-            className="group relative px-8 py-4 rounded-full bg-slate-900 text-white font-semibold text-lg overflow-hidden transition-transform hover:scale-105 active:scale-95 flex items-center gap-2 shadow-[0_10px_30px_rgba(15,23,42,0.2)]"
+            className="group relative px-8 py-4 rounded-full bg-slate-900 text-white font-bold text-lg overflow-hidden transition-all hover:scale-110 active:scale-95 flex items-center gap-2 shadow-[0_10px_40px_rgba(15,23,42,0.2)] hover:shadow-[0_15px_50px_rgba(15,23,42,0.3)]"
           >
             <div className="absolute inset-0 bg-gradient-to-r from-vision-blueGlow to-vision-purple opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
             <span className="relative z-10">Start 3-Day Free Trial</span>
-            <ArrowRight className="w-5 h-5 relative z-10 group-hover:translate-x-1 transition-transform" />
+            <ArrowRight className="w-5 h-5 relative z-10 group-hover:translate-x-2 transition-transform duration-300" />
           </button>
           
           <button
             onClick={onOpenDemo}
-            className="group px-8 py-4 rounded-full bg-white/60 border border-slate-200/50 text-slate-800 font-medium text-lg hover:bg-white transition-colors backdrop-blur-xl flex items-center gap-2 shadow-sm"
+            className="group px-8 py-4 rounded-full bg-white/60 border border-slate-200/80 text-slate-800 font-bold text-lg hover:bg-white transition-all backdrop-blur-xl flex items-center gap-2 shadow-sm hover:shadow-lg hover:scale-105 active:scale-95"
           >
             <span>Book a live demo</span>
           </button>
         </motion.div>
 
-        {/* Floating 3D Elements Mockup (CSS based for now, can integrate ThreeJS later) */}
+        {/* Floating 3D Elements Mockup with Mouse Parallax */}
         <motion.div 
-          initial={{ opacity: 0, y: 100, rotateX: 20 }}
+          initial={{ opacity: 0, y: 150, rotateX: 30 }}
           animate={{ opacity: 1, y: 0, rotateX: 0 }}
-          transition={{ duration: 1.5, delay: 0.4, ease: [0.16, 1, 0.3, 1] }}
-          className="relative w-full max-w-6xl mx-auto aspect-[16/9] rounded-[2.5rem] border border-white/80 bg-white/40 backdrop-blur-3xl shadow-[0_20px_50px_rgba(0,0,0,0.05)] overflow-hidden group perspective-[2000px]"
+          transition={{ duration: 1.5, delay: 1, type: "spring", bounce: 0.2 }}
+          style={{ rotateX, rotateY }}
+          className="relative w-full max-w-6xl mx-auto aspect-[16/9] rounded-[2.5rem] border border-white/80 bg-white/40 backdrop-blur-3xl shadow-[0_30px_80px_rgba(0,0,0,0.08)] overflow-hidden group transform-style-3d"
         >
           {/* Inner Interface Mockup */}
-          <div className="absolute inset-2 rounded-[2rem] border border-white/60 bg-gradient-to-b from-white/60 to-white/20 overflow-hidden flex shadow-inner">
+          <div className="absolute inset-2 rounded-[2rem] border border-white/60 bg-gradient-to-b from-white/80 to-white/30 overflow-hidden flex shadow-inner">
+            
             {/* Sidebar */}
-            <div className="w-64 h-full border-r border-slate-200/50 p-6 hidden md:block bg-white/20">
-              <div className="w-full h-8 bg-slate-900/10 rounded-lg mb-8" />
+            <div className="w-64 h-full border-r border-slate-200/50 p-6 hidden md:flex flex-col gap-4 bg-white/30 backdrop-blur-md">
+              <div className="w-full h-10 bg-slate-900/10 rounded-xl mb-6 shadow-sm" />
               {[...Array(6)].map((_, i) => (
-                <div key={i} className="w-full h-6 bg-slate-900/5 rounded-md mb-4" />
+                <div key={i} className="w-full h-8 bg-slate-900/5 rounded-lg mb-2 flex items-center px-3 gap-3">
+                   <div className="w-4 h-4 rounded-full bg-slate-200" />
+                   <div className="h-2 flex-1 rounded-full bg-slate-200" />
+                </div>
               ))}
             </div>
+            
             {/* Main Area */}
-            <div className="flex-1 p-8 relative bg-white/10">
-               <div className="absolute top-0 right-0 w-[800px] h-[800px] bg-vision-purple/20 blur-[100px] rounded-full pointer-events-none opacity-50 group-hover:opacity-80 transition-opacity duration-1000" />
-               <div className="w-1/3 h-10 bg-slate-900/10 rounded-xl mb-8 relative z-10" />
+            <div className="flex-1 p-8 relative bg-white/20">
+               {/* Animated Inner Background Glow */}
+               <motion.div 
+                 style={{ x: floatX1, y: floatY1 }}
+                 className="absolute top-0 right-0 w-[600px] h-[600px] bg-vision-purple/20 blur-[100px] rounded-full pointer-events-none opacity-60" 
+               />
+               <motion.div 
+                 style={{ x: floatX2, y: floatY2 }}
+                 className="absolute bottom-0 left-0 w-[500px] h-[500px] bg-vision-cyan/20 blur-[100px] rounded-full pointer-events-none opacity-50" 
+               />
+               
+               <div className="w-1/3 h-10 bg-slate-900/10 rounded-xl mb-8 relative z-10 shadow-sm" />
+               
+               {/* 3 Top Stat Cards */}
                <div className="grid grid-cols-3 gap-6 relative z-10">
-                  <div className="h-40 rounded-2xl bg-white/60 border border-white/80 backdrop-blur-md shadow-sm" />
-                  <div className="h-40 rounded-2xl bg-white/60 border border-white/80 backdrop-blur-md shadow-sm" />
-                  <div className="h-40 rounded-2xl bg-white/60 border border-white/80 backdrop-blur-md shadow-sm" />
+                  {[1, 2, 3].map(i => (
+                    <motion.div 
+                      key={i} 
+                      whileHover={{ y: -5 }}
+                      className="h-40 rounded-2xl bg-white/60 border border-white/80 backdrop-blur-md shadow-sm p-5 flex flex-col justify-between"
+                    >
+                      <div className="w-8 h-8 rounded-full bg-slate-100 flex items-center justify-center">
+                        <Activity className="w-4 h-4 text-vision-blueGlow" />
+                      </div>
+                      <div className="space-y-2">
+                        <div className="h-6 w-1/2 bg-slate-900/10 rounded-md" />
+                        <div className="h-2 w-3/4 bg-slate-900/5 rounded-full" />
+                      </div>
+                    </motion.div>
+                  ))}
                </div>
-               <div className="w-full h-64 mt-6 rounded-2xl bg-gradient-to-t from-vision-cyan/5 to-white/60 border border-white/80 relative z-10 backdrop-blur-md flex items-end p-6 shadow-sm">
-                  {/* Fake Chart */}
-                  <div className="w-full h-1/2 flex items-end gap-2">
-                    {[30, 50, 40, 70, 90, 60, 80, 100].map((h, i) => (
-                      <motion.div 
-                        key={i}
-                        initial={{ height: 0 }}
-                        animate={{ height: `${h}%` }}
-                        transition={{ duration: 1.5, delay: 0.5 + (i * 0.1), ease: "circOut" }}
-                        className="flex-1 bg-gradient-to-t from-vision-cyan to-vision-blueGlow rounded-t-sm opacity-80"
-                      />
-                    ))}
-                  </div>
+               
+               {/* Abstract Animated Visualization Area */}
+               <div className="w-full h-64 mt-6 rounded-2xl bg-gradient-to-tr from-white/80 to-white/40 border border-white/80 relative z-10 backdrop-blur-xl p-6 shadow-sm flex items-center justify-center overflow-hidden">
+                  <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(59,130,246,0.05)_0%,transparent_100%)]" />
+                  
+                  {/* Floating Data Nodes inside dashboard */}
+                  <motion.div 
+                    animate={{ rotate: 360 }}
+                    transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
+                    className="relative w-48 h-48 rounded-full border border-vision-cyan/20 flex items-center justify-center"
+                  >
+                     <div className="absolute w-4 h-4 rounded-full bg-vision-cyan shadow-[0_0_15px_rgba(6,182,212,0.5)] -top-2" />
+                     <div className="absolute w-3 h-3 rounded-full bg-vision-purple shadow-[0_0_15px_rgba(139,92,246,0.5)] -bottom-1.5" />
+                     
+                     <div className="w-24 h-24 rounded-full border border-vision-blueGlow/30 flex items-center justify-center">
+                       <div className="w-12 h-12 rounded-full bg-vision-blueGlow/20 animate-pulse flex items-center justify-center">
+                         <div className="w-6 h-6 rounded-full bg-vision-blueGlow shadow-[0_0_20px_rgba(59,130,246,0.8)]" />
+                       </div>
+                     </div>
+                  </motion.div>
                </div>
             </div>
           </div>
 
-          {/* Floating UI Cards */}
+          {/* Floating UI Cards (Parallaxed) */}
           <motion.div 
-            animate={{ y: [-10, 10, -10] }}
-            transition={{ repeat: Infinity, duration: 6, ease: "easeInOut" }}
-            className="absolute -right-8 top-1/4 w-64 p-4 rounded-2xl bg-white/80 backdrop-blur-3xl border border-white shadow-[0_15px_35px_rgba(0,0,0,0.05)] z-20 hidden lg:flex items-center gap-4"
+            style={{ x: floatX2, y: floatY1 }}
+            className="absolute -right-8 top-1/4 w-64 p-5 rounded-2xl bg-white/80 backdrop-blur-3xl border border-white/90 shadow-[0_20px_50px_rgba(0,0,0,0.08)] z-20 hidden lg:flex items-center gap-4 hover:scale-105 transition-transform cursor-default"
           >
-             <div className="w-12 h-12 rounded-full bg-vision-cyan/20 flex items-center justify-center">
-               <Zap className="w-6 h-6 text-vision-cyan" />
+             <div className="w-14 h-14 rounded-full bg-vision-cyan/10 border border-vision-cyan/20 flex items-center justify-center">
+               <Zap className="w-7 h-7 text-vision-cyan" />
              </div>
              <div>
-               <div className="text-slate-900 font-bold">AI Engine Active</div>
-               <div className="text-slate-500 text-sm">Processing 1M+ queries</div>
+               <div className="text-slate-900 font-bold text-lg">AI Engine Active</div>
+               <div className="text-slate-500 text-sm font-medium">Processing 1M+ queries</div>
              </div>
           </motion.div>
 
           <motion.div 
-            animate={{ y: [10, -10, 10] }}
-            transition={{ repeat: Infinity, duration: 8, ease: "easeInOut", delay: 1 }}
-            className="absolute -left-8 bottom-1/4 w-64 p-4 rounded-2xl bg-white/80 backdrop-blur-3xl border border-white shadow-[0_15px_35px_rgba(0,0,0,0.05)] z-20 hidden lg:flex items-center gap-4"
+            style={{ x: floatX1, y: floatY2 }}
+            className="absolute -left-12 bottom-1/4 w-64 p-5 rounded-2xl bg-white/80 backdrop-blur-3xl border border-white/90 shadow-[0_20px_50px_rgba(0,0,0,0.08)] z-20 hidden lg:flex items-center gap-4 hover:scale-105 transition-transform cursor-default"
           >
-             <div className="w-12 h-12 rounded-full bg-vision-purple/20 flex items-center justify-center">
-               <Shield className="w-6 h-6 text-vision-purple" />
+             <div className="w-14 h-14 rounded-full bg-vision-purple/10 border border-vision-purple/20 flex items-center justify-center">
+               <Shield className="w-7 h-7 text-vision-purple" />
              </div>
              <div>
-               <div className="text-slate-900 font-bold">Secure Gateway</div>
-               <div className="text-slate-500 text-sm">Zero-trust architecture</div>
+               <div className="text-slate-900 font-bold text-lg">Secure Gateway</div>
+               <div className="text-emerald-600 text-sm font-bold flex items-center gap-1">
+                 <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
+                 Zero-trust active
+               </div>
              </div>
           </motion.div>
 
