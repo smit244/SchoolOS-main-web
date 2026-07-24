@@ -142,104 +142,175 @@ export const Hero: React.FC<HeroProps> = ({ onOpenDemo, onOpenTrial }) => {
           animate={{ opacity: 1, y: 0, rotateX: 0 }}
           transition={{ duration: 1.5, delay: 1, type: "spring", bounce: 0.2 }}
           style={{ rotateX, rotateY }}
-          className="relative w-full max-w-6xl mx-auto aspect-[16/9] rounded-[2.5rem] border border-white/80 bg-white/40 backdrop-blur-3xl shadow-[0_30px_80px_rgba(0,0,0,0.08)] overflow-hidden group transform-style-3d"
+          className="relative w-full max-w-6xl mx-auto h-[400px] sm:h-[600px] lg:h-[700px] flex items-center justify-center transform-style-3d mt-10 perspective-[2000px]"
         >
-          {/* Inner Interface Mockup */}
-          <div className="absolute inset-2 rounded-[2rem] border border-white/60 bg-gradient-to-b from-white/80 to-white/30 overflow-hidden flex shadow-inner">
-            
-            {/* Sidebar */}
-            <div className="w-64 h-full border-r border-slate-200/50 p-6 hidden md:flex flex-col gap-4 bg-white/30 backdrop-blur-md">
-              <div className="w-full h-10 bg-slate-900/10 rounded-xl mb-6 shadow-sm" />
-              {[...Array(6)].map((_, i) => (
-                <div key={i} className="w-full h-8 bg-slate-900/5 rounded-lg mb-2 flex items-center px-3 gap-3">
-                   <div className="w-4 h-4 rounded-full bg-slate-200" />
-                   <div className="h-2 flex-1 rounded-full bg-slate-200" />
-                </div>
-              ))}
-            </div>
-            
-            {/* Main Area */}
-            <div className="flex-1 p-8 relative bg-white/20">
-               {/* Animated Inner Background Glow */}
-               <motion.div 
-                 style={{ x: floatX1, y: floatY1 }}
-                 className="absolute top-0 right-0 w-[600px] h-[600px] bg-vision-purple/20 blur-[100px] rounded-full pointer-events-none opacity-60" 
-               />
-               <motion.div 
-                 style={{ x: floatX2, y: floatY2 }}
-                 className="absolute bottom-0 left-0 w-[500px] h-[500px] bg-vision-cyan/20 blur-[100px] rounded-full pointer-events-none opacity-50" 
-               />
-               
-               <div className="w-1/3 h-10 bg-slate-900/10 rounded-xl mb-8 relative z-10 shadow-sm" />
-               
-               {/* 3 Top Stat Cards */}
-               <div className="grid grid-cols-3 gap-6 relative z-10">
-                  {[1, 2, 3].map(i => (
+          
+          {/* Main Desktop Dashboard Mockup */}
+          <div className="absolute left-0 w-full md:w-[85%] h-full rounded-[2.5rem] border border-white/80 bg-white/40 backdrop-blur-3xl shadow-[0_30px_80px_rgba(0,0,0,0.08)] overflow-hidden group">
+            {/* Inner Interface Mockup */}
+            <div className="absolute inset-2 rounded-[2rem] border border-white/60 bg-gradient-to-b from-white/80 to-white/30 overflow-hidden flex shadow-inner">
+              
+              {/* Sidebar */}
+              <div className="w-64 h-full border-r border-slate-200/50 p-6 hidden lg:flex flex-col gap-4 bg-white/30 backdrop-blur-md">
+                <div className="w-full h-10 bg-slate-900/10 rounded-xl mb-6 shadow-sm" />
+                {[...Array(6)].map((_, i) => (
+                  <div key={i} className="w-full h-8 bg-slate-900/5 rounded-lg mb-2 flex items-center px-3 gap-3 hover:bg-white/50 transition-colors cursor-pointer">
+                     <div className="w-4 h-4 rounded-full bg-slate-200" />
+                     <div className="h-2 flex-1 rounded-full bg-slate-200" />
+                  </div>
+                ))}
+              </div>
+              
+              {/* Main Area */}
+              <div className="flex-1 p-6 sm:p-8 relative bg-white/20">
+                 {/* Animated Inner Background Glow */}
+                 <motion.div 
+                   style={{ x: floatX1, y: floatY1 }}
+                   className="absolute top-0 right-0 w-[600px] h-[600px] bg-vision-purple/20 blur-[100px] rounded-full pointer-events-none opacity-60" 
+                 />
+                 <motion.div 
+                   style={{ x: floatX2, y: floatY2 }}
+                   className="absolute bottom-0 left-0 w-[500px] h-[500px] bg-vision-cyan/20 blur-[100px] rounded-full pointer-events-none opacity-50" 
+                 />
+                 
+                 <div className="w-1/2 sm:w-1/3 h-10 bg-slate-900/10 rounded-xl mb-8 relative z-10 shadow-sm" />
+                 
+                 {/* 3 Top Stat Cards */}
+                 <div className="grid grid-cols-2 md:grid-cols-3 gap-4 sm:gap-6 relative z-10">
+                    {[1, 2, 3].map(i => (
+                      <motion.div 
+                        key={i} 
+                        whileHover={{ y: -5 }}
+                        className={`h-32 sm:h-40 rounded-2xl bg-white/60 border border-white/80 backdrop-blur-md shadow-sm p-4 sm:p-5 flex flex-col justify-between ${i === 3 ? 'hidden md:flex' : ''}`}
+                      >
+                        <div className="w-8 h-8 rounded-full bg-slate-100 flex items-center justify-center">
+                          <Activity className="w-4 h-4 text-vision-blueGlow" />
+                        </div>
+                        <div className="space-y-2">
+                          <div className="h-4 sm:h-6 w-1/2 bg-slate-900/10 rounded-md" />
+                          <div className="h-2 w-3/4 bg-slate-900/5 rounded-full" />
+                        </div>
+                      </motion.div>
+                    ))}
+                 </div>
+                 
+                 {/* Abstract Animated Visualization Area */}
+                 <div className="w-full h-48 sm:h-64 mt-6 rounded-2xl bg-gradient-to-tr from-white/80 to-white/40 border border-white/80 relative z-10 backdrop-blur-xl p-6 shadow-sm flex items-center justify-center overflow-hidden">
+                    <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(59,130,246,0.05)_0%,transparent_100%)]" />
+                    
+                    {/* Floating Data Nodes inside dashboard */}
                     <motion.div 
-                      key={i} 
-                      whileHover={{ y: -5 }}
-                      className="h-40 rounded-2xl bg-white/60 border border-white/80 backdrop-blur-md shadow-sm p-5 flex flex-col justify-between"
+                      animate={{ rotate: 360 }}
+                      transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
+                      className="relative w-32 h-32 sm:w-48 sm:h-48 rounded-full border border-vision-cyan/20 flex items-center justify-center"
                     >
-                      <div className="w-8 h-8 rounded-full bg-slate-100 flex items-center justify-center">
-                        <Activity className="w-4 h-4 text-vision-blueGlow" />
-                      </div>
-                      <div className="space-y-2">
-                        <div className="h-6 w-1/2 bg-slate-900/10 rounded-md" />
-                        <div className="h-2 w-3/4 bg-slate-900/5 rounded-full" />
-                      </div>
-                    </motion.div>
-                  ))}
-               </div>
-               
-               {/* Abstract Animated Visualization Area */}
-               <div className="w-full h-64 mt-6 rounded-2xl bg-gradient-to-tr from-white/80 to-white/40 border border-white/80 relative z-10 backdrop-blur-xl p-6 shadow-sm flex items-center justify-center overflow-hidden">
-                  <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(59,130,246,0.05)_0%,transparent_100%)]" />
-                  
-                  {/* Floating Data Nodes inside dashboard */}
-                  <motion.div 
-                    animate={{ rotate: 360 }}
-                    transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
-                    className="relative w-48 h-48 rounded-full border border-vision-cyan/20 flex items-center justify-center"
-                  >
-                     <div className="absolute w-4 h-4 rounded-full bg-vision-cyan shadow-[0_0_15px_rgba(6,182,212,0.5)] -top-2" />
-                     <div className="absolute w-3 h-3 rounded-full bg-vision-purple shadow-[0_0_15px_rgba(139,92,246,0.5)] -bottom-1.5" />
-                     
-                     <div className="w-24 h-24 rounded-full border border-vision-blueGlow/30 flex items-center justify-center">
-                       <div className="w-12 h-12 rounded-full bg-vision-blueGlow/20 animate-pulse flex items-center justify-center">
-                         <div className="w-6 h-6 rounded-full bg-vision-blueGlow shadow-[0_0_20px_rgba(59,130,246,0.8)]" />
+                       <div className="absolute w-3 h-3 sm:w-4 sm:h-4 rounded-full bg-vision-cyan shadow-[0_0_15px_rgba(6,182,212,0.5)] -top-1.5 sm:-top-2" />
+                       <div className="absolute w-2 h-2 sm:w-3 sm:h-3 rounded-full bg-vision-purple shadow-[0_0_15px_rgba(139,92,246,0.5)] -bottom-1 sm:-bottom-1.5" />
+                       
+                       <div className="w-16 h-16 sm:w-24 sm:h-24 rounded-full border border-vision-blueGlow/30 flex items-center justify-center">
+                         <div className="w-8 h-8 sm:w-12 sm:h-12 rounded-full bg-vision-blueGlow/20 animate-pulse flex items-center justify-center">
+                           <div className="w-4 h-4 sm:w-6 sm:h-6 rounded-full bg-vision-blueGlow shadow-[0_0_20px_rgba(59,130,246,0.8)]" />
+                         </div>
                        </div>
-                     </div>
-                  </motion.div>
-               </div>
+                    </motion.div>
+                 </div>
+              </div>
             </div>
           </div>
+
+          {/* Floating Mobile Mockup */}
+          <motion.div 
+            style={{ x: floatX2, y: floatY1 }}
+            className="absolute right-0 lg:-right-8 bottom-0 lg:bottom-10 w-[260px] lg:w-[300px] h-[520px] lg:h-[600px] rounded-[3rem] border-[8px] border-white/90 bg-white/40 backdrop-blur-3xl shadow-[0_40px_100px_rgba(0,0,0,0.15)] overflow-hidden z-30 hidden md:block group/mobile"
+          >
+             {/* iPhone Dynamic Island */}
+             <div className="absolute top-3 left-1/2 -translate-x-1/2 w-24 h-7 bg-slate-900 rounded-full z-20 flex items-center justify-between px-2 shadow-inner">
+               <div className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
+               <div className="w-3 h-3 rounded-full bg-slate-800" />
+             </div>
+             
+             {/* Mobile Content */}
+             <div className="absolute inset-0 bg-gradient-to-b from-white/90 to-white/40 p-5 pt-16 flex flex-col gap-4">
+                
+                {/* Mobile Header Card */}
+                <motion.div 
+                  whileHover={{ scale: 1.05 }}
+                  className="w-full h-14 bg-white/80 rounded-2xl border border-white shadow-sm flex items-center px-4 gap-3 cursor-pointer"
+                >
+                  <div className="w-8 h-8 rounded-full bg-gradient-to-tr from-vision-cyan to-vision-blueGlow flex items-center justify-center shadow-md">
+                    <Sparkles className="w-4 h-4 text-white" />
+                  </div>
+                  <div className="flex-1 space-y-1.5">
+                    <div className="w-2/3 h-2 bg-slate-800/20 rounded-full" />
+                    <div className="w-1/3 h-1.5 bg-slate-800/10 rounded-full" />
+                  </div>
+                </motion.div>
+                
+                {/* Mobile Main Chart Card */}
+                <div className="flex-1 bg-white/60 rounded-3xl border border-white shadow-sm p-5 relative overflow-hidden flex flex-col justify-end group-hover/mobile:bg-white/80 transition-colors">
+                   <div className="absolute -right-10 -top-10 w-40 h-40 bg-vision-blueGlow/20 blur-3xl rounded-full" />
+                   <div className="absolute -left-10 top-20 w-32 h-32 bg-vision-purple/20 blur-3xl rounded-full" />
+                   
+                   {/* Fake mobile chart */}
+                   <div className="flex items-end gap-2 h-[60%] w-full relative z-10">
+                      {[50, 30, 80, 45, 95, 60].map((h, i) => (
+                        <motion.div 
+                          key={i} 
+                          initial={{ height: 0 }}
+                          whileInView={{ height: `${h}%` }}
+                          transition={{ duration: 1, delay: i * 0.1 }}
+                          className="flex-1 bg-gradient-to-t from-vision-purple to-vision-cyan rounded-t-sm opacity-90 shadow-sm" 
+                        />
+                      ))}
+                   </div>
+                </div>
+
+                {/* Mobile Bottom Status Card */}
+                <div className="w-full h-24 bg-slate-900 rounded-3xl border border-slate-800 shadow-xl p-5 flex items-center gap-4 relative overflow-hidden">
+                   <div className="absolute inset-0 bg-gradient-to-r from-vision-blueGlow/20 to-transparent pointer-events-none" />
+                   <div className="w-12 h-12 rounded-xl bg-white/10 flex items-center justify-center backdrop-blur-md">
+                     <Shield className="w-6 h-6 text-white" />
+                   </div>
+                   <div className="space-y-2 flex-1">
+                     <div className="text-white text-sm font-bold">Secure Sync</div>
+                     <div className="h-1.5 w-full bg-white/20 rounded-full overflow-hidden">
+                       <motion.div 
+                         animate={{ width: ["0%", "100%", "0%"] }} 
+                         transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
+                         className="h-full bg-vision-cyan" 
+                       />
+                     </div>
+                   </div>
+                </div>
+             </div>
+          </motion.div>
 
           {/* Floating UI Cards (Parallaxed) */}
           <motion.div 
             style={{ x: floatX2, y: floatY1 }}
-            className="absolute -right-8 top-1/4 w-64 p-5 rounded-2xl bg-white/80 backdrop-blur-3xl border border-white/90 shadow-[0_20px_50px_rgba(0,0,0,0.08)] z-20 hidden lg:flex items-center gap-4 hover:scale-105 transition-transform cursor-default"
+            className="absolute -right-8 lg:-right-16 top-1/4 w-64 p-5 rounded-2xl bg-white/90 backdrop-blur-3xl border border-white shadow-[0_20px_50px_rgba(0,0,0,0.1)] z-40 hidden xl:flex items-center gap-4 hover:scale-105 transition-transform cursor-default"
           >
-             <div className="w-14 h-14 rounded-full bg-vision-cyan/10 border border-vision-cyan/20 flex items-center justify-center">
-               <Zap className="w-7 h-7 text-vision-cyan" />
+             <div className="w-14 h-14 rounded-full bg-gradient-to-br from-vision-cyan to-vision-blueGlow flex items-center justify-center shadow-inner">
+               <Zap className="w-6 h-6 text-white" />
              </div>
              <div>
-               <div className="text-slate-900 font-bold text-lg">AI Engine Active</div>
-               <div className="text-slate-500 text-sm font-medium">Processing 1M+ queries</div>
+               <div className="text-slate-900 font-bold text-lg">AI Engine</div>
+               <div className="text-slate-500 text-sm font-medium">Processing Live Data</div>
              </div>
           </motion.div>
 
           <motion.div 
             style={{ x: floatX1, y: floatY2 }}
-            className="absolute -left-12 bottom-1/4 w-64 p-5 rounded-2xl bg-white/80 backdrop-blur-3xl border border-white/90 shadow-[0_20px_50px_rgba(0,0,0,0.08)] z-20 hidden lg:flex items-center gap-4 hover:scale-105 transition-transform cursor-default"
+            className="absolute -left-8 lg:-left-12 bottom-1/3 w-64 p-5 rounded-2xl bg-white/90 backdrop-blur-3xl border border-white shadow-[0_20px_50px_rgba(0,0,0,0.1)] z-40 hidden xl:flex items-center gap-4 hover:scale-105 transition-transform cursor-default"
           >
-             <div className="w-14 h-14 rounded-full bg-vision-purple/10 border border-vision-purple/20 flex items-center justify-center">
-               <Shield className="w-7 h-7 text-vision-purple" />
+             <div className="w-14 h-14 rounded-full bg-gradient-to-br from-vision-purple to-pink-500 flex items-center justify-center shadow-inner">
+               <Shield className="w-6 h-6 text-white" />
              </div>
              <div>
-               <div className="text-slate-900 font-bold text-lg">Secure Gateway</div>
-               <div className="text-emerald-600 text-sm font-bold flex items-center gap-1">
-                 <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
-                 Zero-trust active
+               <div className="text-slate-900 font-bold text-lg">Secure Cloud</div>
+               <div className="text-emerald-600 text-sm font-bold flex items-center gap-1.5">
+                 <span className="w-2.5 h-2.5 rounded-full bg-emerald-500 animate-pulse shadow-[0_0_10px_rgba(16,185,129,0.5)]" />
+                 Zero-trust Active
                </div>
              </div>
           </motion.div>
