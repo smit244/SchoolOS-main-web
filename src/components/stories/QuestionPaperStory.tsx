@@ -1,6 +1,6 @@
 import React, { useRef } from 'react';
 import { motion, useScroll, useTransform } from 'framer-motion';
-import { FileText, Sparkles, Wand2 } from 'lucide-react';
+import { FileText, Sparkles, Wand2, Lock, ShieldCheck } from 'lucide-react';
 
 export const QuestionPaperStory: React.FC = () => {
   const containerRef = useRef<HTMLDivElement>(null);
@@ -92,23 +92,27 @@ export const QuestionPaperStory: React.FC = () => {
                
                {/* Sucked-in Particles (Question Bank Data) */}
                <motion.g style={{ scale: particleScale, rotate: particleRotate, originX: "200px", originY: "200px" }}>
-                 {[...Array(30)].map((_, i) => (
-                   <circle 
-                     key={`dot-${i}`}
-                     cx={200 + Math.cos(i * 12) * (100 + Math.random() * 150)}
-                     cy={200 + Math.sin(i * 12) * (100 + Math.random() * 150)}
-                     r={Math.random() * 4 + 2}
+                 {['?', 'A', 'B', 'C', 'x', '=', '+', 'Q', '1', '2', '?', 'A', 'B', 'C', 'x', '=', '+', 'Q', '1', '2', '?', 'A', 'B', 'C', 'x', '=', '+', 'Q', '1', '2'].map((char, i) => (
+                   <text 
+                     key={`char-${i}`}
+                     x={200 + Math.cos(i * 12) * (100 + Math.random() * 150)}
+                     y={200 + Math.sin(i * 12) * (100 + Math.random() * 150)}
                      fill={i % 2 === 0 ? "#8B5CF6" : "#EC4899"}
-                     className="animate-pulse"
+                     fontSize={Math.random() * 14 + 10}
+                     fontWeight="bold"
+                     className="animate-pulse drop-shadow-md"
                      style={{ animationDelay: `${Math.random()}s` }}
-                   />
+                   >
+                     {char}
+                   </text>
                  ))}
                </motion.g>
              </svg>
              
-             {/* Center Black Hole Core */}
-             <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-16 h-16 bg-slate-900 rounded-full shadow-[inset_0_0_20px_rgba(139,92,246,0.8),0_0_40px_rgba(139,92,246,0.6)] flex items-center justify-center">
-               <Sparkles className="w-6 h-6 text-vision-purple" />
+             {/* Center Black Hole Core (Secure Encrypted Core) */}
+             <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-16 h-16 bg-slate-900 rounded-full shadow-[inset_0_0_20px_rgba(139,92,246,0.8),0_0_40px_rgba(139,92,246,0.6)] flex flex-col items-center justify-center">
+               <ShieldCheck className="w-5 h-5 text-emerald-400 mb-0.5" />
+               <span className="text-[6px] font-bold text-emerald-400 tracking-widest uppercase">Encrypted</span>
              </div>
           </div>
 
@@ -128,7 +132,10 @@ export const QuestionPaperStory: React.FC = () => {
                <div className="absolute inset-0 bg-[linear-gradient(rgba(139,92,246,0.4)_1px,transparent_1px),linear-gradient(90deg,rgba(139,92,246,0.4)_1px,transparent_1px)] bg-[size:20px_20px]" />
                
                <div className="absolute inset-0 bg-gradient-to-tr from-vision-purple/40 to-transparent mix-blend-overlay" />
-               <Sparkles className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-12 h-12 text-white drop-shadow-[0_0_10px_rgba(255,255,255,1)]" />
+               <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 flex flex-col items-center">
+                 <Lock className="w-12 h-12 text-white drop-shadow-[0_0_15px_rgba(255,255,255,1)] mb-1" />
+                 <span className="text-[10px] font-bold text-white tracking-widest uppercase drop-shadow-md">Secure Blueprint</span>
+               </div>
             </div>
           </motion.div>
 
@@ -140,16 +147,25 @@ export const QuestionPaperStory: React.FC = () => {
                style={{ opacity: pdfOpacity, scale: pdfScale }}
                className="w-full h-full bg-white rounded-xl shadow-[0_30px_60px_rgba(0,0,0,0.15)] border border-slate-100 p-6 flex flex-col gap-4 relative overflow-hidden"
              >
-                <div className="flex items-center gap-3 border-b border-slate-100 pb-4">
-                  <div className="w-10 h-10 rounded-lg bg-pink-100 flex items-center justify-center">
+                {/* Security Watermark */}
+                <Lock className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-32 h-32 text-slate-50 rotate-[-15deg] pointer-events-none" />
+
+                <div className="flex items-center gap-3 border-b border-slate-100 pb-4 relative z-10">
+                  <div className="w-10 h-10 rounded-lg bg-pink-100 flex items-center justify-center shrink-0">
                     <FileText className="w-5 h-5 text-pink-500" />
                   </div>
-                  <div className="w-1/2 h-4 bg-slate-100 rounded-full" />
+                  <div>
+                    <div className="font-bold text-slate-800 text-sm">FINAL_EXAM_2026.pdf</div>
+                    <div className="text-[9px] text-emerald-500 font-bold uppercase tracking-widest flex items-center gap-1 mt-0.5">
+                      <ShieldCheck className="w-3 h-3" /> 256-Bit Encrypted
+                    </div>
+                  </div>
                 </div>
                 
-                {/* Lines of text that appear */}
+                {/* Lines of text that appear (Simulated Questions) */}
                 {[...Array(6)].map((_, i) => (
-                  <div key={i} className="flex flex-col gap-2">
+                  <div key={i} className="flex flex-col gap-2 relative z-10">
+                    <div className="w-1/4 h-2 bg-slate-200 rounded-full" />
                     <div className="w-full h-2 bg-slate-100 rounded-full" />
                     <div className="w-5/6 h-2 bg-slate-50 rounded-full" />
                   </div>
