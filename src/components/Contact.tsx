@@ -51,7 +51,7 @@ export const Contact: React.FC = () => {
                 </div>
                 <div>
                   <div className="text-sm text-slate-500 font-medium">Sales & Support</div>
-                  <div className="font-bold text-slate-900">support@schoolos.app</div>
+                  <div className="font-bold text-slate-900">mandaliyatechnologies@gmail.com</div>
                 </div>
               </div>
 
@@ -61,7 +61,7 @@ export const Contact: React.FC = () => {
                 </div>
                 <div>
                   <div className="text-sm text-slate-500 font-medium">WhatsApp Executive</div>
-                  <div className="font-bold text-slate-900">+91 98765 43210 (24/7)</div>
+                  <div className="font-bold text-slate-900">+91 98249 51989 (24/7)</div>
                 </div>
               </div>
 
@@ -71,7 +71,7 @@ export const Contact: React.FC = () => {
                 </div>
                 <div>
                   <div className="text-sm text-slate-500 font-medium">Headquarters</div>
-                  <div className="font-bold text-slate-900">Tech Park, Cyber City</div>
+                  <div className="font-bold text-slate-900">Surat City of Digital Valley</div>
                 </div>
               </div>
             </div>
@@ -136,7 +136,7 @@ export const Contact: React.FC = () => {
                     <input
                       type="tel"
                       required
-                      placeholder="+91 98765 43210"
+                      placeholder="+91 98249 51989"
                       value={formData.phone}
                       onChange={(e) => setFormData({...formData, phone: e.target.value})}
                       className="w-full p-4 rounded-2xl bg-white/50 border border-slate-200 text-slate-900 placeholder-slate-400 focus:outline-none focus:border-vision-blueGlow focus:ring-2 focus:ring-vision-blueGlow/20 transition-all shadow-sm"
