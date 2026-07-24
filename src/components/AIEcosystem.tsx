@@ -7,22 +7,22 @@ import {
 } from 'lucide-react';
 
 const ECOSYSTEM_MODULES = [
-  { id: 1, title: 'Student Management', icon: Users, angle: 0, radius: 'inner' },
-  { id: 2, title: 'Attendance', icon: CheckSquare, angle: 45, radius: 'inner' },
-  { id: 3, title: 'AI Face Recognition', icon: ScanFace, angle: 90, radius: 'inner' },
-  { id: 4, title: 'Question Bank', icon: Database, angle: 135, radius: 'inner' },
-  { id: 5, title: 'AI Question Generator', icon: Sparkles, angle: 180, radius: 'inner' },
-  { id: 6, title: 'Examination', icon: FileText, angle: 225, radius: 'inner' },
-  { id: 7, title: 'Fee Management', icon: CreditCard, angle: 270, radius: 'inner' },
-  { id: 8, title: 'Homework', icon: BookOpen, angle: 315, radius: 'inner' },
-  { id: 9, title: 'Library', icon: Library, angle: 22.5, radius: 'outer' },
-  { id: 10, title: 'Transport', icon: Bus, angle: 67.5, radius: 'outer' },
-  { id: 11, title: 'Parent App', icon: Smartphone, angle: 112.5, radius: 'outer' },
-  { id: 12, title: 'Teacher Portal', icon: Presentation, angle: 157.5, radius: 'outer' },
-  { id: 13, title: 'Student Portal', icon: GraduationCap, angle: 202.5, radius: 'outer' },
-  { id: 14, title: 'Reports', icon: FileBarChart, angle: 247.5, radius: 'outer' },
-  { id: 15, title: 'Analytics', icon: PieChart, angle: 292.5, radius: 'outer' },
-  { id: 16, title: 'Certificates', icon: Award, angle: 337.5, radius: 'outer' },
+  { id: 1, title: 'Student Management', icon: Users, angle: 15, rx: 320, ry: 190 },
+  { id: 2, title: 'Attendance', icon: CheckSquare, angle: 55, rx: 420, ry: 250 },
+  { id: 3, title: 'AI Face Recognition', icon: ScanFace, angle: 85, rx: 280, ry: 210 },
+  { id: 4, title: 'Question Bank', icon: Database, angle: 130, rx: 460, ry: 300 },
+  { id: 5, title: 'AI Question Generator', icon: Sparkles, angle: 170, rx: 340, ry: 200 },
+  { id: 6, title: 'Examination', icon: FileText, angle: 210, rx: 480, ry: 280 },
+  { id: 7, title: 'Fee Management', icon: CreditCard, angle: 260, rx: 290, ry: 230 },
+  { id: 8, title: 'Homework', icon: BookOpen, angle: 300, rx: 430, ry: 270 },
+  { id: 9, title: 'Library', icon: Library, angle: 35, rx: 500, ry: 330 },
+  { id: 10, title: 'Transport', icon: Bus, angle: 105, rx: 520, ry: 350 },
+  { id: 11, title: 'Parent App', icon: Smartphone, angle: 145, rx: 310, ry: 260 },
+  { id: 12, title: 'Teacher Portal', icon: Presentation, angle: 190, rx: 530, ry: 340 },
+  { id: 13, title: 'Student Portal', icon: GraduationCap, angle: 235, rx: 350, ry: 220 },
+  { id: 14, title: 'Reports', icon: FileBarChart, angle: 280, rx: 510, ry: 360 },
+  { id: 15, title: 'Analytics', icon: PieChart, angle: 325, rx: 300, ry: 180 },
+  { id: 16, title: 'Certificates', icon: Award, angle: 345, rx: 450, ry: 320 },
 ];
 
 export const AIEcosystem: React.FC = () => {
@@ -38,12 +38,8 @@ export const AIEcosystem: React.FC = () => {
   const coreOpacity = useTransform(scrollYProgress, [0, 0.2], [0, 1]);
   const coreScale = useTransform(scrollYProgress, [0, 0.2], [0.8, 1]);
 
-  // Calculate positions based on angle and radius
-  const getPosition = (angle: number, radiusType: 'inner' | 'outer') => {
-    // Elliptical radii for responsive desktop
-    const rx = radiusType === 'inner' ? 300 : 480;
-    const ry = radiusType === 'inner' ? 200 : 320;
-    
+  // Calculate positions based on scattered angle and custom radii
+  const getPosition = (angle: number, rx: number, ry: number) => {
     const rad = (angle * Math.PI) / 180;
     const x = Math.cos(rad) * rx;
     const y = Math.sin(rad) * ry;
