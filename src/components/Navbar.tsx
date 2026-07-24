@@ -22,6 +22,17 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenDemo, onOpenTrial }) => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
+  const handleScrollTo = (e: React.MouseEvent<HTMLAnchorElement>, id: string) => {
+    e.preventDefault();
+    const element = document.getElementById(id);
+    if (element) {
+      window.scrollTo({
+        top: element.offsetTop - 100,
+        behavior: 'smooth'
+      });
+    }
+  };
+
   return (
     <motion.header 
       initial={{ y: -100, opacity: 0 }}
@@ -37,7 +48,7 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenDemo, onOpenTrial }) => {
       }`}>
         
         {/* Logo */}
-        <a href="#" className="flex items-center gap-2 group shrink-0 pl-2">
+        <a href="#" onClick={(e) => handleScrollTo(e, 'root')} className="flex items-center gap-2 group shrink-0 pl-2">
           <div className="w-8 h-8 rounded-[10px] bg-[#4F46E5] flex items-center justify-center text-white font-extrabold group-hover:scale-105 transition-all relative overflow-hidden">
              <Sparkles className="w-4 h-4 text-white relative z-10" />
           </div>
@@ -52,6 +63,7 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenDemo, onOpenTrial }) => {
             <a 
               key={item} 
               href={`#${item.toLowerCase()}`} 
+              onClick={(e) => handleScrollTo(e, item.toLowerCase())}
               className={`px-5 py-2 rounded-2xl text-sm font-semibold transition-all duration-300 relative overflow-hidden group ${
                 scrolled 
                   ? 'text-vision-textMuted hover:text-white hover:bg-white/10' 
