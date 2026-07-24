@@ -58,12 +58,12 @@ function App() {
         />
         
         {/* Modules Section */}
-        <div id="all-modules" className="w-full relative z-10 py-32">
+        <div id="ecosystem" className="w-full relative z-10 py-32">
           <Ecosystem34Modules />
         </div>
 
         {/* Deep Dive Section */}
-        <div id="student-erp" className="w-full relative z-10 py-20">
+        <div id="features" className="w-full relative z-10 py-20">
           <FeatureDeepDive />
         </div>
 
