@@ -129,7 +129,7 @@ export const AIEcosystem: React.FC = () => {
 
             {/* Connecting Synapses & Particles */}
             {ECOSYSTEM_MODULES.map((mod, i) => {
-              const pos = getPosition(mod.angle, mod.radius as 'inner' | 'outer');
+              const pos = getPosition(mod.angle, mod.rx, mod.ry);
               const path = getBezierPath(pos.x, pos.y, mod.angle);
               const isHovered = hoveredNode === mod.id;
               
@@ -212,7 +212,7 @@ export const AIEcosystem: React.FC = () => {
         <div className="absolute inset-0 z-30 hidden lg:block">
           <div className="relative w-full h-full" style={{ transform: 'translate(50%, 50%)' }}>
             {ECOSYSTEM_MODULES.map((mod, i) => {
-              const pos = getPosition(mod.angle, mod.radius as 'inner' | 'outer');
+              const pos = getPosition(mod.angle, mod.rx, mod.ry);
               const Icon = mod.icon;
               const isHovered = hoveredNode === mod.id;
 
