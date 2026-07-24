@@ -1,87 +1,97 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
+import Lenis from 'lenis';
 import { Navbar } from './components/Navbar';
 import { Hero } from './components/Hero';
-import { TrustSection } from './components/TrustSection';
 import { Ecosystem34Modules } from './components/Ecosystem34Modules';
 import { FeatureDeepDive } from './components/FeatureDeepDive';
 import { iOSShowcase } from './components/iOSShowcase';
-import { WhySchoolOS } from './components/WhySchoolOS';
 import { Pricing } from './components/Pricing';
-import { ProcessTimeline } from './components/ProcessTimeline';
-import { Testimonials } from './components/Testimonials';
 import { FAQ } from './components/FAQ';
 import { Contact } from './components/Contact';
-import { CTA } from './components/CTA';
 import { Footer } from './components/Footer';
 import { DemoModal } from './components/DemoModal';
 import { TrialModal } from './components/TrialModal';
+import { Background } from './components/Background';
 
-export function App() {
-  const [demoModalOpen, setDemoModalOpen] = useState(false);
-  const [trialModalOpen, setTrialModalOpen] = useState(false);
+function App() {
+  const [isDemoOpen, setIsDemoOpen] = useState(false);
+  const [isTrialOpen, setIsTrialOpen] = useState(false);
+
+  useEffect(() => {
+    // Initialize Lenis for smooth scroll
+    const lenis = new Lenis({
+      duration: 1.2,
+      easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)), // Apple-like smooth easing
+      orientation: 'vertical',
+      gestureOrientation: 'vertical',
+      smoothWheel: true,
+      wheelMultiplier: 1,
+      touchMultiplier: 2,
+    });
+
+    function raf(time: number) {
+      lenis.raf(time);
+      requestAnimationFrame(raf);
+    }
+
+    requestAnimationFrame(raf);
+
+    return () => {
+      lenis.destroy();
+    };
+  }, []);
 
   return (
-    <div className="min-h-screen bg-slate-50 text-slate-900 font-sans selection:bg-blue-600 selection:text-white antialiased">
+    <div className="min-h-screen text-vision-text selection:bg-vision-cyan selection:text-black relative">
+      <Background />
+      <div className="noise-bg" />
       
-      {/* Navigation */}
       <Navbar 
-        onOpenDemo={() => setDemoModalOpen(true)}
-        onOpenTrial={() => setTrialModalOpen(true)}
+        onOpenDemo={() => setIsDemoOpen(true)} 
+        onOpenTrial={() => setIsTrialOpen(true)} 
       />
-
-      {/* Main Page Sections */}
-      <main>
+      
+      <main className="relative z-10 flex flex-col items-center">
         <Hero 
-          onOpenDemo={() => setDemoModalOpen(true)}
-          onOpenTrial={() => setTrialModalOpen(true)}
+          onOpenDemo={() => setIsDemoOpen(true)} 
+          onOpenTrial={() => setIsTrialOpen(true)} 
         />
         
-        <TrustSection />
-        
-        {/* Complete 34 Modules Interactive Grid Hub */}
-        <Ecosystem34Modules />
+        {/* Modules Section */}
+        <div id="all-modules" className="w-full relative z-10 py-32">
+          <Ecosystem34Modules />
+        </div>
 
-        {/* Core ERP Hub Deep-Dives */}
-        <FeatureDeepDive />
+        {/* Deep Dive Section */}
+        <div id="student-erp" className="w-full relative z-10 py-20">
+          <FeatureDeepDive />
+        </div>
 
-        {/* iPhone & iPad Glassy UI Showcase */}
-        <iOSShowcase />
-        
-        <WhySchoolOS />
-        
-        <Pricing 
-          onOpenDemo={() => setDemoModalOpen(true)}
-          onOpenTrial={() => setTrialModalOpen(true)}
-        />
-        
-        <ProcessTimeline />
-        
-        <Testimonials />
-        
-        <FAQ />
-        
-        <Contact />
-        
-        <CTA 
-          onOpenDemo={() => setDemoModalOpen(true)}
-          onOpenTrial={() => setTrialModalOpen(true)}
-        />
+        {/* Device Showcase Section */}
+        <div className="w-full relative z-10 py-32">
+          <iOSShowcase />
+        </div>
+
+        {/* Pricing */}
+        <div id="pricing" className="w-full relative z-10 py-20">
+          <Pricing />
+        </div>
+
+        {/* FAQ */}
+        <div id="faq" className="w-full relative z-10 py-20">
+          <FAQ />
+        </div>
+
+        {/* Contact */}
+        <div className="w-full relative z-10 py-20">
+          <Contact />
+        </div>
       </main>
 
-      {/* Footer */}
       <Footer />
 
-      {/* Modals */}
-      <DemoModal 
-        isOpen={demoModalOpen}
-        onClose={() => setDemoModalOpen(false)}
-      />
-
-      <TrialModal 
-        isOpen={trialModalOpen}
-        onClose={() => setTrialModalOpen(false)}
-      />
-
+      <DemoModal isOpen={isDemoOpen} onClose={() => setIsDemoOpen(false)} />
+      <TrialModal isOpen={isTrialOpen} onClose={() => setIsTrialOpen(false)} />
     </div>
   );
 }
