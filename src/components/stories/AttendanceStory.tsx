@@ -156,9 +156,8 @@ export const AttendanceStory: React.FC = () => {
 
           {/* Gate Scanning Laser (Scroll Driven) */}
           <motion.div 
-            style={{ width: scanBeamWidth, opacity: scanBeamOpacity }}
+            style={{ width: scanBeamWidth, opacity: scanBeamOpacity, transform: 'translateZ(20px)' }}
             className="absolute left-[500px] top-[1060px] h-2 bg-vision-cyan shadow-[0_0_20px_rgba(6,182,212,1)]"
-            style={{ transform: 'translateZ(20px)' }}
           />
 
           {/* ------------------------------------------ */}
