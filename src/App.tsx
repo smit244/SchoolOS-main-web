@@ -2,8 +2,7 @@ import React, { useEffect, useState } from 'react';
 import Lenis from 'lenis';
 import { Navbar } from './components/Navbar';
 import { Hero } from './components/Hero';
-import { Ecosystem34Modules } from './components/Ecosystem34Modules';
-import { VisualStory } from './components/VisualStory';
+import { AIEcosystem } from './components/AIEcosystem';
 import { IOSShowcase } from './components/iOSShowcase';
 import { Pricing } from './components/Pricing';
 import { FAQ } from './components/FAQ';
@@ -56,14 +55,9 @@ function App() {
           onOpenTrial={() => setIsTrialOpen(true)} 
         />
 
-        {/* Visual Storytelling Section */}
-        <div id="features" className="w-full relative z-10">
-          <VisualStory />
-        </div>
-        
-        {/* Modules Section */}
+        {/* Unified AI Ecosystem Section */}
         <div id="ecosystem" className="w-full relative z-10">
-          <Ecosystem34Modules />
+          <AIEcosystem />
         </div>
 
         {/* Device Showcase Section */}
