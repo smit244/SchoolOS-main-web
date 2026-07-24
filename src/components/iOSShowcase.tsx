@@ -24,45 +24,55 @@ export const IOSShowcase: React.FC = () => {
           Native experiences for iOS, iPadOS, and VisionOS. Parents, teachers, and admins stay connected.
         </p>
       </div>
-
-      <motion.div 
-        style={{ scale, y, rotateX, transformPerspective: 2000 }}
-        className="relative w-full flex justify-center z-10"
-      >
-        {/* iPad Pro Mockup */}
-        <div className="relative w-[90%] md:w-[70%] aspect-[4/3] rounded-[2.5rem] p-4 bg-white/5 border border-white/20 glass-panel shadow-2xl flex items-center justify-center overflow-hidden">
-          {/* Inner Screen */}
-          <div className="w-full h-full rounded-[2rem] bg-black border border-white/10 relative overflow-hidden flex">
-            {/* Sidebar */}
-            <div className="w-1/4 h-full bg-white/5 border-r border-white/10 p-6 flex flex-col gap-4 hidden sm:flex">
-              <div className="w-full h-10 rounded-xl bg-white/10 mb-8" />
-              {[...Array(5)].map((_, i) => (
-                <div key={i} className="w-full h-8 rounded-lg bg-white/5" />
-              ))}
-            </div>
-            {/* Main Area */}
-            <div className="flex-1 p-8 flex flex-col gap-6 relative">
-              <div className="absolute top-0 right-0 w-[200%] h-[200%] bg-[conic-gradient(from_90deg_at_50%_50%,#000_0%,#0033ff_50%,#000_100%)] opacity-20 animate-spin-slow pointer-events-none mix-blend-screen" />
-              <div className="w-1/3 h-8 rounded-lg bg-white/10 z-10" />
-              <div className="grid grid-cols-2 gap-6 z-10">
-                <div className="h-32 rounded-2xl bg-white/10 backdrop-blur-md border border-white/5" />
-                <div className="h-32 rounded-2xl bg-white/10 backdrop-blur-md border border-white/5" />
-              </div>
-              <div className="flex-1 rounded-2xl bg-gradient-to-t from-vision-cyan/20 to-transparent border border-white/5 z-10" />
-            </div>
-          </div>
+    <section className="relative w-full py-24 overflow-hidden">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="text-center mb-16">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8 }}
+            className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/60 border border-slate-200/50 backdrop-blur-xl mb-6 shadow-sm"
+          >
+            <Smartphone className="w-4 h-4 text-vision-blueGlow" />
+            <span className="text-sm font-semibold text-slate-700">Native Mobile App</span>
+          </motion.div>
+          <motion.h2 
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8, delay: 0.1 }}
+            className="font-display text-4xl md:text-5xl font-bold tracking-tighter text-slate-900 mb-6"
+          >
+            Your school in your <span className="text-transparent bg-clip-text bg-gradient-to-r from-vision-blueGlow to-vision-cyan">pocket.</span>
+          </motion.h2>
+          <motion.p 
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8, delay: 0.2 }}
+            className="text-xl text-slate-600 max-w-2xl mx-auto font-light"
+          >
+            Beautiful native apps for parents, teachers, and students. Push notifications, instant fee payments, and live tracking.
+          </motion.p>
         </div>
 
-        {/* iPhone Mockup (Overlapping) */}
-        <div className="absolute -bottom-10 -right-4 md:-right-10 w-[40%] md:w-[25%] aspect-[1/2] rounded-[3rem] p-3 bg-white/5 border border-white/20 glass-panel shadow-2xl z-20">
-          <div className="w-full h-full rounded-[2.5rem] bg-black border border-white/10 relative overflow-hidden">
+        {/* Cinematic Device Mockup */}
+        <div className="relative max-w-5xl mx-auto mt-20 perspective-[2000px]">
+          {/* Background Glow */}
+          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-gradient-to-tr from-vision-cyan/20 to-vision-purple/20 blur-[100px] rounded-full pointer-events-none" />
+          
+          <motion.div
+            initial={{ opacity: 0, rotateX: 10, y: 100 }}
+            whileInView={{ opacity: 1, rotateX: 0, y: 0 }}
+            viewport={{ once: true, margin: "-100px" }}
+            transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1] }}
+            className="relative z-10 w-[300px] h-[600px] mx-auto rounded-[3rem] border-[8px] border-slate-100 bg-white shadow-[0_30px_60px_rgba(0,0,0,0.1)] overflow-hidden"
+          >
              {/* Dynamic Island */}
-             <div className="absolute top-3 left-1/2 -translate-x-1/2 w-1/3 h-5 rounded-full bg-black z-30" />
+             <div className="absolute top-3 left-1/2 -translate-x-1/2 w-1/3 h-5 rounded-full bg-slate-900 z-30" />
              {/* App Content */}
              <div className="w-full h-full p-4 pt-12 flex flex-col gap-4 relative">
-                <div className="absolute inset-0 bg-gradient-to-br from-vision-purple/30 to-black z-0 pointer-events-none" />
-                <div className="w-16 h-16 rounded-full bg-white/10 mx-auto z-10 mb-4" />
-                <div className="w-3/4 h-6 rounded-md bg-white/10 mx-auto z-10" />
                 <div className="w-1/2 h-4 rounded-md bg-white/5 mx-auto z-10 mb-6" />
                 <div className="flex-1 rounded-3xl bg-white/5 border border-white/10 z-10 p-4">
                   <div className="w-full h-1/2 border-b border-white/10" />
