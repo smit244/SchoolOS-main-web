@@ -3,69 +3,69 @@ import { Sparkles } from 'lucide-react';
 
 export const Footer: React.FC = () => {
   return (
-    <footer className="bg-white border-t border-slate-200 text-slate-600 py-16 relative">
+    <footer className="bg-white/60 border-t border-slate-200/50 backdrop-blur-xl text-slate-600 py-16 relative z-10">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-10 pb-12 border-b border-slate-200">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-10 pb-12 border-b border-slate-200/50">
           
           <div className="lg:col-span-2 space-y-4">
             <a href="#" className="flex items-center gap-3">
-              <div className="w-10 h-10 rounded-2xl bg-gradient-to-tr from-blue-600 via-cyan-500 to-emerald-500 p-0.5 shadow-md shadow-blue-500/20">
+              <div className="w-10 h-10 rounded-2xl bg-gradient-to-tr from-vision-blueGlow via-vision-purple to-vision-cyan p-0.5 shadow-sm">
                 <div className="w-full h-full bg-white rounded-[14px] flex items-center justify-center">
-                  <Sparkles className="w-5 h-5 text-blue-600 animate-pulse" />
+                  <Sparkles className="w-5 h-5 text-vision-blueGlow" />
                 </div>
               </div>
               <div className="flex flex-col">
                 <span className="font-display text-2xl font-bold tracking-tight text-slate-900">
-                  School<span className="text-gradient-blue">OS</span>
+                  School<span className="text-vision-blueGlow">OS</span>
                 </span>
-                <span className="text-[10px] text-slate-500 font-semibold uppercase tracking-wider -mt-1">Complete School ERP Ecosystem</span>
+                <span className="text-[10px] text-slate-500 font-semibold uppercase tracking-wider -mt-1">Complete Ecosystem</span>
               </div>
             </a>
 
-            <p className="text-xs text-slate-600 leading-relaxed max-w-sm">
-              SchoolOS is the complete all-in-one 34-feature School Management ERP platform, built for K-12 schools, colleges, coaching networks, and universities worldwide.
+            <p className="text-sm text-slate-500 leading-relaxed max-w-sm font-light">
+              SchoolOS is the complete all-in-one 34-feature School Management ERP platform, built for modern institutions worldwide.
             </p>
 
-            <div className="text-xs text-slate-500 font-mono font-semibold">
+            <div className="text-xs text-slate-400 font-mono font-medium">
               ISO 27001 Certified | 256-Bit Encrypted Platform
             </div>
           </div>
 
           <div className="space-y-3">
-            <h4 className="text-xs font-extrabold uppercase tracking-wider text-slate-900">ERP Modules</h4>
-            <ul className="space-y-2 text-xs font-medium">
-              <li><a href="#all-modules" className="hover:text-blue-600 transition-colors">Student Admissions & TC</a></li>
-              <li><a href="#all-modules" className="hover:text-blue-600 transition-colors">Fees & Online Payment Gateways</a></li>
-              <li><a href="#all-modules" className="hover:text-blue-600 transition-colors">QR & Biometric Attendance</a></li>
-              <li><a href="#all-modules" className="hover:text-blue-600 transition-colors">Exam Schedule & Report Cards</a></li>
-              <li><a href="#all-modules" className="hover:text-blue-600 transition-colors">GPS Transport Bus Tracking</a></li>
-              <li><a href="#all-modules" className="hover:text-blue-600 transition-colors">Hostel & Library Management</a></li>
+            <h4 className="text-xs font-bold uppercase tracking-wider text-slate-900">ERP Modules</h4>
+            <ul className="space-y-2 text-sm font-medium">
+              <li><a href="#ecosystem" className="text-slate-500 hover:text-vision-blueGlow transition-colors">Admissions & TC</a></li>
+              <li><a href="#ecosystem" className="text-slate-500 hover:text-vision-blueGlow transition-colors">Fees & Payments</a></li>
+              <li><a href="#ecosystem" className="text-slate-500 hover:text-vision-blueGlow transition-colors">QR Attendance</a></li>
+              <li><a href="#ecosystem" className="text-slate-500 hover:text-vision-blueGlow transition-colors">Exam Schedule</a></li>
+              <li><a href="#ecosystem" className="text-slate-500 hover:text-vision-blueGlow transition-colors">Bus Tracking</a></li>
+              <li><a href="#ecosystem" className="text-slate-500 hover:text-vision-blueGlow transition-colors">Hostel & Library</a></li>
             </ul>
           </div>
 
           <div className="space-y-3">
-            <h4 className="text-xs font-extrabold uppercase tracking-wider text-slate-900">Resources</h4>
-            <ul className="space-y-2 text-xs font-medium">
-              <li><a href="#all-modules" className="hover:text-blue-600 transition-colors">All 34 Feature Specs</a></li>
-              <li><a href="#pricing" className="hover:text-blue-600 transition-colors">Pricing & Subscription Plans</a></li>
-              <li><a href="#faq" className="hover:text-blue-600 transition-colors">Help Center & FAQ</a></li>
-              <li><a href="#contact" className="hover:text-blue-600 transition-colors">Book Live 1-on-1 Demo</a></li>
+            <h4 className="text-xs font-bold uppercase tracking-wider text-slate-900">Resources</h4>
+            <ul className="space-y-2 text-sm font-medium">
+              <li><a href="#ecosystem" className="text-slate-500 hover:text-vision-blueGlow transition-colors">Feature Specs</a></li>
+              <li><a href="#pricing" className="text-slate-500 hover:text-vision-blueGlow transition-colors">Pricing</a></li>
+              <li><a href="#faq" className="text-slate-500 hover:text-vision-blueGlow transition-colors">Help Center</a></li>
+              <li><a href="#contact" className="text-slate-500 hover:text-vision-blueGlow transition-colors">Book Demo</a></li>
             </ul>
           </div>
 
           <div className="space-y-3">
-            <h4 className="text-xs font-extrabold uppercase tracking-wider text-slate-900">Newsletter</h4>
-            <p className="text-xs text-slate-500 font-medium">Subscribe for weekly updates on school management best practices.</p>
+            <h4 className="text-xs font-bold uppercase tracking-wider text-slate-900">Newsletter</h4>
+            <p className="text-sm text-slate-500 font-light">Subscribe for updates on school management.</p>
             <div className="flex gap-2 pt-1">
               <input
                 type="email"
                 placeholder="principal@school.edu"
-                className="w-full px-3 py-2 rounded-xl bg-slate-50 border border-slate-200 text-xs text-slate-900 placeholder-slate-400 focus:outline-none focus:border-blue-600"
+                className="w-full px-4 py-2 rounded-xl bg-white border border-slate-200 text-sm text-slate-900 placeholder-slate-400 focus:outline-none focus:border-vision-blueGlow shadow-sm"
               />
               <button
                 onClick={() => alert("Subscribed to SchoolOS Updates!")}
-                className="px-4 py-2 rounded-xl bg-blue-600 text-xs font-bold text-white hover:bg-blue-700 shadow-md"
+                className="px-4 py-2 rounded-xl bg-slate-900 text-sm font-bold text-white hover:bg-slate-800 shadow-sm"
               >
                 Join
               </button>
@@ -74,12 +74,12 @@ export const Footer: React.FC = () => {
 
         </div>
 
-        <div className="pt-8 flex flex-col sm:flex-row items-center justify-between text-xs text-slate-500 font-medium gap-4">
-          <p>© 2026 SchoolOS Inc. All rights reserved. Built for modern educational institutions.</p>
-          <div className="flex items-center gap-6">
-            <a href="#" className="hover:text-slate-900">Privacy Policy</a>
-            <a href="#" className="hover:text-slate-900">Terms of Service</a>
-            <a href="#" className="hover:text-slate-900">Security & Compliance</a>
+        <div className="pt-8 flex flex-col sm:flex-row items-center justify-between text-sm text-slate-500 font-light gap-4">
+          <p>© 2026 SchoolOS Inc. All rights reserved.</p>
+          <div className="flex items-center gap-6 font-medium">
+            <a href="#" className="hover:text-slate-900">Privacy</a>
+            <a href="#" className="hover:text-slate-900">Terms</a>
+            <a href="#" className="hover:text-slate-900">Security</a>
           </div>
         </div>
 
