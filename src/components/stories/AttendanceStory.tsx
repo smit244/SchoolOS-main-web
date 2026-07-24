@@ -1,6 +1,29 @@
 import React, { useRef } from 'react';
 import { motion, useScroll, useTransform } from 'framer-motion';
-import { User, ScanFace, CheckCircle2, Bell, BarChart3, ArrowRight } from 'lucide-react';
+import { CheckCircle2, User, Bell } from 'lucide-react';
+
+// Reusable Glass Cube for Buildings
+const GlassCube = ({ x, y, width, height, depth, color = "bg-white/40", border = "border-white/80", label = "" }: { x: number, y: number, width: number, height: number, depth: number, color?: string, border?: string, label?: string }) => {
+  return (
+    <div style={{ position: 'absolute', left: x, top: y, width, height, transformStyle: 'preserve-3d' }}>
+      {/* Front Face */}
+      <div className={`absolute inset-0 ${color} ${border} backdrop-blur-md shadow-inner flex items-end justify-center pb-2 font-bold text-slate-800/50 text-xs`} style={{ transform: `translateZ(${depth}px)` }}>
+        {label}
+      </div>
+      {/* Back Face */}
+      <div className={`absolute inset-0 ${color} ${border} backdrop-blur-md`} style={{ transform: `translateZ(0px)` }} />
+      {/* Right Face */}
+      <div className={`absolute top-0 right-0 ${color} ${border} backdrop-blur-md brightness-90`} style={{ width: depth, height, transformOrigin: 'right', transform: `rotateY(90deg)` }} />
+      {/* Left Face */}
+      <div className={`absolute top-0 left-0 ${color} ${border} backdrop-blur-md brightness-110`} style={{ width: depth, height, transformOrigin: 'left', transform: `rotateY(-90deg)` }} />
+      {/* Top Face */}
+      <div className={`absolute top-0 left-0 ${color} ${border} backdrop-blur-md brightness-125`} style={{ width, height: depth, transformOrigin: 'top', transform: `rotateX(-90deg)` }} />
+      
+      {/* Shadow */}
+      <div className="absolute inset-0 bg-black/10 blur-xl" style={{ transform: `translateZ(-1px) translateX(20px) translateY(20px)` }} />
+    </div>
+  );
+};
 
 export const AttendanceStory: React.FC = () => {
   const containerRef = useRef<HTMLDivElement>(null);
@@ -10,139 +33,192 @@ export const AttendanceStory: React.FC = () => {
     offset: ["start start", "end end"]
   });
 
-  // Scroll Progress mappings (0 to 1 over 300vh)
-  // Step 1: Student Appears (0 - 0.2)
-  // Step 2: Face Scan Laser (0.2 - 0.4)
-  // Step 3: Verified Checkmark (0.4 - 0.6)
-  // Step 4: Parent Notification (0.6 - 0.8)
-  // Step 5: Dashboard Growth (0.8 - 1.0)
-
-  // Opacities
-  const studentOpacity = useTransform(scrollYProgress, [0, 0.1, 0.9, 1], [0, 1, 1, 0]);
-  const scanLaserY = useTransform(scrollYProgress, [0.15, 0.35], [0, 150]);
-  const scanLaserOpacity = useTransform(scrollYProgress, [0.1, 0.15, 0.35, 0.4], [0, 1, 1, 0]);
+  // Story Sequence Progress Mappings
+  const scanBeamWidth = useTransform(scrollYProgress, [0.1, 0.2, 0.3], ["0%", "100%", "0%"]);
+  const scanBeamOpacity = useTransform(scrollYProgress, [0.1, 0.2, 0.3], [0, 1, 0]);
   
-  const verifiedOpacity = useTransform(scrollYProgress, [0.35, 0.45, 0.9, 1], [0, 1, 1, 0]);
-  const verifiedScale = useTransform(scrollYProgress, [0.35, 0.45], [0.5, 1]);
-
-  const notifOpacity = useTransform(scrollYProgress, [0.55, 0.65, 0.9, 1], [0, 1, 1, 0]);
-  const notifX = useTransform(scrollYProgress, [0.55, 0.65], [100, 0]);
-
-  const dashboardOpacity = useTransform(scrollYProgress, [0.75, 0.85, 0.95, 1], [0, 1, 1, 0]);
-  const chartHeight1 = useTransform(scrollYProgress, [0.8, 0.9], ["0%", "60%"]);
-  const chartHeight2 = useTransform(scrollYProgress, [0.8, 0.9], ["0%", "85%"]);
-  const chartHeight3 = useTransform(scrollYProgress, [0.8, 0.9], ["0%", "40%"]);
-  const chartHeight4 = useTransform(scrollYProgress, [0.8, 0.9], ["0%", "100%"]);
+  const particlePath = useTransform(scrollYProgress, [0.3, 0.5], ["0%", "100%"]);
+  const particleOpacity = useTransform(scrollYProgress, [0.25, 0.3, 0.5, 0.55], [0, 1, 1, 0]);
+  
+  const dashboardY = useTransform(scrollYProgress, [0.5, 0.6], [50, 0]);
+  const dashboardOpacity = useTransform(scrollYProgress, [0.5, 0.6], [0, 1]);
+  
+  const notifOpacity = useTransform(scrollYProgress, [0.65, 0.75], [0, 1]);
 
   return (
-    <section ref={containerRef} className="relative w-full h-[300vh] bg-transparent">
-      <div className="sticky top-0 w-full h-screen flex items-center justify-center overflow-hidden perspective-[2000px]">
+    <section ref={containerRef} className="relative w-full h-[400vh] bg-transparent">
+      
+      {/* The sticky container that holds the simulation */}
+      <div className="sticky top-0 w-full h-screen overflow-hidden bg-gradient-to-b from-slate-50 to-slate-100 flex items-center justify-center perspective-[3000px]">
         
-        {/* Ambient Background Lights */}
-        <div className="absolute inset-0 pointer-events-none">
-          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[60vw] h-[60vw] max-w-[800px] max-h-[800px] bg-[radial-gradient(circle_at_center,rgba(6,182,212,0.05)_0%,transparent_60%)] rounded-full blur-[100px]" />
+        {/* Environmental Lighting */}
+        <div className="absolute top-0 left-1/4 w-[800px] h-[800px] bg-vision-cyan/10 blur-[150px] rounded-full pointer-events-none" />
+        <div className="absolute bottom-0 right-1/4 w-[800px] h-[800px] bg-vision-purple/10 blur-[150px] rounded-full pointer-events-none" />
+
+        {/* Floating Story Text Overlay (Optional, but helps explain what's happening) */}
+        <div className="absolute top-10 left-1/2 -translate-x-1/2 z-50 text-center pointer-events-none">
+          <motion.div
+            initial={{ opacity: 0, y: -20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-white/80 border border-white shadow-lg backdrop-blur-xl mb-4"
+          >
+            <span className="text-sm font-bold text-slate-800 tracking-wider uppercase">Live Simulation</span>
+          </motion.div>
+          <h2 className="text-4xl font-display font-bold text-slate-900 tracking-tighter">
+            The Living Campus
+          </h2>
         </div>
 
-        <div className="max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 lg:grid-cols-2 gap-12 items-center relative z-10">
-          
-          {/* Left Text Story Area */}
-          <div className="space-y-6">
-            <motion.div
-              initial={{ opacity: 0, x: -20 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
-              className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/80 border border-slate-200/50 backdrop-blur-xl shadow-sm"
-            >
-              <ScanFace className="w-4 h-4 text-vision-cyan" />
-              <span className="text-sm font-semibold text-slate-700 tracking-wide">Automated Attendance</span>
-            </motion.div>
-            
-            <h2 className="font-display text-5xl md:text-7xl font-bold tracking-tighter text-slate-900 leading-[1.05]">
-              Walk in. <br/>
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-vision-cyan to-vision-blueGlow">You're present.</span>
-            </h2>
-            <p className="text-xl text-slate-500 font-light max-w-lg leading-relaxed">
-              No roll calls. No RFID cards. The moment a student walks through the gates, the SchoolOS AI core instantly recognizes them, updates the live dashboard, and notifies parents seamlessly.
-            </p>
+        {/* ------------------------------------------ */}
+        {/* ISOMETRIC WORLD CONTAINER */}
+        {/* ------------------------------------------ */}
+        <div 
+          className="relative w-[1200px] h-[1200px] transform-style-3d"
+          style={{ transform: 'rotateX(60deg) rotateZ(-45deg) scale(0.7)' }}
+        >
+          {/* Ground Plane Grid */}
+          <div className="absolute inset-0 border border-slate-200/50 bg-white/20 backdrop-blur-sm shadow-[0_0_100px_rgba(0,0,0,0.05)] rounded-[3rem] overflow-hidden">
+             {/* Grid Lines */}
+             <div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.3)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.3)_1px,transparent_1px)] bg-[size:50px_50px]" />
           </div>
 
-          {/* Right Visual Story Area */}
-          <div className="relative h-[600px] w-full max-w-[600px] mx-auto rounded-[3rem] border border-white/80 bg-white/40 backdrop-blur-3xl shadow-[0_30px_80px_rgba(0,0,0,0.08)] flex items-center justify-center overflow-hidden transform-style-3d">
+          {/* SVG Road Network & Particles */}
+          <svg className="absolute inset-0 w-full h-full pointer-events-none" style={{ transform: 'translateZ(1px)' }}>
+            <defs>
+              <linearGradient id="roadGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" stopColor="rgba(59,130,246,0.15)" />
+                <stop offset="100%" stopColor="rgba(6,182,212,0.15)" />
+              </linearGradient>
+              <filter id="simGlow">
+                <feGaussianBlur stdDeviation="5" result="coloredBlur"/>
+                <feMerge>
+                  <feMergeNode in="coloredBlur"/>
+                  <feMergeNode in="SourceGraphic"/>
+                </feMerge>
+              </filter>
+            </defs>
+
+            {/* Main Roads */}
+            <path d="M 0 600 L 1200 600 M 600 0 L 600 1200" stroke="url(#roadGrad)" strokeWidth="40" fill="none" strokeLinecap="round" />
+            <path d="M 200 200 L 1000 200 L 1000 1000 L 200 1000 Z" stroke="url(#roadGrad)" strokeWidth="20" fill="none" strokeLinejoin="round" />
             
-            {/* Inner Dashboard Layer */}
-            <div className="absolute inset-4 rounded-[2rem] border border-white/60 bg-gradient-to-b from-white/80 to-white/30 p-8 shadow-inner overflow-hidden flex flex-col justify-end">
-              
-              {/* Dashboard Elements */}
-              <motion.div style={{ opacity: dashboardOpacity }} className="w-full h-full flex flex-col justify-between absolute inset-0 p-8 z-0">
-                <div className="flex justify-between items-center mb-8">
-                   <div className="w-1/3 h-6 bg-slate-900/10 rounded-full" />
-                   <div className="w-10 h-10 rounded-full bg-vision-blueGlow/10 flex items-center justify-center"><BarChart3 className="w-5 h-5 text-vision-blueGlow" /></div>
-                </div>
-                
-                {/* Live Growing Chart */}
-                <div className="flex-1 flex items-end justify-between gap-4 h-full pt-20">
-                   <motion.div style={{ height: chartHeight1 }} className="w-full bg-gradient-to-t from-vision-cyan/80 to-vision-cyan/40 rounded-t-xl" />
-                   <motion.div style={{ height: chartHeight2 }} className="w-full bg-gradient-to-t from-vision-purple/80 to-vision-purple/40 rounded-t-xl" />
-                   <motion.div style={{ height: chartHeight3 }} className="w-full bg-gradient-to-t from-slate-300 to-slate-200 rounded-t-xl" />
-                   <motion.div style={{ height: chartHeight4 }} className="w-full bg-gradient-to-t from-vision-blueGlow/90 to-vision-blueGlow/50 rounded-t-xl shadow-[0_0_20px_rgba(59,130,246,0.3)] relative">
-                      <div className="absolute -top-3 left-1/2 -translate-x-1/2 w-8 h-1.5 bg-vision-blueGlow rounded-full shadow-[0_0_10px_rgba(59,130,246,0.8)]" />
-                   </motion.div>
-                </div>
-              </motion.div>
+            {/* The Specific Attendance Data Path (from Gate to Admin) */}
+            <path id="data-path" d="M 600 1100 L 600 700 L 300 700" stroke="none" fill="none" />
 
-              {/* Central AI Scan Story */}
-              <div className="relative z-20 flex flex-col items-center justify-center h-full pb-20">
-                
-                <motion.div 
-                  style={{ opacity: studentOpacity }}
-                  className="relative w-40 h-40 rounded-3xl bg-white border border-slate-200 shadow-xl flex items-center justify-center overflow-hidden"
-                >
-                  <User className="w-16 h-16 text-slate-300" />
-                  
-                  {/* Face Scan Laser */}
-                  <motion.div 
-                    style={{ y: scanLaserY, opacity: scanLaserOpacity }}
-                    className="absolute top-0 left-0 w-full h-1 bg-vision-cyan shadow-[0_0_15px_3px_rgba(6,182,212,0.8)]"
-                  >
-                     <div className="absolute top-0 left-0 w-full h-12 bg-gradient-to-b from-vision-cyan/30 to-transparent" />
-                  </motion.div>
-                </motion.div>
+            {/* Background ambient moving students (Orbs) */}
+            {[...Array(10)].map((_, i) => (
+              <motion.circle 
+                key={i}
+                r="6" fill="#8B5CF6" filter="url(#simGlow)"
+                animate={{ 
+                  cx: [200, 1000, 1000, 200, 200], 
+                  cy: [200, 200, 1000, 1000, 200]
+                }}
+                transition={{ duration: 20 + i * 2, repeat: Infinity, delay: i * -3, ease: "linear" }}
+              />
+            ))}
+            
+            {/* Ambient moving Bus */}
+            <motion.rect 
+              width="30" height="15" rx="5" fill="#F59E0B" filter="url(#simGlow)"
+              animate={{ x: [0, 1200], y: [592, 592] }}
+              transition={{ duration: 15, repeat: Infinity, delay: 5, ease: "linear" }}
+            />
+            <motion.rect 
+              width="15" height="30" rx="5" fill="#F59E0B" filter="url(#simGlow)"
+              animate={{ x: [592, 592], y: [1200, 0] }}
+              transition={{ duration: 18, repeat: Infinity, delay: 2, ease: "linear" }}
+            />
 
-                {/* Verified Badge */}
-                <motion.div 
-                  style={{ opacity: verifiedOpacity, scale: verifiedScale }}
-                  className="absolute bottom-1/2 translate-y-1/2 flex flex-col items-center gap-3 bg-white/90 backdrop-blur-xl px-8 py-6 rounded-3xl shadow-[0_20px_40px_rgba(0,0,0,0.1)] border border-emerald-100"
-                >
-                  <div className="w-16 h-16 rounded-full bg-emerald-100 flex items-center justify-center">
-                    <CheckCircle2 className="w-10 h-10 text-emerald-500" />
-                  </div>
-                  <span className="font-bold text-slate-900 text-lg">Identity Verified</span>
-                  <span className="text-sm font-semibold text-emerald-600 bg-emerald-50 px-3 py-1 rounded-full">Attendance Logged</span>
-                </motion.div>
-                
-              </div>
-            </div>
+            {/* THE MAIN STORY PARTICLE (Scroll Driven) */}
+            <motion.circle 
+              r="8" fill="#06B6D4" filter="url(#simGlow)"
+              style={{ offsetPath: `path('M 600 1100 L 600 700 L 300 700')`, offsetDistance: particlePath, opacity: particleOpacity }}
+            />
+          </svg>
 
-            {/* Floating Parent Notification */}
-            <motion.div 
-              style={{ opacity: notifOpacity, x: notifX }}
-              className="absolute -right-8 top-1/4 w-72 bg-white/90 backdrop-blur-3xl border border-white/90 rounded-2xl shadow-[0_20px_50px_rgba(0,0,0,0.15)] p-4 flex gap-4 z-40 hidden md:flex"
-            >
-              <div className="w-12 h-12 rounded-full bg-blue-100 flex items-center justify-center shrink-0 border border-blue-200">
-                <Bell className="w-5 h-5 text-vision-blueGlow" />
+          {/* BUILDINGS (Glass Cubes) */}
+          
+          {/* Main School Building */}
+          <GlassCube x={500} y={400} width={300} height={150} depth={100} color="bg-white/60" label="MAIN BLOCK" />
+          
+          {/* Library */}
+          <GlassCube x={800} y={250} width={150} height={150} depth={60} color="bg-vision-cyan/20" label="LIBRARY" />
+          
+          {/* Admin / Data Center (Target for data particle) */}
+          <GlassCube x={200} y={600} width={150} height={200} depth={80} color="bg-vision-purple/20" label="ADMIN AI CORE" />
+          
+          {/* Sports Complex */}
+          <GlassCube x={250} y={250} width={200} height={100} depth={40} color="bg-emerald-500/10" label="SPORTS" />
+
+          {/* Attendance Gate (The start of the story) */}
+          <GlassCube x={550} y={1050} width={100} height={20} depth={40} color="bg-slate-900/10" label="GATE" />
+
+          {/* Gate Scanning Laser (Scroll Driven) */}
+          <motion.div 
+            style={{ width: scanBeamWidth, opacity: scanBeamOpacity }}
+            className="absolute left-[500px] top-[1060px] h-2 bg-vision-cyan shadow-[0_0_20px_rgba(6,182,212,1)]"
+            style={{ transform: 'translateZ(20px)' }}
+          />
+
+          {/* ------------------------------------------ */}
+          {/* HOLOGRAPHIC DASHBOARDS (Floating above the 3D world) */}
+          {/* We reverse the isometric rotation to make them face the camera while living in the 3D space */}
+          {/* ------------------------------------------ */}
+          
+          {/* Main Revenue/Attendance Dashboard (Appears over Admin Building) */}
+          <motion.div 
+            style={{ 
+              opacity: dashboardOpacity, 
+              y: dashboardY,
+              transform: 'translateZ(200px) rotateZ(45deg) rotateX(-60deg)' 
+            }}
+            className="absolute left-[50px] top-[500px] w-80 bg-white/95 backdrop-blur-3xl border border-white rounded-[2rem] shadow-[0_40px_80px_rgba(0,0,0,0.2)] p-6"
+          >
+            <div className="flex items-center gap-3 mb-4 border-b border-slate-100 pb-4">
+              <div className="w-10 h-10 rounded-full bg-emerald-100 flex items-center justify-center">
+                <CheckCircle2 className="w-6 h-6 text-emerald-500" />
               </div>
               <div>
-                <div className="flex justify-between items-center mb-1">
-                  <span className="font-bold text-slate-900 text-sm">SchoolOS</span>
-                  <span className="text-xs text-slate-400">Just now</span>
+                <div className="font-bold text-slate-900">Attendance Logged</div>
+                <div className="text-xs text-emerald-600 font-bold uppercase tracking-wider flex items-center gap-1">
+                  <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" /> Live Sync
                 </div>
-                <p className="text-slate-600 text-xs font-medium leading-relaxed">
-                  Alex has safely arrived at school. Live attendance marked present.
-                </p>
               </div>
-            </motion.div>
+            </div>
+            
+            <div className="space-y-3">
+              <div className="flex justify-between items-end">
+                <span className="text-sm text-slate-500 font-medium">Campus Presence</span>
+                <span className="text-2xl font-bold text-slate-900">98%</span>
+              </div>
+              <div className="w-full h-3 bg-slate-100 rounded-full overflow-hidden">
+                <motion.div className="h-full bg-gradient-to-r from-vision-cyan to-vision-blueGlow" initial={{ width: "0%" }} whileInView={{ width: "98%" }} transition={{ duration: 1, delay: 0.2 }} />
+              </div>
+            </div>
+          </motion.div>
 
-          </div>
+          {/* Parent Notification (Appears hovering top right) */}
+          <motion.div 
+            style={{ 
+              opacity: notifOpacity,
+              transform: 'translateZ(300px) rotateZ(45deg) rotateX(-60deg)' 
+            }}
+            className="absolute left-[700px] top-[100px] w-64 bg-slate-900/95 backdrop-blur-3xl border border-slate-800 rounded-2xl shadow-[0_40px_80px_rgba(0,0,0,0.3)] p-4 flex gap-4"
+          >
+            <div className="w-10 h-10 rounded-full bg-vision-cyan/20 flex items-center justify-center shrink-0">
+              <Bell className="w-5 h-5 text-vision-cyan" />
+            </div>
+            <div>
+              <div className="flex justify-between items-center mb-1">
+                <span className="font-bold text-white text-sm">SchoolOS App</span>
+              </div>
+              <p className="text-slate-300 text-xs font-medium leading-relaxed">
+                Alex has safely arrived at campus. AI face scan verified.
+              </p>
+            </div>
+          </motion.div>
+
         </div>
       </div>
     </section>
