@@ -1,17 +1,18 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
-import { all34Modules } from '../data/all34Modules';
+import { ALL_34_MODULES, Module34Item } from '../data/all34Modules';
 import { Search } from 'lucide-react';
+import * as LucideIcons from 'lucide-react';
 
 export const Ecosystem34Modules: React.FC = () => {
   const [searchTerm, setSearchTerm] = useState('');
   const [activeCategory, setActiveCategory] = useState<string>('All');
 
-  const categories = ['All', ...Array.from(new Set(all34Modules.map(m => m.category)))];
+  const categories = ['All', ...Array.from(new Set(ALL_34_MODULES.map((m: Module34Item) => m.category)))];
 
-  const filteredModules = all34Modules.filter(m => {
-    const matchesSearch = m.name.toLowerCase().includes(searchTerm.toLowerCase()) || 
-                          m.description.toLowerCase().includes(searchTerm.toLowerCase());
+  const filteredModules = ALL_34_MODULES.filter((m: Module34Item) => {
+    const matchesSearch = module.title.toLowerCase().includes(searchTerm.toLowerCase()) || 
+                          module.tagline.toLowerCase().includes(searchTerm.toLowerCase());
     const matchesCategory = activeCategory === 'All' || m.category === activeCategory;
     return matchesSearch && matchesCategory;
   });
@@ -68,7 +69,10 @@ export const Ecosystem34Modules: React.FC = () => {
 
       {/* Grid of Glass Cards */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 w-full">
-        {filteredModules.map((module, idx) => (
+        {filteredModules.map((module: Module34Item, idx: number) => {
+          // @ts-ignore
+          const Icon = LucideIcons[module.iconName] || LucideIcons.Box;
+          return (
           <motion.div
             key={module.id}
             initial={{ opacity: 0, y: 30 }}
@@ -81,18 +85,18 @@ export const Ecosystem34Modules: React.FC = () => {
             
             <div className="relative z-10 flex flex-col h-full">
               <div className="w-12 h-12 rounded-2xl bg-white/5 border border-white/10 flex items-center justify-center text-white/80 mb-6 group-hover:scale-110 group-hover:bg-white/10 transition-all duration-300">
-                <module.icon className="w-6 h-6 group-hover:text-vision-cyan transition-colors" />
+                <Icon className="w-6 h-6 group-hover:text-vision-cyan transition-colors" />
               </div>
               
-              <h3 className="text-xl font-medium text-white tracking-tight mb-2">{module.name}</h3>
-              <p className="text-sm text-vision-textMuted font-light leading-relaxed flex-grow">{module.description}</p>
+              <h3 className="text-xl font-medium text-white tracking-tight mb-2">{module.title}</h3>
+              <p className="text-sm text-vision-textMuted font-light leading-relaxed flex-grow">{module.tagline}</p>
               
               <div className="mt-6 pt-4 border-t border-white/10">
                 <span className="text-[10px] uppercase tracking-wider text-white/40 font-semibold">{module.category}</span>
               </div>
             </div>
           </motion.div>
-        ))}
+        )})}
       </div>
 
     </section>
