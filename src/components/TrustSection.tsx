@@ -1,57 +1,47 @@
 import React from 'react';
-import { Building2, School, GraduationCap, Award, CheckCircle } from 'lucide-react';
+import { CheckCircle2, ShieldCheck } from 'lucide-react';
 
 export const TrustSection: React.FC = () => {
   const stats = [
-    { label: 'Partner Schools & Trusts', value: '100+', subtext: 'Across 18 States' },
+    { label: 'Schools & Educational Trusts', value: '100+', subtext: 'Across 18 States' },
     { label: 'Active Students Managed', value: '50,000+', subtext: 'Daily Active Users' },
-    { label: 'Teachers & Educators', value: '500+', subtext: 'Empowered Daily' },
-    { label: 'AI Questions Generated', value: '1,000,000+', subtext: '99.9% Accuracy' },
+    { label: 'Teachers & Staff Empowered', value: '500+', subtext: 'Zero Errors' },
+    { label: 'Question Papers & Results', value: '1,000,000+', subtext: 'Generated' },
   ];
 
-  const institutionTypes = [
-    'K-12 Schools', 'Senior Secondary Colleges', 'JEE & NEET Coaching Institutes', 
-    'International Baccalaureate (IB)', 'CBSE & ICSE Affiliated Trusts', 'Deemed Universities'
+  const chips = [
+    'No Credit Card Required', 'English / ગુજરાતી / हिंदी', 'Print & PDF Export', 
+    'Razorpay & UPI Fees', 'GPS Bus Tracking', 'ISO 27001 Certified'
   ];
 
   return (
-    <section className="py-16 bg-slate-950 border-y border-slate-800/80 relative">
+    <section className="py-12 bg-white border-y border-slate-200 relative">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
-        {/* Ticker / Badge header */}
-        <div className="text-center space-y-3 mb-12">
-          <p className="text-xs uppercase tracking-widest text-slate-400 font-semibold">
-            TRUSTED BY LEADING EDUCATIONAL INSTITUTIONS NATIONWIDE
-          </p>
-
-          <div className="flex flex-wrap items-center justify-center gap-3 pt-2">
-            {institutionTypes.map((type, idx) => (
-              <span 
-                key={idx} 
-                className="px-3.5 py-1.5 rounded-full text-xs font-semibold glass-card border border-slate-800 text-slate-300 flex items-center gap-1.5 hover:border-primary/40 transition-colors"
-              >
-                <CheckCircle className="w-3.5 h-3.5 text-secondary" />
-                {type}
-              </span>
-            ))}
-          </div>
+        {/* QBMS Strip */}
+        <div className="flex flex-wrap items-center justify-center gap-4 sm:gap-8 pb-8 border-b border-slate-100">
+          {chips.map((chip, idx) => (
+            <div key={idx} className="flex items-center gap-2 text-xs sm:text-sm font-semibold text-slate-600">
+              <CheckCircle2 className="w-4 h-4 text-emerald-500" />
+              <span>{chip}</span>
+            </div>
+          ))}
         </div>
 
         {/* Big Numbers Grid */}
-        <div className="grid grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-8">
+        <div className="pt-10 grid grid-cols-2 lg:grid-cols-4 gap-6">
           {stats.map((stat, index) => (
             <div 
               key={index}
-              className="glass-card p-6 sm:p-8 rounded-2xl border border-slate-800 text-center relative overflow-hidden group hover:border-primary/40 transition-all hover:scale-105"
+              className="glass-qbms glass-qbms-hover p-6 rounded-3xl border border-slate-200 text-center relative overflow-hidden group"
             >
-              <div className="absolute top-0 right-0 w-24 h-24 bg-primary/5 rounded-full blur-xl group-hover:bg-primary/20 transition-all" />
-              <div className="font-display text-3xl sm:text-4xl lg:text-5xl font-extrabold text-white tracking-tight text-gradient-primary">
+              <div className="font-display text-3xl sm:text-4xl font-extrabold text-brand tracking-tight">
                 {stat.value}
               </div>
-              <div className="text-sm font-bold text-slate-200 mt-2">
+              <div className="text-sm font-extrabold text-slate-800 mt-2">
                 {stat.label}
               </div>
-              <div className="text-xs text-slate-400 mt-1">
+              <div className="text-xs text-slate-500 mt-1 font-medium">
                 {stat.subtext}
               </div>
             </div>

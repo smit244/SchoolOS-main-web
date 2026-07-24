@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Sparkles, ArrowRight, Play, CheckCircle2, TrendingUp, Users, Shield, Smartphone, Zap, Layers, DollarSign, Calendar } from 'lucide-react';
+import { Sparkles, ArrowRight, Play, CheckCircle2, TrendingUp, Users, DollarSign, Bolt, Layers, ShieldCheck } from 'lucide-react';
 
 interface HeroProps {
   onOpenDemo: () => void;
@@ -7,233 +7,156 @@ interface HeroProps {
 }
 
 export const Hero: React.FC<HeroProps> = ({ onOpenDemo, onOpenTrial }) => {
-  const [activeWidget, setActiveWidget] = useState<'attendance' | 'fees' | 'exams'>('attendance');
+  const [activeTab, setActiveTab] = useState<'overview' | 'fees' | 'attendance'>('overview');
 
   return (
-    <section className="relative pt-32 pb-20 lg:pt-40 lg:pb-32 overflow-hidden bg-grid-light bg-slate-50">
+    <section className="relative pt-32 pb-20 lg:pt-40 lg:pb-32 overflow-hidden bg-brand-soft bg-grid-soft">
       
-      {/* Background Soft Blobs */}
-      <div className="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[700px] bg-blue-400/10 rounded-full blur-[150px] pointer-events-none" />
-      <div className="absolute top-1/3 left-1/4 w-[500px] h-[500px] bg-cyan-400/10 rounded-full blur-[130px] pointer-events-none" />
+      {/* QBMS / i-Connect Decorative Blobs */}
+      <div className="absolute top-10 right-10 w-96 h-96 bg-brand/10 rounded-full blur-[140px] pointer-events-none" />
+      <div className="absolute bottom-10 left-10 w-96 h-96 bg-amber-400/10 rounded-full blur-[140px] pointer-events-none" />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         
-        {/* Top iOS Pill */}
-        <div className="flex justify-center mb-8">
-          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full glass-ios border border-blue-200/80 text-xs font-bold text-slate-800 shadow-sm hover:border-blue-300 transition-all cursor-pointer">
-            <span className="flex h-2 w-2 rounded-full bg-emerald-500 animate-ping" />
-            <span className="text-blue-600 font-extrabold">SchoolOS v4.0</span>
-            <span className="text-slate-300">|</span>
-            <span>All 34 School ERP & Management Modules Live</span>
-            <ArrowRight className="w-3.5 h-3.5 text-blue-600" />
-          </div>
-        </div>
-
-        {/* Hero Title & Subheadline */}
-        <div className="text-center max-w-4xl mx-auto space-y-6">
-          <h1 className="font-display text-4xl sm:text-6xl lg:text-7xl font-extrabold tracking-tight text-slate-900 leading-[1.1]">
-            Complete AI-Powered School ERP <br className="hidden sm:inline" />
-            <span className="text-gradient-blue">Built for Modern Education</span>
-          </h1>
-
-          <p className="text-lg sm:text-xl text-slate-600 max-w-2xl mx-auto font-normal leading-relaxed">
-            Manage student admissions, attendance, fees, exams, transport GPS, payroll, multi-school SaaS, and parent mobile apps from one intelligent white-glove platform.
-          </p>
-
-          {/* Action CTAs */}
-          <div className="pt-4 flex flex-col sm:flex-row items-center justify-center gap-4">
-            <button
-              onClick={onOpenTrial}
-              className="w-full sm:w-auto px-8 py-4 rounded-2xl bg-blue-600 hover:bg-blue-700 text-white font-bold text-base shadow-xl shadow-blue-500/30 hover:shadow-blue-500/50 hover:scale-105 transition-all flex items-center justify-center gap-3 group"
-            >
-              <span>Start 14-Day Free Trial</span>
-              <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
-            </button>
-
-            <button
-              onClick={onOpenDemo}
-              className="w-full sm:w-auto px-8 py-4 rounded-2xl glass-ios text-slate-800 font-bold text-base border border-slate-200/80 hover:bg-white hover:border-slate-300 transition-all flex items-center justify-center gap-2 group shadow-sm"
-            >
-              <div className="w-7 h-7 rounded-full bg-blue-100 flex items-center justify-center text-blue-600 group-hover:scale-110 transition-transform">
-                <Play className="w-3.5 h-3.5 fill-current" />
-              </div>
-              <span>Book Live 1-on-1 Demo</span>
-            </button>
-          </div>
-
-          {/* Trust Badges */}
-          <div className="pt-6 flex flex-wrap items-center justify-center gap-6 text-xs text-slate-500 font-semibold">
-            <span className="flex items-center gap-1.5">
-              <CheckCircle2 className="w-4 h-4 text-emerald-500" /> 34 Modules Included
-            </span>
-            <span className="flex items-center gap-1.5">
-              <CheckCircle2 className="w-4 h-4 text-emerald-500" /> No Credit Card Required
-            </span>
-            <span className="flex items-center gap-1.5">
-              <CheckCircle2 className="w-4 h-4 text-emerald-500" /> Free Data Migration
-            </span>
-          </div>
-        </div>
-
-        {/* iPhone Glassy UI Mockup Showcase */}
-        <div className="mt-16 relative max-w-5xl mx-auto">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
           
-          {/* Floating iOS Glass Widgets */}
-          <div className="hidden lg:block absolute -top-8 -left-10 glass-ios-card p-4 rounded-3xl border border-white/80 shadow-ios-float z-20 animate-float">
-            <div className="flex items-center gap-3">
-              <div className="w-11 h-11 rounded-2xl bg-emerald-100 text-emerald-600 flex items-center justify-center font-bold">
-                <TrendingUp className="w-5 h-5" />
-              </div>
-              <div>
-                <div className="text-xs text-slate-500 font-semibold">Today's Attendance</div>
-                <div className="text-lg font-extrabold text-slate-900">98.4% <span className="text-emerald-600 text-xs">Live</span></div>
-              </div>
-            </div>
-          </div>
-
-          <div className="hidden lg:block absolute top-1/2 -right-10 glass-ios-card p-4 rounded-3xl border border-white/80 shadow-ios-float z-20 animate-float-reverse">
-            <div className="flex items-center gap-3">
-              <div className="w-11 h-11 rounded-2xl bg-blue-100 text-blue-600 flex items-center justify-center font-bold">
-                <DollarSign className="w-5 h-5" />
-              </div>
-              <div>
-                <div className="text-xs text-slate-500 font-semibold">Fee Collection</div>
-                <div className="text-lg font-extrabold text-slate-900">$482,900 <span className="text-blue-600 text-xs">Online</span></div>
-              </div>
-            </div>
-          </div>
-
-          {/* Main iPhone/iPad Glassy Card Mockup */}
-          <div className="glass-ios p-3 sm:p-6 rounded-[36px] border border-white/90 shadow-ios-float relative overflow-hidden">
+          {/* Left Column: QBMS Style Copy */}
+          <div className="lg:col-span-6 space-y-6">
             
-            {/* Top iOS App Window Bar */}
-            <div className="flex items-center justify-between pb-4 px-3 border-b border-slate-200/80">
-              <div className="flex items-center gap-2">
-                <div className="w-3.5 h-3.5 rounded-full bg-red-400" />
-                <div className="w-3.5 h-3.5 rounded-full bg-amber-400" />
-                <div className="w-3.5 h-3.5 rounded-full bg-emerald-400" />
-                <span className="ml-3 text-xs text-slate-500 font-mono font-bold">schoolos.app/dashboard/admin</span>
+            {/* Pill Badge */}
+            <div className="pill-qbms">
+              <Bolt className="w-4 h-4 text-amber-500 fill-current" />
+              <span>For Schools, Colleges, Coaching Classes & Trusts</span>
+            </div>
+
+            {/* Headline */}
+            <h1 className="font-display text-4xl sm:text-6xl font-extrabold tracking-tight text-slate-900 leading-[1.08]">
+              Manage your entire school in <br className="hidden sm:inline" />
+              <span className="text-brand relative inline-block">
+                minutes
+                <svg className="absolute left-0 -bottom-2 w-full h-3" viewBox="0 0 200 13" preserveAspectRatio="none">
+                  <path d="M3 8 C55 2,150 2,197 7" stroke="#f59e0b" strokeWidth="4" fill="none" strokeLinecap="round" />
+                </svg>
+              </span>, not hours.
+            </h1>
+
+            {/* Subheadline */}
+            <p className="text-base sm:text-lg text-slate-600 leading-relaxed font-normal">
+              Pick from 34 integrated modules: student admissions, biometric attendance, Razorpay/UPI fee collection, exams, transport GPS tracking, payroll, multi-school SaaS, and parent mobile apps.
+            </p>
+
+            {/* Action CTAs */}
+            <div className="pt-2 flex flex-wrap items-center gap-4">
+              <button
+                onClick={onOpenTrial}
+                className="btn-brand text-base py-3.5 px-7 rounded-2xl shadow-xl shadow-brand/25"
+              >
+                <span>Start Free Trial</span>
+                <ArrowRight className="w-5 h-5" />
+              </button>
+
+              <button
+                onClick={onOpenDemo}
+                className="btn-soft text-base py-3.5 px-6 rounded-2xl border-2 border-brand text-brand hover:bg-brand-soft"
+              >
+                <Play className="w-4 h-4 fill-current" />
+                <span>Book Live Demo</span>
+              </button>
+            </div>
+
+            {/* Trust Points */}
+            <div className="pt-4 flex flex-wrap items-center gap-6 text-xs font-semibold text-slate-600">
+              <span className="flex items-center gap-1.5"><CheckCircle2 className="w-4 h-4 text-emerald-500" /> No credit card required</span>
+              <span className="flex items-center gap-1.5"><CheckCircle2 className="w-4 h-4 text-emerald-500" /> English / ગુજરાતી / हिंदी</span>
+              <span className="flex items-center gap-1.5"><CheckCircle2 className="w-4 h-4 text-emerald-500" /> Free Data Migration</span>
+            </div>
+
+            {/* i-Connect Style Glowing Stakeholder Pills */}
+            <div className="pt-6 border-t border-slate-200/80 flex flex-wrap items-center gap-3">
+              <span className="text-xs font-bold uppercase tracking-wider text-slate-400">Hubs:</span>
+              <div className="badge-iconnect">
+                <span className="px-3 py-1 bg-white rounded-full text-xs font-bold text-slate-800 flex items-center gap-1">
+                  <span className="w-2 h-2 rounded-full bg-iconnect-cyan animate-pulse" /> Student ERP
+                </span>
               </div>
-              <div className="flex items-center gap-2">
-                <button
-                  onClick={() => setActiveWidget('attendance')}
-                  className={`px-3 py-1.5 text-xs font-bold rounded-xl transition-all ${activeWidget === 'attendance' ? 'bg-blue-600 text-white shadow-sm' : 'text-slate-600 hover:bg-slate-100'}`}
-                >
-                  Attendance ERP
-                </button>
-                <button
-                  onClick={() => setActiveWidget('fees')}
-                  className={`px-3 py-1.5 text-xs font-bold rounded-xl transition-all ${activeWidget === 'fees' ? 'bg-blue-600 text-white shadow-sm' : 'text-slate-600 hover:bg-slate-100'}`}
-                >
-                  Fees & Gateways
-                </button>
-                <button
-                  onClick={() => setActiveWidget('exams')}
-                  className={`px-3 py-1.5 text-xs font-bold rounded-xl transition-all ${activeWidget === 'exams' ? 'bg-blue-600 text-white shadow-sm' : 'text-slate-600 hover:bg-slate-100'}`}
-                >
-                  Exams & Marks
-                </button>
+              <div className="badge-iconnect">
+                <span className="px-3 py-1 bg-white rounded-full text-xs font-bold text-slate-800 flex items-center gap-1">
+                  <span className="w-2 h-2 rounded-full bg-emerald-500" /> Biometrics & GPS
+                </span>
+              </div>
+              <div className="badge-iconnect">
+                <span className="px-3 py-1 bg-white rounded-full text-xs font-bold text-slate-800 flex items-center gap-1">
+                  <span className="w-2 h-2 rounded-full bg-brand" /> Parent Mobile App
+                </span>
               </div>
             </div>
 
-            {/* Dashboard Content Grid */}
-            <div className="p-4 sm:p-6 space-y-6">
-              
-              {/* Header Widgets Bar */}
-              <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-                <div className="glass-ios-card p-4 rounded-2xl border border-white">
-                  <div className="text-xs text-slate-500 font-semibold">Total Students</div>
-                  <div className="text-xl sm:text-2xl font-extrabold text-slate-900 mt-1">4,850</div>
-                  <div className="text-[10px] text-emerald-600 font-bold mt-0.5">12 Grades Active</div>
-                </div>
-
-                <div className="glass-ios-card p-4 rounded-2xl border border-white">
-                  <div className="text-xs text-slate-500 font-semibold">Teaching Staff</div>
-                  <div className="text-xl sm:text-2xl font-extrabold text-slate-900 mt-1">182</div>
-                  <div className="text-[10px] text-blue-600 font-bold mt-0.5">Subject Allocated</div>
-                </div>
-
-                <div className="glass-ios-card p-4 rounded-2xl border border-white">
-                  <div className="text-xs text-slate-500 font-semibold">Fee Defaulters</div>
-                  <div className="text-xl sm:text-2xl font-extrabold text-slate-900 mt-1">1.5%</div>
-                  <div className="text-[10px] text-emerald-600 font-bold mt-0.5">Auto WhatsApp Sent</div>
-                </div>
-
-                <div className="glass-ios-card p-4 rounded-2xl border border-white">
-                  <div className="text-xs text-slate-500 font-semibold">Active Modules</div>
-                  <div className="text-xl sm:text-2xl font-extrabold text-slate-900 mt-1">34 / 34</div>
-                  <div className="text-[10px] text-purple-600 font-bold mt-0.5">100% ERP Enabled</div>
-                </div>
-              </div>
-
-              {/* Dynamic View switching */}
-              {activeWidget === 'attendance' && (
-                <div className="glass-ios-card p-5 rounded-3xl border border-white space-y-4">
-                  <div className="flex items-center justify-between">
-                    <h4 className="text-sm font-bold text-slate-900 flex items-center gap-2">
-                      <CheckCircle2 className="w-4 h-4 text-emerald-500" /> Biometric & Face Recognition Attendance Log
-                    </h4>
-                    <span className="text-xs text-blue-600 font-bold">Real-Time Sync</span>
-                  </div>
-                  <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 text-xs">
-                    <div className="p-3 bg-white/90 rounded-2xl border border-slate-200/80">
-                      <span className="text-slate-500">Student Attendance</span>
-                      <p className="text-slate-900 font-bold text-sm mt-1">4,762 / 4,850 Present</p>
-                    </div>
-                    <div className="p-3 bg-white/90 rounded-2xl border border-slate-200/80">
-                      <span className="text-slate-500">Teacher Attendance</span>
-                      <p className="text-slate-900 font-bold text-sm mt-1">182 / 182 Present</p>
-                    </div>
-                    <div className="p-3 bg-white/90 rounded-2xl border border-slate-200/80">
-                      <span className="text-slate-500">Absent SMS Alerts</span>
-                      <p className="text-emerald-600 font-bold text-sm mt-1">88 Sent to Parents</p>
-                    </div>
-                  </div>
-                </div>
-              )}
-
-              {activeWidget === 'fees' && (
-                <div className="glass-ios-card p-5 rounded-3xl border border-white space-y-4">
-                  <div className="flex items-center justify-between">
-                    <h4 className="text-sm font-bold text-slate-900 flex items-center gap-2">
-                      <DollarSign className="w-4 h-4 text-blue-600" /> Razorpay, Cashfree & UPI Fee Collection Ledger
-                    </h4>
-                    <span className="text-xs text-emerald-600 font-bold">Instant Receipts</span>
-                  </div>
-                  <div className="space-y-2 text-xs">
-                    {['Quarter 3 Tuition Fee - Class 10', 'School Bus Route #04 Transport Fee', 'Library Fine & Hostel Installment'].map((fee, idx) => (
-                      <div key={idx} className="flex items-center justify-between p-3 bg-white/90 rounded-2xl border border-slate-200/80">
-                        <span className="text-slate-800 font-bold">{fee}</span>
-                        <span className="text-emerald-600 font-extrabold">Paid Online (Receipt Generated)</span>
-                      </div>
-                    ))}
-                  </div>
-                </div>
-              )}
-
-              {activeWidget === 'exams' && (
-                <div className="glass-ios-card p-5 rounded-3xl border border-white space-y-4">
-                  <div className="flex items-center justify-between">
-                    <h4 className="text-sm font-bold text-slate-900 flex items-center gap-2">
-                      <Calendar className="w-4 h-4 text-purple-600" /> Examination Schedule, Seating & Marks Entry
-                    </h4>
-                    <span className="text-xs text-purple-600 font-bold">Gradebook Active</span>
-                  </div>
-                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs">
-                    <div className="p-3 bg-white/90 rounded-2xl border border-slate-200/80">
-                      <span className="text-slate-500">Class 12 Pre-Board Schedule</span>
-                      <p className="text-slate-900 font-bold mt-1">Hall Tickets & Seating Ready</p>
-                    </div>
-                    <div className="p-3 bg-white/90 rounded-2xl border border-slate-200/80">
-                      <span className="text-slate-500">GPA / CGPA Grade System</span>
-                      <p className="text-slate-900 font-bold mt-1">CBSE Compliant Report Cards</p>
-                    </div>
-                  </div>
-                </div>
-              )}
-
-            </div>
           </div>
+
+          {/* Right Column: i-Connect Style Device Showcase Graphic */}
+          <div className="lg:col-span-6 relative">
+            
+            {/* Floating Stats */}
+            <div className="hidden sm:block absolute -top-6 -left-6 glass-qbms p-4 rounded-3xl border border-white shadow-qbms-card z-20 animate-float">
+              <div className="flex items-center gap-3">
+                <div className="w-10 h-10 rounded-2xl bg-emerald-100 text-emerald-600 flex items-center justify-center font-bold">
+                  <TrendingUp className="w-5 h-5" />
+                </div>
+                <div>
+                  <div className="text-xs text-slate-500 font-semibold">Today's Attendance</div>
+                  <div className="text-base font-extrabold text-slate-900">98.4% <span className="text-emerald-600 text-xs">Live</span></div>
+                </div>
+              </div>
+            </div>
+
+            <div className="hidden sm:block absolute top-1/2 -right-6 glass-qbms p-4 rounded-3xl border border-white shadow-qbms-card z-20 animate-float-reverse">
+              <div className="flex items-center gap-3">
+                <div className="w-10 h-10 rounded-2xl bg-blue-100 text-blue-600 flex items-center justify-center font-bold">
+                  <DollarSign className="w-5 h-5" />
+                </div>
+                <div>
+                  <div className="text-xs text-slate-500 font-semibold">Fees Collected</div>
+                  <div className="text-base font-extrabold text-slate-900">$482,900 <span className="text-brand text-xs">UPI/Razorpay</span></div>
+                </div>
+              </div>
+            </div>
+
+            {/* Main Window Mockup */}
+            <div className="bg-white p-4 sm:p-6 rounded-4xl border border-slate-200 shadow-2xl relative overflow-hidden">
+              <div className="flex items-center justify-between pb-3 border-b border-slate-200 text-xs">
+                <div className="flex items-center gap-2">
+                  <div className="w-3 h-3 rounded-full bg-rose-400" />
+                  <div className="w-3 h-3 rounded-full bg-amber-400" />
+                  <div className="w-3 h-3 rounded-full bg-emerald-400" />
+                  <span className="font-mono text-slate-500 ml-2 font-bold">schoolos.app/admin</span>
+                </div>
+                <span className="px-3 py-1 rounded-full bg-brand-soft text-brand font-extrabold text-[10px]">34 MODULES ACTIVE</span>
+              </div>
+
+              <div className="p-4 space-y-4">
+                <div className="grid grid-cols-2 gap-3">
+                  <div className="p-3 bg-slate-50 rounded-2xl border border-slate-200">
+                    <span className="text-xs text-slate-500">Active Students</span>
+                    <p className="text-lg font-extrabold text-slate-900 mt-0.5">4,850</p>
+                  </div>
+                  <div className="p-3 bg-slate-50 rounded-2xl border border-slate-200">
+                    <span className="text-xs text-slate-500">Teachers Active</span>
+                    <p className="text-lg font-extrabold text-slate-900 mt-0.5">182</p>
+                  </div>
+                </div>
+
+                <div className="p-4 bg-brand-soft rounded-2xl border border-brand/20 space-y-2">
+                  <div className="flex justify-between items-center text-xs font-bold text-slate-900">
+                    <span>Multi-School Super Admin</span>
+                    <span className="text-brand text-[10px]">12 Branches</span>
+                  </div>
+                  <p className="text-xs text-slate-600">Isolated subdomain databases, real-time fee recovery tracking & biometric logs.</p>
+                </div>
+              </div>
+            </div>
+
+          </div>
+
         </div>
 
       </div>
