@@ -76,23 +76,6 @@ export const Pricing: React.FC<PricingProps> = ({ onOpenDemo, onOpenTrial }) => 
                   <div className="flex items-baseline gap-1">
                     <span className="text-4xl sm:text-5xl font-extrabold text-slate-900 font-display">${price}</span>
                     <span className="text-xs text-slate-500 font-bold">/ month</span>
-                  </div>
-
-                  <div className="pt-4 border-t border-slate-200 space-y-3">
-                    <span className="text-xs font-extrabold uppercase tracking-wider text-slate-500">Included Capabilities:</span>
-                    {plan.features.map((feat, idx) => (
-                      <div key={idx} className="flex items-start gap-2.5 text-xs font-semibold text-slate-700">
-                        <CheckCircle2 className="w-4 h-4 text-emerald-500 flex-shrink-0 mt-0.5" />
-                        <span>{feat}</span>
-                      </div>
-                    ))}
-                  </div>
-                </div>
-
-                <div className="pt-8 mt-6 border-t border-slate-200">
-                  <button
-                    onClick={plan.id === 'p3' ? onOpenDemo : onOpenTrial}
-                    className={`w-full py-4 rounded-2xl font-bold text-sm transition-all shadow-md flex items-center justify-center gap-2 ${
                       plan.popular
                         ? 'bg-blue-600 hover:bg-blue-700 text-white shadow-blue-500/30'
                         : 'bg-slate-100 hover:bg-slate-200 text-slate-900 border border-slate-200'
