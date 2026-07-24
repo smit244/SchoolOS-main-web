@@ -1,119 +1,77 @@
-import React, { useState } from 'react';
-import { Smartphone, Tablet, Monitor, CheckCircle, Sparkles, Bell, Wifi, Battery } from 'lucide-react';
+import React, { useRef } from 'react';
+import { motion, useScroll, useTransform } from 'framer-motion';
 
 export const iOSShowcase: React.FC = () => {
-  const [activeDevice, setActiveDevice] = useState<'iphone' | 'ipad'>('iphone');
+  const containerRef = useRef<HTMLDivElement>(null);
+  const { scrollYProgress } = useScroll({
+    target: containerRef,
+    offset: ["start end", "end start"]
+  });
+
+  const scale = useTransform(scrollYProgress, [0, 0.5], [0.8, 1]);
+  const y = useTransform(scrollYProgress, [0, 0.5], [100, 0]);
+  const rotateX = useTransform(scrollYProgress, [0, 0.5], [20, 0]);
 
   return (
-    <section className="py-24 bg-white relative overflow-hidden">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        
-        {/* Header */}
-        <div className="text-center max-w-3xl mx-auto space-y-4">
-          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full glass-ios border border-blue-200 text-xs font-bold text-blue-600">
-            <Smartphone className="w-4 h-4" />
-            <span>IPHONE GLASSY UI & NATIVE MOBILE APPS</span>
-          </div>
-          <h2 className="font-display text-3xl sm:text-5xl font-extrabold text-slate-900 tracking-tight">
-            Designed to Feel Like <span className="text-gradient-blue">Pure iOS Perfection</span>
-          </h2>
-          <p className="text-base sm:text-lg text-slate-600">
-            Frosted glass card layouts, fluid micro-interactions, responsive iOS widgets, and offline sync for teachers, parents, and students.
-          </p>
-
-          <div className="pt-4 flex items-center justify-center gap-3">
-            <button
-              onClick={() => setActiveDevice('iphone')}
-              className={`px-5 py-2.5 rounded-2xl text-xs font-bold transition-all flex items-center gap-2 ${
-                activeDevice === 'iphone'
-                  ? 'bg-blue-600 text-white shadow-md shadow-blue-500/20'
-                  : 'glass-ios text-slate-700 hover:bg-slate-100 border border-slate-200'
-              }`}
-            >
-              <Smartphone className="w-4 h-4" />
-              <span>iPhone 16 Pro View</span>
-            </button>
-            <button
-              onClick={() => setActiveDevice('ipad')}
-              className={`px-5 py-2.5 rounded-2xl text-xs font-bold transition-all flex items-center gap-2 ${
-                activeDevice === 'ipad'
-                  ? 'bg-blue-600 text-white shadow-md shadow-blue-500/20'
-                  : 'glass-ios text-slate-700 hover:bg-slate-100 border border-slate-200'
-              }`}
-            >
-              <Tablet className="w-4 h-4" />
-              <span>iPad Pro 13" View</span>
-            </button>
-          </div>
-        </div>
-
-        {/* Device Frame Display */}
-        <div className="mt-14 max-w-4xl mx-auto flex justify-center">
-          
-          {activeDevice === 'iphone' && (
-            <div className="w-80 sm:w-96 glass-ios p-4 rounded-[48px] border-4 border-slate-300 shadow-ios-float space-y-4 animate-in zoom-in duration-300 relative">
-              {/* Dynamic Island Notch */}
-              <div className="w-28 h-6 bg-slate-900 rounded-full mx-auto flex items-center justify-between px-3 text-white text-[10px]">
-                <div className="w-2 h-2 rounded-full bg-blue-500 animate-pulse" />
-                <span className="font-mono">9:41</span>
-              </div>
-
-              {/* iOS Widget Cards */}
-              <div className="space-y-3 pt-2">
-                <div className="glass-ios-card p-4 rounded-3xl border border-white space-y-2">
-                  <div className="flex items-center justify-between">
-                    <span className="text-xs font-extrabold text-slate-900">Live Bus GPS</span>
-                    <span className="px-2 py-0.5 text-[9px] font-bold bg-emerald-100 text-emerald-700 rounded-full">On Route</span>
-                  </div>
-                  <p className="text-xs text-slate-600 font-medium">Bus #04 is 3 mins away from Green Park Pickup Stop.</p>
-                </div>
-
-                <div className="glass-ios-card p-4 rounded-3xl border border-white space-y-2">
-                  <div className="flex items-center justify-between">
-                    <span className="text-xs font-extrabold text-slate-900">Exam Marksheet Ready</span>
-                    <span className="px-2 py-0.5 text-[9px] font-bold bg-blue-100 text-blue-700 rounded-full">Class 10</span>
-                  </div>
-                  <p className="text-xs text-slate-600 font-medium">Mathematics Term 1 Result: Grade A1 (96/100). Tap to download PDF.</p>
-                </div>
-
-                <div className="glass-ios-card p-4 rounded-3xl border border-white space-y-2">
-                  <div className="flex items-center justify-between">
-                    <span className="text-xs font-extrabold text-slate-900">Fee Receipt Notification</span>
-                    <span className="px-2 py-0.5 text-[9px] font-bold bg-emerald-100 text-emerald-700 rounded-full">Paid</span>
-                  </div>
-                  <p className="text-xs text-slate-600 font-medium">Receipt #84920 issued for $1,250 via Razorpay.</p>
-                </div>
-              </div>
-
-              {/* iOS Home Bar */}
-              <div className="w-32 h-1 bg-slate-400 rounded-full mx-auto pt-2" />
-            </div>
-          )}
-
-          {activeDevice === 'ipad' && (
-            <div className="w-full glass-ios p-6 rounded-4xl border-4 border-slate-300 shadow-ios-float space-y-4 animate-in zoom-in duration-300">
-              <div className="flex items-center justify-between pb-3 border-b border-slate-200 text-xs">
-                <span className="font-bold text-slate-800">iPad Pro 13" - Teacher Attendance & Gradebook Console</span>
-                <span className="text-emerald-600 font-bold">Offline Sync Mode Active</span>
-              </div>
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                <div className="glass-ios-card p-4 rounded-3xl border border-white space-y-2">
-                  <span className="text-xs text-slate-500 font-semibold">Grade 10-A Attendance</span>
-                  <div className="text-xl font-extrabold text-slate-900">38 Present | 2 Absent</div>
-                  <p className="text-xs text-emerald-600 font-bold">1-Tap WhatsApp Alerts Sent</p>
-                </div>
-                <div className="glass-ios-card p-4 rounded-3xl border border-white space-y-2">
-                  <span className="text-xs text-slate-500 font-semibold">Lesson Plan Generator</span>
-                  <div className="text-xl font-extrabold text-slate-900">5-Day Structure Ready</div>
-                  <p className="text-xs text-blue-600 font-bold">Physics Unit 4 Velocity</p>
-                </div>
-              </div>
-            </div>
-          )}
-
-        </div>
-
+    <section ref={containerRef} className="relative w-full max-w-7xl mx-auto px-4 py-32 overflow-hidden perspective-[2000px]">
+      
+      <div className="text-center mb-24 relative z-20">
+        <h2 className="font-display text-5xl md:text-7xl font-medium tracking-tighter text-white mb-6">
+          App everywhere. <br/>
+          <span className="text-vision-cyan">Compromise nowhere.</span>
+        </h2>
+        <p className="text-xl text-vision-textMuted font-light max-w-2xl mx-auto">
+          Native experiences for iOS, iPadOS, and VisionOS. Parents, teachers, and admins stay connected.
+        </p>
       </div>
+
+      <motion.div 
+        style={{ scale, y, rotateX, transformPerspective: 2000 }}
+        className="relative w-full flex justify-center z-10"
+      >
+        {/* iPad Pro Mockup */}
+        <div className="relative w-[90%] md:w-[70%] aspect-[4/3] rounded-[2.5rem] p-4 bg-white/5 border border-white/20 glass-panel shadow-2xl flex items-center justify-center overflow-hidden">
+          {/* Inner Screen */}
+          <div className="w-full h-full rounded-[2rem] bg-black border border-white/10 relative overflow-hidden flex">
+            {/* Sidebar */}
+            <div className="w-1/4 h-full bg-white/5 border-r border-white/10 p-6 flex flex-col gap-4 hidden sm:flex">
+              <div className="w-full h-10 rounded-xl bg-white/10 mb-8" />
+              {[...Array(5)].map((_, i) => (
+                <div key={i} className="w-full h-8 rounded-lg bg-white/5" />
+              ))}
+            </div>
+            {/* Main Area */}
+            <div className="flex-1 p-8 flex flex-col gap-6 relative">
+              <div className="absolute top-0 right-0 w-[200%] h-[200%] bg-[conic-gradient(from_90deg_at_50%_50%,#000_0%,#0033ff_50%,#000_100%)] opacity-20 animate-spin-slow pointer-events-none mix-blend-screen" />
+              <div className="w-1/3 h-8 rounded-lg bg-white/10 z-10" />
+              <div className="grid grid-cols-2 gap-6 z-10">
+                <div className="h-32 rounded-2xl bg-white/10 backdrop-blur-md border border-white/5" />
+                <div className="h-32 rounded-2xl bg-white/10 backdrop-blur-md border border-white/5" />
+              </div>
+              <div className="flex-1 rounded-2xl bg-gradient-to-t from-vision-cyan/20 to-transparent border border-white/5 z-10" />
+            </div>
+          </div>
+        </div>
+
+        {/* iPhone Mockup (Overlapping) */}
+        <div className="absolute -bottom-10 -right-4 md:-right-10 w-[40%] md:w-[25%] aspect-[1/2] rounded-[3rem] p-3 bg-white/5 border border-white/20 glass-panel shadow-2xl z-20">
+          <div className="w-full h-full rounded-[2.5rem] bg-black border border-white/10 relative overflow-hidden">
+             {/* Dynamic Island */}
+             <div className="absolute top-3 left-1/2 -translate-x-1/2 w-1/3 h-5 rounded-full bg-black z-30" />
+             {/* App Content */}
+             <div className="w-full h-full p-4 pt-12 flex flex-col gap-4 relative">
+                <div className="absolute inset-0 bg-gradient-to-br from-vision-purple/30 to-black z-0 pointer-events-none" />
+                <div className="w-16 h-16 rounded-full bg-white/10 mx-auto z-10 mb-4" />
+                <div className="w-3/4 h-6 rounded-md bg-white/10 mx-auto z-10" />
+                <div className="w-1/2 h-4 rounded-md bg-white/5 mx-auto z-10 mb-6" />
+                <div className="flex-1 rounded-3xl bg-white/5 border border-white/10 z-10 p-4">
+                  <div className="w-full h-1/2 border-b border-white/10" />
+                </div>
+             </div>
+          </div>
+        </div>
+      </motion.div>
+
     </section>
   );
 };
