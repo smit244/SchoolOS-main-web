@@ -11,81 +11,99 @@ export const Pricing: React.FC<PricingProps> = ({ onOpenDemo, onOpenTrial }) => 
   const [billingCycle, setBillingCycle] = useState<'monthly' | 'yearly'>('yearly');
 
   return (
-    <section id="pricing" className="py-24 bg-slate-50 relative overflow-hidden">
+    <section id="pricing" className="py-24 relative overflow-hidden">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         
         {/* Header */}
-        <div className="text-center max-w-3xl mx-auto space-y-4">
-          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full glass-ios border border-blue-200 text-xs font-bold text-blue-600">
-            <Sparkles className="w-4 h-4" />
-            <span>TRANSPARENT ENTERPRISE PRICING</span>
+        <div className="text-center max-w-3xl mx-auto space-y-4 mb-16">
+          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/60 border border-slate-200/50 backdrop-blur-xl shadow-sm text-sm font-semibold text-slate-700">
+            <Sparkles className="w-4 h-4 text-vision-blueGlow" />
+            <span>Transparent Pricing</span>
           </div>
-          <h2 className="font-display text-3xl sm:text-5xl font-extrabold text-slate-900 tracking-tight">
-            Predictable Plans for <span className="text-gradient-blue">Institutions of All Sizes</span>
+          <h2 className="font-display text-4xl sm:text-6xl font-bold text-slate-900 tracking-tight">
+            Simple plans for <span className="text-transparent bg-clip-text bg-gradient-to-r from-vision-blueGlow to-vision-cyan">every school.</span>
           </h2>
-          <p className="text-base sm:text-lg text-slate-600">
-            Includes all 34 modules. No hidden setup fees or per-student penalties.
+          <p className="text-lg sm:text-xl text-slate-600 font-light">
+            Everything you need to run your institution. No hidden fees.
           </p>
 
           {/* Monthly / Yearly Billing Toggle */}
-          <div className="pt-6 flex items-center justify-center gap-3">
-            <span className={`text-xs font-bold ${billingCycle === 'monthly' ? 'text-slate-900' : 'text-slate-500'}`}>Monthly Billing</span>
+          <div className="pt-8 flex items-center justify-center gap-4">
+            <span className={`text-sm font-semibold ${billingCycle === 'monthly' ? 'text-slate-900' : 'text-slate-500'}`}>Monthly Billing</span>
             <button
               onClick={() => setBillingCycle(billingCycle === 'monthly' ? 'yearly' : 'monthly')}
-              className="w-14 h-8 rounded-full bg-slate-200 border border-slate-300 p-1 flex items-center transition-colors relative"
+              className="w-14 h-8 rounded-full bg-slate-200 border border-slate-300 p-1 flex items-center transition-colors relative shadow-inner"
             >
               <div 
-                className={`w-6 h-6 rounded-full bg-blue-600 transition-transform shadow-md ${
+                className={`w-6 h-6 rounded-full bg-slate-900 transition-transform shadow-md ${
                   billingCycle === 'yearly' ? 'translate-x-6' : 'translate-x-0'
                 }`}
               />
             </button>
-            <span className={`text-xs font-bold flex items-center gap-1.5 ${billingCycle === 'yearly' ? 'text-slate-900' : 'text-slate-500'}`}>
+            <span className={`text-sm font-semibold flex items-center gap-2 ${billingCycle === 'yearly' ? 'text-slate-900' : 'text-slate-500'}`}>
               <span>Yearly Billing</span>
-              <span className="px-2 py-0.5 text-[10px] font-extrabold bg-emerald-100 text-emerald-700 rounded-full border border-emerald-300">SAVE 20%</span>
+              <span className="px-2 py-1 text-[10px] font-bold bg-vision-cyan/10 text-vision-cyan rounded-full border border-vision-cyan/20 uppercase tracking-wider">Save 20%</span>
             </span>
           </div>
         </div>
 
         {/* Pricing Cards Grid */}
-        <div className="mt-16 grid grid-cols-1 lg:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto">
           {PRICING_DATA.map((plan) => {
             const price = billingCycle === 'yearly' ? plan.priceYearly : plan.priceMonthly;
 
             return (
               <div
                 key={plan.id}
-                className={`glass-ios-card p-8 rounded-4xl border relative flex flex-col justify-between transition-all ${
+                className={`relative p-8 rounded-[2.5rem] flex flex-col justify-between transition-all duration-500 ${
                   plan.popular
-                    ? 'border-blue-500 shadow-xl shadow-blue-500/10 scale-105 bg-white'
-                    : 'border-slate-200/90 hover:border-slate-300'
+                    ? 'bg-white border border-slate-200 shadow-[0_30px_60px_rgba(0,0,0,0.08)] scale-105 z-10'
+                    : 'bg-white/60 border border-slate-200/50 backdrop-blur-xl shadow-[0_15px_35px_rgba(0,0,0,0.03)] hover:bg-white hover:shadow-[0_20px_40px_rgba(0,0,0,0.05)]'
                 }`}
               >
                 {plan.popular && (
-                  <div className="absolute -top-4 left-1/2 -translate-x-1/2 px-4 py-1 rounded-full bg-blue-600 text-white text-[10px] font-extrabold uppercase tracking-widest shadow-md">
-                    MOST POPULAR CHOICE
+                  <div className="absolute -top-4 left-1/2 -translate-x-1/2 px-4 py-1 rounded-full bg-slate-900 text-white text-[10px] font-extrabold uppercase tracking-widest shadow-md">
+                    Most Popular
                   </div>
                 )}
 
                 <div className="space-y-6">
                   <div>
-                    <h3 className="text-2xl font-extrabold text-slate-900">{plan.name}</h3>
-                    <p className="text-xs text-slate-500 font-medium mt-1">{plan.tagline}</p>
+                    <h3 className="text-2xl font-bold text-slate-900">{plan.name}</h3>
+                    <p className="text-sm text-slate-500 font-medium mt-2 line-clamp-2 min-h-[40px]">{plan.tagline}</p>
                   </div>
 
-                  <div className="flex items-baseline gap-1">
-                    <span className="text-4xl sm:text-5xl font-extrabold text-slate-900 font-display">${price}</span>
-                    <span className="text-xs text-slate-500 font-bold">/ month</span>
+                  <div className="flex items-baseline gap-1 py-4 border-b border-slate-100">
+                    <span className="text-5xl font-extrabold text-slate-900 font-display">${price}</span>
+                    <span className="text-sm text-slate-500 font-medium">/ month</span>
+                  </div>
+
+                  <div className="pt-2 space-y-4">
+                    <span className="text-xs font-bold uppercase tracking-wider text-slate-400">Included Features</span>
+                    <ul className="flex flex-col gap-3">
+                      {plan.features.map((feat, idx) => (
+                        <li key={idx} className="flex items-start gap-3">
+                          <CheckCircle2 className={`w-5 h-5 flex-shrink-0 ${plan.popular ? 'text-vision-blueGlow' : 'text-slate-400'}`} />
+                          <span className="text-sm text-slate-700 font-medium leading-tight">{feat}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                </div>
+
+                <div className="pt-8 mt-4">
+                  <button
+                    onClick={plan.id === 'p3' ? onOpenDemo : onOpenTrial}
+                    className={`w-full py-4 rounded-2xl font-bold text-sm transition-all flex items-center justify-center gap-2 group ${
                       plan.popular
-                        ? 'bg-blue-600 hover:bg-blue-700 text-white shadow-blue-500/30'
-                        : 'bg-slate-100 hover:bg-slate-200 text-slate-900 border border-slate-200'
+                        ? 'bg-slate-900 text-white hover:scale-[1.02] active:scale-[0.98] shadow-lg'
+                        : 'bg-white border border-slate-200 text-slate-700 hover:bg-slate-50'
                     }`}
                   >
                     <span>{plan.ctaText}</span>
-                    <ArrowRight className="w-4 h-4" />
+                    <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
                   </button>
                 </div>
-
               </div>
             );
           })}
