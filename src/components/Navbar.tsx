@@ -110,11 +110,11 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenDemo, onOpenTrial }) => {
             initial={{ opacity: 0, y: -20, scale: 0.95 }}
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: -20, scale: 0.95 }}
-            transition={{ duration: 0.3 }}
-            className={`absolute top-24 left-4 right-4 backdrop-blur-3xl rounded-3xl p-6 pointer-events-auto flex flex-col gap-4 shadow-xl ${
+            transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
+            className={`absolute top-24 left-4 right-4 backdrop-blur-2xl saturate-150 rounded-3xl p-6 pointer-events-auto flex flex-col gap-4 shadow-2xl ${
               scrolled 
-                ? 'bg-black/80 border border-white/10 shadow-glass-panel' 
-                : 'bg-white/90 border border-slate-200 shadow-slate-200/50'
+                ? 'bg-[#1C1C1E]/80 border border-white/10' 
+                : 'bg-white/80 border border-white/60 shadow-[0_20px_50px_rgba(0,0,0,0.1)]'
             }`}
           >
             {['Features', 'Ecosystem', 'Pricing'].map((item) => (
