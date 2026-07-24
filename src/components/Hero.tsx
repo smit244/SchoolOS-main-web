@@ -1,6 +1,6 @@
-import React, { useRef } from 'react';
-import { motion, useScroll, useTransform } from 'framer-motion';
-import { ArrowRight, Play } from 'lucide-react';
+import React from 'react';
+import { motion } from 'framer-motion';
+import { Zap, ArrowRight, LogIn, CheckCircle2 } from 'lucide-react';
 
 interface HeroProps {
   onOpenDemo: () => void;
@@ -8,145 +8,161 @@ interface HeroProps {
 }
 
 export const Hero: React.FC<HeroProps> = ({ onOpenDemo, onOpenTrial }) => {
-  const containerRef = useRef<HTMLDivElement>(null);
-  const { scrollYProgress } = useScroll({
-    target: containerRef,
-    offset: ["start start", "end start"]
-  });
-
-  // Parallax and scale effects for Apple-style scroll depth
-  const textY = useTransform(scrollYProgress, [0, 1], [0, 200]);
-  const textOpacity = useTransform(scrollYProgress, [0, 0.5], [1, 0]);
-  const dashboardY = useTransform(scrollYProgress, [0, 1], [0, -100]);
-  const dashboardScale = useTransform(scrollYProgress, [0, 0.5], [1, 1.05]);
-  const dashboardRotateX = useTransform(scrollYProgress, [0, 1], [15, 0]); // 3D tilt
-
   return (
-    <section 
-      ref={containerRef}
-      className="relative min-h-[140vh] w-full flex flex-col items-center pt-[25vh] overflow-hidden perspective-[2000px]"
-    >
+    <section className="relative w-full min-h-[90vh] flex items-center pt-28 pb-20 overflow-hidden bg-[#F4F7FE]">
       
-      {/* Huge Apple-Style Typography Sequence */}
-      <motion.div 
-        style={{ y: textY, opacity: textOpacity }}
-        className="relative z-20 flex flex-col items-center text-center px-4 max-w-5xl mx-auto"
-      >
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 1, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
-          className="px-4 py-1.5 rounded-full border border-white/10 bg-white/5 backdrop-blur-md mb-8 inline-flex items-center gap-2"
-        >
-          <span className="w-2 h-2 rounded-full bg-vision-cyan animate-pulse" />
-          <span className="text-sm font-medium text-white/80 tracking-wide uppercase">Introducing SchoolOS</span>
-        </motion.div>
-
-        <motion.h1 
-          initial={{ opacity: 0, y: 40 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 1.2, delay: 0.3, ease: [0.16, 1, 0.3, 1] }}
-          className="font-display text-[4rem] sm:text-[6rem] md:text-[8rem] font-medium leading-[0.9] tracking-tighter text-white mb-6"
-        >
-          Manage schools. <br/>
-          <span className="text-glow text-transparent bg-clip-text bg-gradient-to-r from-vision-cyan via-white to-vision-purple">
-            Like magic.
-          </span>
-        </motion.h1>
-
-        <motion.p 
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 1, delay: 0.5, ease: [0.16, 1, 0.3, 1] }}
-          className="text-lg sm:text-2xl text-vision-textMuted font-light max-w-2xl mx-auto mb-10 leading-relaxed tracking-wide"
-        >
-          Pro-level ecosystem for admissions, biometric attendance, and fee collection. Designed for the spatial era.
-        </motion.p>
-
-        <motion.div 
-          initial={{ opacity: 0, scale: 0.9 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 0.8, delay: 0.7, ease: [0.16, 1, 0.3, 1] }}
-          className="flex flex-wrap items-center justify-center gap-4"
-        >
-          <button
-            onClick={onOpenTrial}
-            className="px-8 py-4 rounded-full bg-white text-black font-semibold text-lg overflow-hidden group shadow-glow-cyan transition-transform hover:scale-105 flex items-center gap-2"
+      {/* Background Decorative Circles (from screenshot) */}
+      <div className="absolute top-10 -left-10 w-96 h-96 bg-[#E5D9F2]/30 rounded-full blur-3xl pointer-events-none" />
+      <div className="absolute top-20 right-0 w-[40rem] h-[40rem] bg-[#E2E8F0]/50 rounded-full blur-3xl pointer-events-none" />
+      <div className="absolute -bottom-20 left-10 w-64 h-64 bg-[#FDE68A]/30 rounded-full blur-2xl pointer-events-none" />
+      
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 w-full">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-8 items-center">
+          
+          {/* Left Column: Copy & Actions */}
+          <motion.div 
+            initial={{ opacity: 0, x: -30 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.8, ease: "easeOut" }}
+            className="flex flex-col items-start"
           >
-            <span className="relative z-10">Start Free Trial</span>
-            <ArrowRight className="w-5 h-5 relative z-10 group-hover:translate-x-1 transition-transform" />
-          </button>
-          
-          <button
-            onClick={onOpenDemo}
-            className="px-8 py-4 rounded-full bg-white/5 border border-white/10 text-white font-medium text-lg backdrop-blur-md hover:bg-white/10 transition-all flex items-center gap-2"
-          >
-            <Play className="w-4 h-4" />
-            <span>Watch Film</span>
-          </button>
-        </motion.div>
-      </motion.div>
-
-      {/* Floating 3D Dashboard Mockup */}
-      <motion.div 
-        style={{ 
-          y: dashboardY, 
-          scale: dashboardScale,
-          rotateX: dashboardRotateX,
-          transformPerspective: 2000
-        }}
-        initial={{ opacity: 0, y: 150, rotateX: 25 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 1.5, delay: 0.6, ease: [0.16, 1, 0.3, 1] }}
-        className="relative z-10 w-full max-w-6xl mx-auto px-4 mt-24"
-      >
-        <div className="relative w-full aspect-[16/9] md:aspect-[21/9] rounded-[2rem] md:rounded-[3rem] overflow-hidden glass-panel border border-white/20 shadow-dynamic-island group">
-          
-          {/* Inner Screen Blur Effect */}
-          <div className="absolute inset-0 bg-gradient-to-br from-white/5 to-white/0 backdrop-blur-sm mix-blend-overlay z-10 pointer-events-none" />
-          
-          {/* Mockup UI Elements inside */}
-          <div className="absolute top-0 left-0 w-full h-12 bg-white/5 border-b border-white/10 flex items-center px-6 gap-2 z-20">
-            <div className="w-3 h-3 rounded-full bg-white/20" />
-            <div className="w-3 h-3 rounded-full bg-white/20" />
-            <div className="w-3 h-3 rounded-full bg-white/20" />
-            <div className="mx-auto w-48 h-6 rounded-md bg-white/5" />
-          </div>
-
-          <div className="absolute top-12 left-0 w-full h-[calc(100%-3rem)] p-6 md:p-10 flex gap-6 z-20">
-            {/* Sidebar */}
-            <div className="hidden md:flex flex-col gap-3 w-48 shrink-0">
-              {[...Array(6)].map((_, i) => (
-                <div key={i} className={`h-8 rounded-lg bg-white/5 ${i === 0 ? 'bg-white/20' : ''}`} />
-              ))}
+            {/* Pill Badge */}
+            <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white border border-[#E2E8F0] shadow-sm mb-6">
+              <Zap className="w-4 h-4 text-[#4F46E5] fill-current" />
+              <span className="text-sm font-bold text-[#4F46E5]">For schools, teachers & coaching classes</span>
             </div>
-            {/* Main Content Area */}
-            <div className="flex-1 flex flex-col gap-6">
-              {/* Top Stats */}
-              <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
+
+            {/* Headline */}
+            <h1 className="font-display text-[3.5rem] sm:text-[4.5rem] lg:text-[5rem] font-extrabold leading-[1.1] text-slate-900 tracking-tight mb-6">
+              Manage your school in <br className="hidden sm:block" />
+              <span className="relative inline-block text-[#4F46E5]">
+                minutes
+                {/* Hand-drawn underline SVG */}
+                <svg className="absolute -bottom-3 left-0 w-full" viewBox="0 0 200 16" preserveAspectRatio="none">
+                  <path d="M2 13 Q 50 2 198 10" stroke="#F59E0B" strokeWidth="6" fill="none" strokeLinecap="round" />
+                </svg>
+              </span>,
+              <br className="hidden sm:block" />
+              not hours.
+            </h1>
+
+            {/* Subheadline */}
+            <p className="text-lg sm:text-xl text-slate-600 mb-8 max-w-lg leading-relaxed font-medium">
+              Pick from 34 integrated modules: admissions, biometric attendance, Razorpay fee collection, exams, and parent mobile apps — instantly.
+            </p>
+
+            {/* CTAs */}
+            <div className="flex flex-wrap items-center gap-4 mb-6">
+              <button
+                onClick={onOpenTrial}
+                className="inline-flex items-center gap-2 bg-[#4F46E5] text-white px-6 py-3.5 rounded-xl font-bold text-base hover:bg-[#4338CA] transition-colors shadow-lg shadow-[#4F46E5]/25"
+              >
+                <ArrowRight className="w-5 h-5" />
+                <span>Start 3-Day Free Trial</span>
+              </button>
+              
+              <button
+                onClick={onOpenDemo}
+                className="inline-flex items-center gap-2 bg-white text-[#4F46E5] border-2 border-[#4F46E5] px-6 py-3.5 rounded-xl font-bold text-base hover:bg-[#EEF2FF] transition-colors"
+              >
+                <LogIn className="w-5 h-5" />
+                <span>Book Demo</span>
+              </button>
+            </div>
+
+            {/* Trust Badges */}
+            <div className="flex flex-wrap items-center gap-4 sm:gap-6 text-sm font-semibold text-slate-500">
+              <span className="flex items-center gap-1.5"><CheckCircle2 className="w-4 h-4 text-[#10B981] fill-[#10B981] text-white" /> No credit card</span>
+              <span className="flex items-center gap-1.5"><CheckCircle2 className="w-4 h-4 text-[#10B981] fill-[#10B981] text-white" /> English / ગુજરાતી / हिंदी</span>
+              <span className="flex items-center gap-1.5"><CheckCircle2 className="w-4 h-4 text-[#10B981] fill-[#10B981] text-white" /> Cloud Backup</span>
+            </div>
+          </motion.div>
+
+
+          {/* Right Column: Illustration (Mimicking screenshot) */}
+          <motion.div 
+            initial={{ opacity: 0, scale: 0.9 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.8, delay: 0.2, ease: "easeOut" }}
+            className="relative w-full aspect-square max-w-[500px] mx-auto lg:ml-auto flex items-center justify-center"
+          >
+            {/* White Circle Background */}
+            <div className="absolute inset-4 bg-white rounded-full shadow-2xl shadow-slate-200/50" />
+            
+            {/* Decorative Floating Dots */}
+            <div className="absolute top-[20%] left-[10%] w-3 h-3 rounded-full bg-emerald-400" />
+            <div className="absolute bottom-[30%] left-[5%] w-4 h-4 rounded-full bg-sky-400" />
+            <div className="absolute bottom-[20%] right-[15%] w-3 h-3 rounded-full bg-emerald-400" />
+            <div className="absolute top-[40%] right-[5%] w-3 h-3 rounded-full bg-purple-400" />
+            <div className="absolute -bottom-2 left-[25%] w-5 h-5 rounded bg-pink-300 rotate-12" />
+
+            {/* Mock Paper/Dashboard Document */}
+            <motion.div 
+              animate={{ y: [-10, 10, -10] }}
+              transition={{ repeat: Infinity, duration: 6, ease: "easeInOut" }}
+              className="relative w-[65%] h-[80%] bg-white rounded-2xl shadow-[0_20px_50px_rgba(0,0,0,0.1)] border border-slate-100 p-6 flex flex-col gap-4 z-10 rotate-3"
+            >
+              {/* Paper Header (Purple shape) */}
+              <div className="absolute top-0 left-0 w-full h-16 bg-[#4F46E5] rounded-t-2xl flex items-center px-4 gap-2">
+                <div className="w-3 h-3 rounded-full bg-white/30" />
+                <div className="w-16 h-2 rounded-full bg-white/30" />
+              </div>
+
+              <div className="mt-16 flex flex-col gap-5">
+                {/* List Items representing questions/features */}
                 {[...Array(4)].map((_, i) => (
-                  <div key={i} className="h-24 rounded-2xl bg-white/5 border border-white/5 flex flex-col justify-end p-4">
-                     <div className="w-1/2 h-4 rounded bg-white/10 mb-2" />
-                     <div className="w-3/4 h-6 rounded bg-white/20" />
+                  <div key={i} className="flex items-center gap-3">
+                    {i % 3 === 1 ? (
+                      <div className="w-5 h-5 rounded-full bg-amber-100 flex items-center justify-center">
+                        <div className="w-2.5 h-2.5 rounded-sm bg-amber-500" />
+                      </div>
+                    ) : (
+                      <CheckCircle2 className="w-5 h-5 text-emerald-500 fill-emerald-500 text-white" />
+                    )}
+                    <div className="flex-1">
+                      <div className="w-full h-2.5 rounded-full bg-slate-200 mb-2" />
+                      <div className="w-2/3 h-2.5 rounded-full bg-slate-100" />
+                    </div>
                   </div>
                 ))}
               </div>
-              {/* Big Chart Area */}
-              <div className="flex-1 rounded-3xl bg-white/5 border border-white/5 p-6 relative overflow-hidden">
-                 <div className="absolute bottom-0 left-0 w-full h-1/2 bg-gradient-to-t from-vision-cyan/20 to-transparent blur-xl" />
-                 <svg className="absolute bottom-0 left-0 w-full h-full" preserveAspectRatio="none" viewBox="0 0 100 100">
-                    <path d="M0 100 Q 25 50, 50 80 T 100 20 L 100 100 Z" fill="rgba(255,255,255,0.05)" />
-                    <path d="M0 100 Q 25 50, 50 80 T 100 20" stroke="rgba(0,240,255,0.5)" strokeWidth="0.5" fill="none" />
-                 </svg>
+
+              {/* Bottom tag */}
+              <div className="absolute bottom-4 right-4 px-3 py-1 bg-indigo-50 text-indigo-500 text-xs font-bold rounded-full">
+                25 M
               </div>
+            </motion.div>
+
+            {/* A+ Badge floating on top right */}
+            <motion.div 
+              animate={{ scale: [1, 1.05, 1] }}
+              transition={{ repeat: Infinity, duration: 4 }}
+              className="absolute top-[10%] right-[10%] w-20 h-20 bg-amber-500 rounded-full shadow-lg shadow-amber-500/40 flex items-center justify-center z-20 text-white font-display font-extrabold text-3xl border-4 border-white"
+            >
+              A+
+            </motion.div>
+
+            {/* MCQ Floating Pill */}
+            <motion.div 
+              animate={{ x: [-5, 5, -5] }}
+              transition={{ repeat: Infinity, duration: 5 }}
+              className="absolute top-[55%] -left-8 bg-white px-4 py-3 rounded-2xl shadow-xl shadow-slate-200 flex items-center gap-3 z-20 border border-slate-100"
+            >
+              <span className="text-[#4F46E5] font-bold text-sm">MCQ</span>
+              <div className="w-8 h-2 rounded-full bg-slate-200" />
+              <CheckCircle2 className="w-5 h-5 text-emerald-500 fill-emerald-500 text-white" />
+            </motion.div>
+
+            {/* Star decoration */}
+            <div className="absolute top-[25%] left-[5%] text-amber-400 rotate-45 z-0">
+               <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                 <path d="M12 2L15 9l7 1-5 5 1 7-7-4-7 4 1-7-5-5 7-1z" />
+               </svg>
             </div>
-          </div>
+
+          </motion.div>
         </div>
-
-        {/* Floating Accent Glows around dashboard */}
-        <div className="absolute -inset-10 bg-vision-cyan/20 blur-[100px] z-0 rounded-full opacity-50 group-hover:opacity-80 transition-opacity duration-700" />
-      </motion.div>
-
+      </div>
     </section>
   );
 };
