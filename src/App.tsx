@@ -2,11 +2,9 @@ import React, { useState } from 'react';
 import { Navbar } from './components/Navbar';
 import { Hero } from './components/Hero';
 import { TrustSection } from './components/TrustSection';
-import { Features } from './components/Features';
-import { QuestionPaperGenerator } from './components/QuestionPaperGenerator';
-import { ERPModules } from './components/ERPModules';
-import { AIShowcase } from './components/AIShowcase';
-import { DashboardShowcase } from './components/DashboardShowcase';
+import { Ecosystem34Modules } from './components/Ecosystem34Modules';
+import { FeatureDeepDive } from './components/FeatureDeepDive';
+import { iOSShowcase } from './components/iOSShowcase';
 import { WhySchoolOS } from './components/WhySchoolOS';
 import { Pricing } from './components/Pricing';
 import { ProcessTimeline } from './components/ProcessTimeline';
@@ -23,7 +21,7 @@ export function App() {
   const [trialModalOpen, setTrialModalOpen] = useState(false);
 
   return (
-    <div className="min-h-screen bg-slate-950 text-slate-100 font-sans selection:bg-primary selection:text-white antialiased">
+    <div className="min-h-screen bg-slate-50 text-slate-900 font-sans selection:bg-blue-600 selection:text-white antialiased">
       
       {/* Navigation */}
       <Navbar 
@@ -40,15 +38,14 @@ export function App() {
         
         <TrustSection />
         
-        <Features />
-        
-        <QuestionPaperGenerator />
-        
-        <ERPModules />
-        
-        <AIShowcase />
-        
-        <DashboardShowcase />
+        {/* Complete 34 Modules Interactive Grid Hub */}
+        <Ecosystem34Modules />
+
+        {/* Core ERP Hub Deep-Dives */}
+        <FeatureDeepDive />
+
+        {/* iPhone & iPad Glassy UI Showcase */}
+        <iOSShowcase />
         
         <WhySchoolOS />
         
