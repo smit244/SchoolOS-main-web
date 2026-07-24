@@ -12,9 +12,9 @@ const AuroraMesh = () => {
     return {
       uniforms: {
         uTime: { value: 0 },
-        uColor1: { value: new THREE.Color('#4F46E5') }, // Indigo
-        uColor2: { value: new THREE.Color('#06B6D4') }, // Cyan
-        uColor3: { value: new THREE.Color('#9333EA') }, // Purple
+        uColor1: { value: new THREE.Color('#E0F2FE') }, // Light Sky Blue
+        uColor2: { value: new THREE.Color('#F3E8FF') }, // Light Purple/Lavender
+        uColor3: { value: new THREE.Color('#CFFAFE') }, // Light Cyan
         uMouse: { value: new THREE.Vector2(0, 0) }
       },
       vertexShader: `

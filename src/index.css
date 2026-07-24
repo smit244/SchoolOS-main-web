@@ -4,7 +4,7 @@
 
 @layer base {
   body {
-    @apply bg-black text-vision-text selection:bg-vision-cyan selection:text-black overflow-x-hidden;
+    @apply bg-white text-slate-900 transition-colors duration-300 selection:bg-vision-cyan selection:text-black overflow-x-hidden;
     /* Use overscroll-none for smooth scroll integration */
     overscroll-behavior: none;
   }
