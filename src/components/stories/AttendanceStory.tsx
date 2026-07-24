@@ -62,7 +62,7 @@ export const AttendanceStory: React.FC = () => {
             className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-white/80 border border-slate-200/50 shadow-sm backdrop-blur-xl mb-4"
           >
             <ShieldCheck className="w-4 h-4 text-vision-blueGlow" />
-            <span className="text-sm font-bold text-slate-800 tracking-wider uppercase">Biometric Security</span>
+            <span className="text-sm font-bold text-slate-800 tracking-wider uppercase">Biometric Secure Attendance</span>
           </motion.div>
           <h2 className="text-4xl md:text-5xl font-display font-bold text-slate-900 tracking-tighter">
             Zero-Touch Attendance.

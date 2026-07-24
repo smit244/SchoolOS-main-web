@@ -48,7 +48,7 @@ export const QuestionPaperStory: React.FC = () => {
             className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-white/80 border border-slate-200/50 shadow-sm backdrop-blur-xl mb-4"
           >
             <Wand2 className="w-4 h-4 text-vision-purple" />
-            <span className="text-sm font-bold text-slate-800 tracking-wider uppercase">AI Generation</span>
+            <span className="text-sm font-bold text-slate-800 tracking-wider uppercase">Bcrypt Secure Paper Generation</span>
           </motion.div>
           <h2 className="text-4xl md:text-5xl font-display font-bold text-slate-900 tracking-tighter">
             The Knowledge Vortex.
