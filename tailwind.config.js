@@ -8,16 +8,17 @@ export default {
   theme: {
     extend: {
       colors: {
-        background: '#000000',
+        background: '#FAFAFA',
         vision: {
-          glass: 'rgba(255, 255, 255, 0.05)',
-          glassLight: 'rgba(255, 255, 255, 0.1)',
-          glassBorder: 'rgba(255, 255, 255, 0.15)',
-          cyan: '#00F0FF',
-          blueGlow: '#0033FF',
-          purple: '#8A2BE2',
-          text: '#FFFFFF',
-          textMuted: 'rgba(255, 255, 255, 0.6)',
+          glass: 'rgba(255, 255, 255, 0.6)',
+          glassLight: 'rgba(255, 255, 255, 0.9)',
+          glassBorder: 'rgba(255, 255, 255, 0.8)',
+          glassDark: 'rgba(255, 255, 255, 0.3)',
+          cyan: '#06B6D4',
+          blueGlow: '#3B82F6',
+          purple: '#8B5CF6',
+          text: '#0F172A',
+          textMuted: '#64748B',
         }
       },
       fontFamily: {
@@ -25,10 +26,10 @@ export default {
         display: ['"Space Grotesk"', 'sans-serif'],
       },
       boxShadow: {
-        'glass-panel': '0 8px 32px 0 rgba(0, 0, 0, 0.37), inset 0 0 0 1px rgba(255, 255, 255, 0.1)',
-        'glow-cyan': '0 0 20px rgba(0, 240, 255, 0.5)',
-        'glow-purple': '0 0 30px rgba(138, 43, 226, 0.5)',
-        'dynamic-island': '0 20px 40px rgba(0, 0, 0, 0.5), inset 0 0 0 1px rgba(255, 255, 255, 0.2)',
+        'glass-panel': '0 8px 32px 0 rgba(0, 0, 0, 0.05), inset 0 0 0 1px rgba(255, 255, 255, 1)',
+        'glow-cyan': '0 0 40px rgba(6, 182, 212, 0.15)',
+        'glow-purple': '0 0 40px rgba(139, 92, 246, 0.15)',
+        'dynamic-island': '0 20px 40px rgba(0, 0, 0, 0.08), inset 0 0 0 1px rgba(255, 255, 255, 1)',
       },
       borderRadius: {
         '4xl': '2rem',
