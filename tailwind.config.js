@@ -18,70 +18,33 @@ export default {
           500: '#2563EB',
           600: '#1D4ED8',
           700: '#1E40AF',
-          800: '#1E3A8A',
-          900: '#172554',
         },
         secondary: {
           DEFAULT: '#06B6D4',
           400: '#22D3EE',
           500: '#06B6D4',
-          600: '#0891B2',
         },
         accent: {
-          DEFAULT: '#22C55E',
-          500: '#22C55E',
-          600: '#16A34A',
+          DEFAULT: '#10B981',
+          500: '#10B981',
+          600: '#059669',
         },
-        dark: {
-          DEFAULT: '#0F172A',
-          50: '#F8FAFC',
-          100: '#F1F5F9',
-          800: '#1E293B',
-          900: '#0F172A',
-          950: '#020617',
-        },
-        light: {
-          DEFAULT: '#F8FAFC',
-        },
-        success: '#10B981',
-        danger: '#EF4444',
-        warning: '#F59E0B',
+        iosBg: '#F8FAFC',
+        iosCard: '#FFFFFF',
       },
       fontFamily: {
-        sans: ['Inter', 'sans-serif'],
+        sans: ['Inter', '-apple-system', 'BlinkMacSystemFont', 'sans-serif'],
         display: ['Space Grotesk', 'sans-serif'],
         heading: ['Poppins', 'sans-serif'],
       },
-      animation: {
-        'pulse-slow': 'pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite',
-        'float': 'float 6s ease-in-out infinite',
-        'float-reverse': 'floatReverse 7s ease-in-out infinite',
-        'glow': 'glow 3s ease-in-out infinite alternate',
-        'ticker': 'ticker 30s linear infinite',
-      },
-      keyframes: {
-        float: {
-          '0%, 100%': { transform: 'translateY(0px)' },
-          '50%': { transform: 'translateY(-12px)' },
-        },
-        floatReverse: {
-          '0%, 100%': { transform: 'translateY(0px)' },
-          '50%': { transform: 'translateY(12px)' },
-        },
-        glow: {
-          '0%': { opacity: '0.4', filter: 'drop-shadow(0 0 15px rgba(37, 99, 235, 0.3))' },
-          '100%': { opacity: '0.8', filter: 'drop-shadow(0 0 30px rgba(6, 182, 212, 0.6))' },
-        },
-        ticker: {
-          '0%': { transform: 'translateX(0%)' },
-          '100%': { transform: 'translateX(-50%)' },
-        }
-      },
       boxShadow: {
-        'glass': '0 8px 32px 0 rgba(0, 0, 0, 0.08)',
-        'glass-dark': '0 8px 32px 0 rgba(0, 0, 0, 0.37)',
-        'glow-primary': '0 0 40px -10px rgba(37, 99, 235, 0.4)',
-        'glow-secondary': '0 0 40px -10px rgba(6, 182, 212, 0.4)',
+        'ios-glass': '0 20px 40px -15px rgba(0, 0, 0, 0.05), 0 0 1px 1px rgba(255, 255, 255, 0.8) inset',
+        'ios-card': '0 10px 30px -5px rgba(37, 99, 235, 0.08), 0 0 1px 1px rgba(255, 255, 255, 0.9) inset',
+        'ios-float': '0 25px 60px -15px rgba(0, 0, 0, 0.12)',
+      },
+      borderRadius: {
+        '4xl': '2rem',
+        '5xl': '2.5rem',
       }
     },
   },
