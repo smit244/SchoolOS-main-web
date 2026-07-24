@@ -4,7 +4,7 @@ import { Navbar } from './components/Navbar';
 import { Hero } from './components/Hero';
 import { Ecosystem34Modules } from './components/Ecosystem34Modules';
 import { FeatureDeepDive } from './components/FeatureDeepDive';
-import { iOSShowcase } from './components/iOSShowcase';
+import { IOSShowcase } from './components/iOSShowcase';
 import { Pricing } from './components/Pricing';
 import { FAQ } from './components/FAQ';
 import { Contact } from './components/Contact';
@@ -69,12 +69,12 @@ function App() {
 
         {/* Device Showcase Section */}
         <div className="w-full relative z-10 py-32">
-          <iOSShowcase />
+          <IOSShowcase />
         </div>
 
         {/* Pricing */}
         <div id="pricing" className="w-full relative z-10 py-20">
-          <Pricing />
+          <Pricing onOpenDemo={() => setIsDemoOpen(true)} onOpenTrial={() => setIsTrialOpen(true)} />
         </div>
 
         {/* FAQ */}
