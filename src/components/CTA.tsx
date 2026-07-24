@@ -1,5 +1,5 @@
 import React from 'react';
-import { ArrowRight, Sparkles, ShieldCheck } from 'lucide-react';
+import { ArrowRight, Sparkles } from 'lucide-react';
 
 interface CTAProps {
   onOpenDemo: () => void;
@@ -8,31 +8,28 @@ interface CTAProps {
 
 export const CTA: React.FC<CTAProps> = ({ onOpenDemo, onOpenTrial }) => {
   return (
-    <section className="py-20 bg-slate-950 relative overflow-hidden">
+    <section className="py-20 bg-slate-50 relative overflow-hidden">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
-        <div className="glass-card p-10 sm:p-16 rounded-3xl border border-primary/30 relative overflow-hidden text-center space-y-8 bg-gradient-to-b from-primary/10 via-slate-900 to-slate-950 shadow-2xl shadow-primary/20">
+        <div className="glass-ios-card p-10 sm:p-16 rounded-4xl border border-white relative overflow-hidden text-center space-y-8 bg-gradient-to-b from-blue-50/50 via-white to-slate-50 shadow-ios-float">
           
-          {/* Background Elements */}
-          <div className="absolute -top-24 left-1/2 -translate-x-1/2 w-96 h-96 bg-primary/20 rounded-full blur-[140px] pointer-events-none" />
-
-          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full glass-card border border-primary/40 text-xs font-semibold text-secondary">
+          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full glass-ios border border-blue-200 text-xs font-bold text-blue-600">
             <Sparkles className="w-4 h-4" />
             <span>JOIN 100+ FORWARD-THINKING SCHOOLS TODAY</span>
           </div>
 
-          <h2 className="font-display text-4xl sm:text-6xl font-extrabold text-white tracking-tight max-w-3xl mx-auto leading-tight">
-            Ready to Transform Your School into an <span className="text-gradient-primary">AI-Powered Institution?</span>
+          <h2 className="font-display text-4xl sm:text-6xl font-extrabold text-slate-900 tracking-tight max-w-3xl mx-auto leading-tight">
+            Ready to Transform Your School with <span className="text-gradient-blue">34 AI ERP Modules?</span>
           </h2>
 
-          <p className="text-base sm:text-lg text-slate-300 max-w-xl mx-auto">
-            Experience zero-error school management and generate board-standard question papers in 30 seconds.
+          <p className="text-base sm:text-lg text-slate-600 max-w-xl mx-auto">
+            Get instant access to student admissions, fees, biometrics, exams, transport GPS, payroll, and parent mobile apps.
           </p>
 
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4 pt-4">
             <button
               onClick={onOpenTrial}
-              className="w-full sm:w-auto px-8 py-4 rounded-xl bg-gradient-to-r from-primary via-secondary to-accent text-white font-bold text-base shadow-xl shadow-primary/30 hover:scale-105 transition-all flex items-center justify-center gap-3"
+              className="w-full sm:w-auto px-8 py-4 rounded-2xl bg-blue-600 hover:bg-blue-700 text-white font-bold text-base shadow-xl shadow-blue-500/30 hover:scale-105 transition-all flex items-center justify-center gap-3"
             >
               <span>Start 14-Day Free Trial</span>
               <ArrowRight className="w-5 h-5" />
@@ -40,13 +37,13 @@ export const CTA: React.FC<CTAProps> = ({ onOpenDemo, onOpenTrial }) => {
 
             <button
               onClick={onOpenDemo}
-              className="w-full sm:w-auto px-8 py-4 rounded-xl glass-card text-slate-200 font-semibold text-base border border-slate-700 hover:bg-slate-800 transition-all"
+              className="w-full sm:w-auto px-8 py-4 rounded-2xl glass-ios text-slate-800 font-bold text-base border border-slate-200 hover:bg-white transition-all shadow-sm"
             >
               Book Live Demo
             </button>
           </div>
 
-          <div className="pt-4 text-xs text-slate-400 font-medium flex flex-wrap items-center justify-center gap-6">
+          <div className="pt-4 text-xs text-slate-500 font-bold flex flex-wrap items-center justify-center gap-6">
             <span>✓ 100% Free Data Migration</span>
             <span>✓ No Setup Charges</span>
             <span>✓ Cancel Anytime</span>
