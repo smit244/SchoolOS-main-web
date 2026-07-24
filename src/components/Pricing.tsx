@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { PRICING_DATA } from '../data/mockData';
-import { CheckCircle2, Sparkles, ArrowRight, ShieldCheck } from 'lucide-react';
+import { CheckCircle2, Sparkles, ArrowRight } from 'lucide-react';
 
 interface PricingProps {
   onOpenDemo: () => void;
@@ -11,38 +11,38 @@ export const Pricing: React.FC<PricingProps> = ({ onOpenDemo, onOpenTrial }) => 
   const [billingCycle, setBillingCycle] = useState<'monthly' | 'yearly'>('yearly');
 
   return (
-    <section id="pricing" className="py-24 bg-slate-950 relative overflow-hidden">
+    <section id="pricing" className="py-24 bg-slate-50 relative overflow-hidden">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         
         {/* Header */}
         <div className="text-center max-w-3xl mx-auto space-y-4">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full glass-card border border-primary/30 text-xs font-semibold text-primary-400">
+          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full glass-ios border border-blue-200 text-xs font-bold text-blue-600">
             <Sparkles className="w-4 h-4" />
             <span>TRANSPARENT ENTERPRISE PRICING</span>
           </div>
-          <h2 className="font-display text-3xl sm:text-5xl font-extrabold text-white tracking-tight">
-            Predictable Plans for <span className="text-gradient-primary">Institutions of All Sizes</span>
+          <h2 className="font-display text-3xl sm:text-5xl font-extrabold text-slate-900 tracking-tight">
+            Predictable Plans for <span className="text-gradient-blue">Institutions of All Sizes</span>
           </h2>
-          <p className="text-base sm:text-lg text-slate-400">
-            No hidden setup fees. No per-student penalties. Choose the plan that fits your vision.
+          <p className="text-base sm:text-lg text-slate-600">
+            Includes all 34 modules. No hidden setup fees or per-student penalties.
           </p>
 
           {/* Monthly / Yearly Billing Toggle */}
           <div className="pt-6 flex items-center justify-center gap-3">
-            <span className={`text-xs font-bold ${billingCycle === 'monthly' ? 'text-white' : 'text-slate-400'}`}>Monthly Billing</span>
+            <span className={`text-xs font-bold ${billingCycle === 'monthly' ? 'text-slate-900' : 'text-slate-500'}`}>Monthly Billing</span>
             <button
               onClick={() => setBillingCycle(billingCycle === 'monthly' ? 'yearly' : 'monthly')}
-              className="w-14 h-8 rounded-full bg-slate-900 border border-slate-700 p-1 flex items-center transition-colors relative"
+              className="w-14 h-8 rounded-full bg-slate-200 border border-slate-300 p-1 flex items-center transition-colors relative"
             >
               <div 
-                className={`w-6 h-6 rounded-full bg-primary transition-transform shadow-lg ${
+                className={`w-6 h-6 rounded-full bg-blue-600 transition-transform shadow-md ${
                   billingCycle === 'yearly' ? 'translate-x-6' : 'translate-x-0'
                 }`}
               />
             </button>
-            <span className={`text-xs font-bold flex items-center gap-1.5 ${billingCycle === 'yearly' ? 'text-white' : 'text-slate-400'}`}>
+            <span className={`text-xs font-bold flex items-center gap-1.5 ${billingCycle === 'yearly' ? 'text-slate-900' : 'text-slate-500'}`}>
               <span>Yearly Billing</span>
-              <span className="px-2 py-0.5 text-[10px] font-extrabold bg-accent/20 text-accent rounded-full border border-accent/30">SAVE 20%</span>
+              <span className="px-2 py-0.5 text-[10px] font-extrabold bg-emerald-100 text-emerald-700 rounded-full border border-emerald-300">SAVE 20%</span>
             </span>
           </div>
         </div>
@@ -55,48 +55,47 @@ export const Pricing: React.FC<PricingProps> = ({ onOpenDemo, onOpenTrial }) => 
             return (
               <div
                 key={plan.id}
-                className={`glass-card p-8 rounded-3xl border relative flex flex-col justify-between transition-all ${
+                className={`glass-ios-card p-8 rounded-4xl border relative flex flex-col justify-between transition-all ${
                   plan.popular
-                    ? 'border-primary shadow-2xl shadow-primary/25 scale-105 bg-slate-900/90'
-                    : 'border-slate-800/80 hover:border-slate-700'
+                    ? 'border-blue-500 shadow-xl shadow-blue-500/10 scale-105 bg-white'
+                    : 'border-slate-200/90 hover:border-slate-300'
                 }`}
               >
                 {plan.popular && (
-                  <div className="absolute -top-4 left-1/2 -translate-x-1/2 px-4 py-1 rounded-full bg-gradient-to-r from-primary to-secondary text-white text-[10px] font-extrabold uppercase tracking-widest shadow-lg">
+                  <div className="absolute -top-4 left-1/2 -translate-x-1/2 px-4 py-1 rounded-full bg-blue-600 text-white text-[10px] font-extrabold uppercase tracking-widest shadow-md">
                     MOST POPULAR CHOICE
                   </div>
                 )}
 
                 <div className="space-y-6">
                   <div>
-                    <h3 className="text-2xl font-bold text-white">{plan.name}</h3>
-                    <p className="text-xs text-slate-400 mt-1">{plan.tagline}</p>
+                    <h3 className="text-2xl font-extrabold text-slate-900">{plan.name}</h3>
+                    <p className="text-xs text-slate-500 font-medium mt-1">{plan.tagline}</p>
                   </div>
 
                   <div className="flex items-baseline gap-1">
-                    <span className="text-4xl sm:text-5xl font-extrabold text-white font-display">${price}</span>
-                    <span className="text-xs text-slate-400 font-semibold">/ month</span>
-                    {billingCycle === 'yearly' && <span className="text-[10px] text-slate-500 ml-1">(billed annually)</span>}
+                    <span className="text-4xl sm:text-5xl font-extrabold text-slate-900 font-display">${price}</span>
+                    <span className="text-xs text-slate-500 font-bold">/ month</span>
                   </div>
 
-                  <div className="pt-4 border-t border-slate-800 space-y-3">
-                    <span className="text-xs font-extrabold uppercase tracking-wider text-slate-400">Included Features:</span>
+                  <div className="pt-4 border-t border-slate-200 space-y-3">
+                    <span className="text-xs font-extrabold uppercase tracking-wider text-slate-500">Included Capabilities:</span>
                     {plan.features.map((feat, idx) => (
-                      <div key={idx} className="flex items-start gap-2.5 text-xs text-slate-300">
-                        <CheckCircle2 className="w-4 h-4 text-accent flex-shrink-0 mt-0.5" />
+                      <div key={idx} className="flex items-start gap-2.5 text-xs font-semibold text-slate-700">
+                        <CheckCircle2 className="w-4 h-4 text-emerald-500 flex-shrink-0 mt-0.5" />
                         <span>{feat}</span>
                       </div>
                     ))}
                   </div>
                 </div>
 
-                <div className="pt-8 mt-6 border-t border-slate-800">
+                <div className="pt-8 mt-6 border-t border-slate-200">
                   <button
                     onClick={plan.id === 'p3' ? onOpenDemo : onOpenTrial}
-                    className={`w-full py-4 rounded-xl font-bold text-sm transition-all shadow-lg flex items-center justify-center gap-2 ${
+                    className={`w-full py-4 rounded-2xl font-bold text-sm transition-all shadow-md flex items-center justify-center gap-2 ${
                       plan.popular
-                        ? 'bg-gradient-to-r from-primary to-secondary text-white shadow-primary/40 hover:scale-105'
-                        : 'bg-slate-900 border border-slate-700 text-white hover:bg-slate-800'
+                        ? 'bg-blue-600 hover:bg-blue-700 text-white shadow-blue-500/30'
+                        : 'bg-slate-100 hover:bg-slate-200 text-slate-900 border border-slate-200'
                     }`}
                   >
                     <span>{plan.ctaText}</span>
