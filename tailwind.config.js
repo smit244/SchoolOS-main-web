@@ -8,43 +8,43 @@ export default {
   theme: {
     extend: {
       colors: {
-        primary: {
-          DEFAULT: '#2563EB',
-          50: '#EFF6FF',
-          100: '#DBEAFE',
-          200: '#BFDBFE',
-          300: '#93C5FD',
-          400: '#60A5FA',
-          500: '#2563EB',
-          600: '#1D4ED8',
-          700: '#1E40AF',
+        brand: {
+          DEFAULT: '#4F46E5', // QBMS Indigo
+          dark: '#3730A3',
+          soft: '#EEF2FF',
+          light: '#F5F3FF',
         },
-        secondary: {
-          DEFAULT: '#06B6D4',
-          400: '#22D3EE',
-          500: '#06B6D4',
+        qbms: {
+          amber: '#F59E0B',
+          emerald: '#10B981',
+          pink: '#EC4899',
+          sky: '#0EA5E9',
+          violet: '#8B5CF6',
+          rose: '#F43F5E',
+          navy: '#0E1330',
+          ink: '#1E293B',
+          mut: '#64748B',
+          line: '#E8EAF3',
+          soft: '#F7F8FD',
         },
-        accent: {
-          DEFAULT: '#10B981',
-          500: '#10B981',
-          600: '#059669',
-        },
-        iosBg: '#F8FAFC',
-        iosCard: '#FFFFFF',
+        iconnect: {
+          cyan: '#04BFFA',
+          blue: '#0489DA',
+          bgDark: '#001931',
+        }
       },
       fontFamily: {
-        sans: ['Inter', '-apple-system', 'BlinkMacSystemFont', 'sans-serif'],
-        display: ['Space Grotesk', 'sans-serif'],
-        heading: ['Poppins', 'sans-serif'],
+        sans: ['Inter', 'Hind Vadodara', '-apple-system', 'sans-serif'],
+        display: ['Plus Jakarta Sans', 'Space Grotesk', 'sans-serif'],
       },
       boxShadow: {
-        'ios-glass': '0 20px 40px -15px rgba(0, 0, 0, 0.05), 0 0 1px 1px rgba(255, 255, 255, 0.8) inset',
-        'ios-card': '0 10px 30px -5px rgba(37, 99, 235, 0.08), 0 0 1px 1px rgba(255, 255, 255, 0.9) inset',
-        'ios-float': '0 25px 60px -15px rgba(0, 0, 0, 0.12)',
+        'qbms-card': '0 10px 30px rgba(15, 23, 42, 0.06), 0 0 1px 1px rgba(255, 255, 255, 0.9) inset',
+        'qbms-hover': '0 22px 50px rgba(15, 23, 42, 0.12), 0 0 1px 1px rgba(255, 255, 255, 1) inset',
+        'iconnect-glow': '0 0 40px -10px rgba(4, 191, 250, 0.3)',
       },
       borderRadius: {
+        '3xl': '1.5rem',
         '4xl': '2rem',
-        '5xl': '2.5rem',
       }
     },
   },
