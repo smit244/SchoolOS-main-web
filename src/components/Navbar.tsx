@@ -44,16 +44,17 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenDemo, onOpenTrial }) => {
       <div className={`pointer-events-auto nav-squircle px-3 py-2.5 transition-all duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] flex items-center justify-between gap-4 sm:gap-8 backdrop-blur-2xl saturate-150 ${
         scrolled 
           ? 'w-[95%] max-w-4xl bg-black/60 border border-white/10 shadow-[0_8px_30px_rgba(0,0,0,0.4)]' 
-          : 'w-[95%] max-w-5xl bg-white/70 border border-white/60 shadow-[0_8px_30px_rgba(0,0,0,0.04)]'
+          : 'w-[95%] max-w-5xl bg-transparent border border-transparent shadow-none'
       }`}>
         
         {/* Logo */}
         <a href="#" onClick={(e) => handleScrollTo(e, 'root')} className="flex items-center gap-2 group shrink-0 pl-2">
-          <div className="w-8 h-8 rounded-[10px] bg-[#4F46E5] flex items-center justify-center text-white font-extrabold group-hover:scale-105 transition-all relative overflow-hidden">
+          <div className="w-8 h-8 rounded-[10px] bg-white/10 border border-white/20 flex items-center justify-center text-white font-extrabold group-hover:scale-105 transition-all relative overflow-hidden backdrop-blur-md">
+             <div className="absolute inset-0 bg-hero-glow opacity-50 blur-sm group-hover:opacity-100 transition-opacity" />
              <Sparkles className="w-4 h-4 text-white relative z-10" />
           </div>
-          <span className={`font-display text-lg font-bold tracking-tighter hidden sm:block transition-colors duration-500 ${scrolled ? 'text-white' : 'text-slate-900'}`}>
-            School<span className={scrolled ? 'text-vision-cyan' : 'text-[#4F46E5]'}>OS</span>
+          <span className={`font-display text-lg font-bold tracking-tighter hidden sm:block transition-colors duration-500 text-white`}>
+            School<span className="text-vision-cyan">OS</span>
           </span>
         </a>
 
@@ -67,7 +68,7 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenDemo, onOpenTrial }) => {
               className={`px-5 py-2 rounded-2xl text-sm font-semibold transition-all duration-300 relative overflow-hidden group ${
                 scrolled 
                   ? 'text-vision-textMuted hover:text-white hover:bg-white/10' 
-                  : 'text-slate-600 hover:text-slate-900 hover:bg-slate-100/50'
+                  : 'text-white/70 hover:text-white hover:bg-white/10'
               }`}
             >
               <span className="relative z-10">{item}</span>
@@ -82,7 +83,7 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenDemo, onOpenTrial }) => {
             className={`hidden sm:block text-sm font-bold px-4 py-2 transition-colors rounded-2xl ${
               scrolled 
                 ? 'text-white/70 hover:text-white hover:bg-white/10' 
-                : 'text-slate-700 hover:text-[#4F46E5] hover:bg-indigo-50/50'
+                : 'text-white/80 hover:text-white hover:bg-white/10'
             }`}
           >
             Login
@@ -93,7 +94,7 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenDemo, onOpenTrial }) => {
             className={`relative px-5 py-2.5 rounded-[18px] font-bold text-sm overflow-hidden group shadow-lg transition-transform hover:scale-105 active:scale-95 flex items-center gap-2 ${
               scrolled 
                 ? 'bg-white text-black shadow-glow-cyan' 
-                : 'bg-[#4F46E5] text-white shadow-[#4F46E5]/20'
+                : 'bg-white text-black shadow-[0_0_20px_rgba(255,255,255,0.2)]'
             }`}
           >
             <span className="relative z-10">Start Free</span>
@@ -106,7 +107,7 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenDemo, onOpenTrial }) => {
             className={`md:hidden p-2 rounded-[14px] transition-colors ${
               scrolled 
                 ? 'text-white/70 hover:text-white hover:bg-white/10' 
-                : 'text-slate-700 hover:text-slate-900 hover:bg-slate-100/50'
+                : 'text-white/70 hover:text-white hover:bg-white/10'
             }`}
           >
             {isMobileMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}

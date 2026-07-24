@@ -1,104 +1,86 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { ALL_34_MODULES, Module34Item } from '../data/all34Modules';
-import { Search } from 'lucide-react';
 import * as LucideIcons from 'lucide-react';
 
 export const Ecosystem34Modules: React.FC = () => {
-  const [searchTerm, setSearchTerm] = useState('');
-  const [activeCategory, setActiveCategory] = useState<string>('All');
+  const [hoveredModule, setHoveredModule] = useState<number | null>(null);
 
-  const categories = ['All', ...Array.from(new Set(ALL_34_MODULES.map((m: Module34Item) => m.category)))];
+  // Group modules into clusters for a Bento box layout
+  const coreModules = ALL_34_MODULES.filter(m => m.category === 'core').slice(0, 4);
+  const academicModules = ALL_34_MODULES.filter(m => m.category === 'academic').slice(0, 4);
+  const otherModules = ALL_34_MODULES.filter(m => !['core', 'academic'].includes(m.category)).slice(0, 8);
 
-  const filteredModules = ALL_34_MODULES.filter((m: Module34Item) => {
-    const matchesSearch = m.title.toLowerCase().includes(searchTerm.toLowerCase()) || 
-                          m.tagline.toLowerCase().includes(searchTerm.toLowerCase());
-    const matchesCategory = activeCategory === 'All' || m.category === activeCategory;
-    return matchesSearch && matchesCategory;
-  });
+  const renderModule = (module: Module34Item, isLarge: boolean = false) => {
+    // @ts-ignore
+    const Icon = LucideIcons[module.iconName] || LucideIcons.Box;
+    const isHovered = hoveredModule === module.id;
+
+    return (
+      <motion.div
+        key={module.id}
+        onMouseEnter={() => setHoveredModule(module.id)}
+        onMouseLeave={() => setHoveredModule(null)}
+        whileHover={{ scale: 1.02 }}
+        className={`relative overflow-hidden rounded-[2rem] border border-white/10 bg-white/5 backdrop-blur-xl group cursor-pointer ${
+          isLarge ? 'col-span-2 row-span-2 p-8' : 'col-span-1 row-span-1 p-6'
+        }`}
+      >
+        <div className={`absolute inset-0 bg-gradient-to-br from-${module.color}/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500`} style={{ backgroundImage: `linear-gradient(to bottom right, ${module.color}33, transparent)` }} />
+        
+        <div className={`w-12 h-12 rounded-2xl bg-white/10 flex items-center justify-center mb-4 relative z-10 transition-transform duration-500 ${isHovered ? 'scale-110' : ''}`}>
+          <Icon className="w-6 h-6 text-white" />
+        </div>
+        
+        <h3 className={`font-bold text-white mb-2 relative z-10 ${isLarge ? 'text-2xl' : 'text-lg'}`}>
+          {module.title.replace(/^\d+\.\s/, '')}
+        </h3>
+        
+        <p className={`text-vision-textMuted font-light relative z-10 ${isLarge ? 'text-base' : 'text-sm line-clamp-2'}`}>
+          {module.tagline}
+        </p>
+
+        {isLarge && (
+          <div className="mt-6 flex flex-wrap gap-2 relative z-10">
+            {module.featuresList.slice(0, 4).map((feat, i) => (
+              <span key={i} className="text-xs px-3 py-1 rounded-full bg-white/10 text-white/80 border border-white/5">
+                {feat}
+              </span>
+            ))}
+          </div>
+        )}
+      </motion.div>
+    );
+  };
 
   return (
-    <section className="relative w-full max-w-7xl mx-auto px-4 flex flex-col items-center">
-      
-      <motion.div 
-        initial={{ opacity: 0, y: 30 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true, margin: "-100px" }}
-        transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
-        className="text-center mb-16"
-      >
-        <h2 className="font-display text-4xl sm:text-6xl font-medium tracking-tighter text-white mb-6">
-          Everything you need. <br />
-          <span className="text-vision-textMuted">Nothing you don't.</span>
-        </h2>
-        <p className="text-lg text-vision-textMuted max-w-2xl mx-auto font-light">
-          34 pro-level modules integrated into one fluid ecosystem. 
-        </p>
-      </motion.div>
-
-      {/* Glass Search & Filter Bar */}
-      <motion.div 
-        initial={{ opacity: 0, y: 20 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true }}
-        transition={{ duration: 0.8, delay: 0.2 }}
-        className="w-full max-w-3xl mx-auto mb-12 glass-panel rounded-full p-2 flex flex-col sm:flex-row items-center gap-2"
-      >
-        <div className="relative w-full sm:w-1/2 flex-shrink-0">
-          <Search className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-white/40" />
-          <input 
-            type="text" 
-            placeholder="Search modules..."
-            value={searchTerm}
-            onChange={(e) => setSearchTerm(e.target.value)}
-            className="w-full bg-white/5 border border-white/10 rounded-full py-3 pl-12 pr-4 text-white placeholder-white/40 focus:outline-none focus:border-vision-cyan/50 transition-colors"
-          />
+    <section className="relative w-full py-32 overflow-hidden">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        
+        <div className="text-center mb-20">
+          <h2 className="font-display text-4xl md:text-5xl lg:text-6xl font-bold tracking-tighter text-white mb-6">
+            An entire school on <span className="text-vision-cyan">one platform</span>.
+          </h2>
+          <p className="text-xl text-vision-textMuted max-w-2xl mx-auto font-light">
+            34 tightly integrated modules built with Apple-grade precision. No data silos.
+          </p>
         </div>
-        <div className="flex-1 w-full overflow-x-auto pb-2 sm:pb-0 hide-scrollbar flex items-center gap-2 px-2">
-           {categories.slice(0, 4).map(cat => (
-             <button
-               key={cat}
-               onClick={() => setActiveCategory(cat)}
-               className={`whitespace-nowrap px-4 py-2 rounded-full text-sm font-medium transition-all ${activeCategory === cat ? 'bg-white text-black' : 'text-white/60 hover:bg-white/10 hover:text-white'}`}
-             >
-               {cat}
-             </button>
-           ))}
-        </div>
-      </motion.div>
 
-      {/* Grid of Glass Cards */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 w-full">
-        {filteredModules.map((module: Module34Item, idx: number) => {
-          // @ts-ignore
-          const Icon = LucideIcons[module.iconName] || LucideIcons.Box;
-          return (
-          <motion.div
-            key={module.id}
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: "-50px" }}
-            transition={{ duration: 0.6, delay: (idx % 8) * 0.1, ease: [0.16, 1, 0.3, 1] }}
-            className="glass-panel p-6 rounded-3xl group relative overflow-hidden"
-          >
-            <div className="absolute inset-0 bg-gradient-to-br from-vision-cyan/0 to-vision-purple/0 group-hover:from-vision-cyan/10 group-hover:to-vision-purple/10 transition-colors duration-500" />
-            
-            <div className="relative z-10 flex flex-col h-full">
-              <div className="w-12 h-12 rounded-2xl bg-white/5 border border-white/10 flex items-center justify-center text-white/80 mb-6 group-hover:scale-110 group-hover:bg-white/10 transition-all duration-300">
-                <Icon className="w-6 h-6 group-hover:text-vision-cyan transition-colors" />
-              </div>
-              
-              <h3 className="text-xl font-medium text-white tracking-tight mb-2">{module.title}</h3>
-              <p className="text-sm text-vision-textMuted font-light leading-relaxed flex-grow">{module.tagline}</p>
-              
-              <div className="mt-6 pt-4 border-t border-white/10">
-                <span className="text-[10px] uppercase tracking-wider text-white/40 font-semibold">{module.category}</span>
-              </div>
-            </div>
-          </motion.div>
-        )})}
+        {/* Cinematic Bento Box Layout */}
+        <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 auto-rows-[200px] gap-6">
+          
+          {/* Core Cluster */}
+          {coreModules.map((m, i) => renderModule(m, i === 0))}
+
+          {/* Academic Cluster */}
+          {academicModules.map((m, i) => renderModule(m, i === 0))}
+          
+          {/* Remaining Modules scattered */}
+          {otherModules.map(m => renderModule(m, false))}
+
+        </div>
+
       </div>
-
     </section>
   );
 };

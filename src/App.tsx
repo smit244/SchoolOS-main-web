@@ -3,7 +3,7 @@ import Lenis from 'lenis';
 import { Navbar } from './components/Navbar';
 import { Hero } from './components/Hero';
 import { Ecosystem34Modules } from './components/Ecosystem34Modules';
-import { FeatureDeepDive } from './components/FeatureDeepDive';
+import { VisualStory } from './components/VisualStory';
 import { IOSShowcase } from './components/iOSShowcase';
 import { Pricing } from './components/Pricing';
 import { FAQ } from './components/FAQ';
@@ -44,7 +44,6 @@ function App() {
   return (
     <div className="min-h-screen text-vision-text selection:bg-vision-cyan selection:text-black relative">
       <Background />
-      <div className="noise-bg" />
       
       <Navbar 
         onOpenDemo={() => setIsDemoOpen(true)} 
@@ -56,15 +55,15 @@ function App() {
           onOpenDemo={() => setIsDemoOpen(true)} 
           onOpenTrial={() => setIsTrialOpen(true)} 
         />
+
+        {/* Visual Storytelling Section */}
+        <div id="features" className="w-full relative z-10">
+          <VisualStory />
+        </div>
         
         {/* Modules Section */}
-        <div id="ecosystem" className="w-full relative z-10 py-32">
+        <div id="ecosystem" className="w-full relative z-10">
           <Ecosystem34Modules />
-        </div>
-
-        {/* Deep Dive Section */}
-        <div id="features" className="w-full relative z-10 py-20">
-          <FeatureDeepDive />
         </div>
 
         {/* Device Showcase Section */}
