@@ -11,8 +11,8 @@ export const Ecosystem34Modules: React.FC = () => {
   const categories = ['All', ...Array.from(new Set(ALL_34_MODULES.map((m: Module34Item) => m.category)))];
 
   const filteredModules = ALL_34_MODULES.filter((m: Module34Item) => {
-    const matchesSearch = module.title.toLowerCase().includes(searchTerm.toLowerCase()) || 
-                          module.tagline.toLowerCase().includes(searchTerm.toLowerCase());
+    const matchesSearch = m.title.toLowerCase().includes(searchTerm.toLowerCase()) || 
+                          m.tagline.toLowerCase().includes(searchTerm.toLowerCase());
     const matchesCategory = activeCategory === 'All' || m.category === activeCategory;
     return matchesSearch && matchesCategory;
   });
