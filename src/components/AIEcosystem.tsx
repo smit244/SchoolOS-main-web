@@ -3,7 +3,7 @@ import { motion, AnimatePresence, useScroll, useTransform, useAnimationFrame } f
 import { 
   Users, CheckSquare, ScanFace, Database, Sparkles, FileText, 
   CreditCard, BookOpen, Library, Bus, Smartphone, Presentation, 
-  GraduationCap, FileBarChart, PieChart, Award, Activity 
+  GraduationCap, FileBarChart, PieChart, Award, Activity, X
 } from 'lucide-react';
 
 const ECOSYSTEM_MODULES = [
@@ -28,7 +28,7 @@ const ECOSYSTEM_MODULES = [
   { id: 16, title: 'Certificates', icon: Award, angle: 324, rx: 580, ry: 400, color: '#10b981' },
 ];
 
-const OrbitalPlanet = ({ mod, hoveredNode, setHoveredNode, index }: any) => {
+const OrbitalPlanet = ({ mod, hoveredNode, setHoveredNode, setActiveNode, index }: any) => {
   const planetRef = useRef<HTMLDivElement>(null);
   const pathRef = useRef<SVGPathElement>(null);
   const packetRef = useRef<SVGCircleElement>(null);
@@ -105,6 +105,7 @@ const OrbitalPlanet = ({ mod, hoveredNode, setHoveredNode, index }: any) => {
         className={`absolute top-1/2 left-1/2 hidden lg:flex flex-col items-center gap-3 cursor-pointer group ${isHovered ? 'z-50' : 'z-20'}`}
         onMouseEnter={() => setHoveredNode(mod.id)}
         onMouseLeave={() => setHoveredNode(null)}
+        onClick={() => setActiveNode(mod.id)}
       >
         <motion.div 
           animate={{ 
@@ -184,6 +185,7 @@ const OrbitalPlanet = ({ mod, hoveredNode, setHoveredNode, index }: any) => {
 export const AIEcosystem: React.FC = () => {
   const containerRef = useRef<HTMLDivElement>(null);
   const [hoveredNode, setHoveredNode] = useState<number | null>(null);
+  const [activeNode, setActiveNode] = useState<number | null>(null);
 
   const { scrollYProgress } = useScroll({
     target: containerRef,
@@ -282,6 +284,7 @@ export const AIEcosystem: React.FC = () => {
             index={i}
             hoveredNode={hoveredNode} 
             setHoveredNode={setHoveredNode} 
+            setActiveNode={setActiveNode}
           />
         ))}
 
@@ -326,6 +329,128 @@ export const AIEcosystem: React.FC = () => {
           animation: data-travel linear infinite;
         }
       `}} />
+
+      {/* VisionOS-style Click Modal */}
+      <AnimatePresence>
+        {activeNode !== null && (
+          <motion.div 
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="fixed inset-0 z-[100] flex items-center justify-center p-4 sm:p-6"
+          >
+            {/* Backdrop */}
+            <div 
+              className="absolute inset-0 bg-slate-900/30 backdrop-blur-sm cursor-pointer" 
+              onClick={() => setActiveNode(null)}
+            />
+            
+            {/* Modal Content */}
+            <motion.div 
+              initial={{ scale: 0.9, opacity: 0, rotateX: 10, y: 40 }}
+              animate={{ scale: 1, opacity: 1, rotateX: 0, y: 0 }}
+              exit={{ scale: 0.9, opacity: 0, rotateX: -10, y: 40 }}
+              transition={{ type: "spring", bounce: 0.3, duration: 0.6 }}
+              className="relative w-full max-w-5xl max-h-[90vh] bg-white border border-slate-200 backdrop-blur-3xl rounded-[3rem] shadow-[0_50px_100px_rgba(0,0,0,0.2)] overflow-hidden flex flex-col perspective-[1000px]"
+            >
+              {/* Header */}
+              <div className="p-8 flex items-center justify-between border-b border-slate-100 relative">
+                <div className="flex items-center gap-5 relative z-10">
+                  <div 
+                    className="w-16 h-16 rounded-2xl bg-slate-50 border border-slate-100 shadow-sm flex items-center justify-center"
+                    style={{ color: ECOSYSTEM_MODULES.find(m => m.id === activeNode)?.color }}
+                  >
+                    {React.createElement(ECOSYSTEM_MODULES.find(m => m.id === activeNode)?.icon || Activity, { className: "w-8 h-8", strokeWidth: 1.5 })}
+                  </div>
+                  <div>
+                    <h3 className="text-3xl font-bold text-slate-900 tracking-tight">
+                      {ECOSYSTEM_MODULES.find(m => m.id === activeNode)?.title}
+                    </h3>
+                    <div className="flex items-center gap-2 text-sm font-bold text-emerald-600 uppercase tracking-wider mt-1.5">
+                      <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse shadow-[0_0_10px_rgba(16,185,129,0.5)]" />
+                      Live Sync Active
+                    </div>
+                  </div>
+                </div>
+                
+                <button 
+                  onClick={() => setActiveNode(null)}
+                  className="w-12 h-12 rounded-full bg-slate-100 hover:bg-slate-200 flex items-center justify-center text-slate-600 transition-colors relative z-10 shadow-sm"
+                >
+                  <X className="w-6 h-6" />
+                </button>
+              </div>
+
+              {/* Body */}
+              <div className="flex-1 overflow-y-auto p-8 grid grid-cols-1 lg:grid-cols-2 gap-12 relative">
+                <div className="space-y-8 relative z-10">
+                  <p className="text-slate-600 text-xl font-light leading-relaxed">
+                    Seamlessly integrated with the SchoolOS AI Core. This module processes thousands of data points instantly, eliminating manual entry and providing predictive insights that empower your staff.
+                  </p>
+                  
+                  <div className="space-y-5">
+                    <h4 className="text-sm font-bold text-slate-900 uppercase tracking-widest bg-slate-100 inline-block px-3 py-1 rounded-md">Capabilities</h4>
+                    <ul className="space-y-4">
+                      {['Real-time data synchronization across all devices instantly.', 'Automated reporting and intelligent predictive analytics.', 'Zero-latency mobile app integration for parents and staff.'].map((feat, idx) => (
+                        <li key={idx} className="flex items-start gap-4">
+                          <div className="w-6 h-6 rounded-full bg-blue-50 flex items-center justify-center shrink-0 mt-0.5">
+                            <CheckSquare className="w-3.5 h-3.5 text-blue-500" strokeWidth={1.5} />
+                          </div>
+                          <span className="text-slate-700 text-lg">{feat}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                </div>
+
+                {/* Animated Graphic Area */}
+                <div className="relative w-full aspect-square lg:aspect-auto rounded-[2.5rem] bg-slate-50 border border-slate-200 overflow-hidden flex items-center justify-center shadow-inner group">
+                  {/* Simulated Abstract UI Animation */}
+                  <div className="relative w-4/5 h-4/5 flex flex-col gap-5">
+                     <motion.div 
+                        initial={{ opacity: 0, x: -30 }} animate={{ opacity: 1, x: 0 }} transition={{ delay: 0.2, type: "spring", bounce: 0.4 }}
+                        className="w-full h-16 bg-white rounded-2xl border border-slate-100 shadow-sm flex items-center px-5 gap-5"
+                     >
+                        <div className="w-8 h-8 rounded-lg bg-blue-50 flex items-center justify-center"><Activity className="w-4 h-4 text-blue-500" /></div>
+                        <div className="flex-1 space-y-2">
+                           <div className="h-2 w-1/3 bg-slate-200 rounded-full" />
+                           <div className="h-1.5 w-1/4 bg-slate-100 rounded-full" />
+                        </div>
+                     </motion.div>
+                     <motion.div 
+                        initial={{ opacity: 0, x: -30 }} animate={{ opacity: 1, x: 0 }} transition={{ delay: 0.4, type: "spring", bounce: 0.4 }}
+                        className="w-5/6 h-16 bg-white rounded-2xl border border-slate-100 shadow-sm flex items-center px-5 gap-5"
+                     >
+                        <div className="w-8 h-8 rounded-lg bg-purple-50 flex items-center justify-center"><PieChart className="w-4 h-4 text-purple-500" /></div>
+                        <div className="flex-1 space-y-2">
+                           <div className="h-2 w-1/2 bg-slate-200 rounded-full" />
+                           <div className="h-1.5 w-1/3 bg-slate-100 rounded-full" />
+                        </div>
+                     </motion.div>
+                     <motion.div 
+                        initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.6, type: "spring", bounce: 0.4 }}
+                        className="w-full flex-1 bg-white rounded-[2rem] border border-slate-100 shadow-sm p-6 flex flex-col gap-4 relative overflow-hidden"
+                     >
+                        <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-blue-400 to-cyan-400" />
+                        <div className="flex items-end justify-between gap-3 h-full pb-2">
+                           {[40, 70, 45, 90, 60, 100, 80].map((h, i) => (
+                             <motion.div 
+                               key={i} 
+                               initial={{ height: 0 }} animate={{ height: `${h}%` }} 
+                               transition={{ delay: 0.8 + (i * 0.1), duration: 1.5, type: "spring", bounce: 0.5 }}
+                               className="flex-1 bg-blue-400 rounded-t-md opacity-90"
+                             />
+                           ))}
+                        </div>
+                     </motion.div>
+                  </div>
+                </div>
+
+              </div>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </section>
   );
 };
