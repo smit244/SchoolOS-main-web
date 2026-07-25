@@ -1,4 +1,7 @@
 import React, { useEffect, useState } from 'react';
+import Lenis from 'lenis';
+import { Navbar } from './components/Navbar';
+import { Hero } from './components/Hero';
 import { AIEcosystem } from './components/AIEcosystem';
 import { AttendanceStory } from './components/stories/AttendanceStory';
 import { QuestionPaperStory } from './components/stories/QuestionPaperStory';
