@@ -5,6 +5,7 @@ import { Hero } from './components/Hero';
 import { AIEcosystem } from './components/AIEcosystem';
 import { AttendanceStory } from './components/stories/AttendanceStory';
 import { QuestionPaperStory } from './components/stories/QuestionPaperStory';
+import { SmartAutomation } from './components/SmartAutomation';
 import { Pricing } from './components/Pricing';
 import { FAQ } from './components/FAQ';
 import { Contact } from './components/Contact';
@@ -65,7 +66,10 @@ function App() {
         <AttendanceStory />
         <QuestionPaperStory />
 
-        {/* Space for future section */}
+        {/* Smart Automation Flowchart Section */}
+        <div className="w-full relative z-10">
+          <SmartAutomation />
+        </div>
 
         {/* Pricing */}
         <div id="pricing" className="w-full relative z-10 py-20">
