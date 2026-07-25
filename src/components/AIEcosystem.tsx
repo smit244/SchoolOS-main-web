@@ -294,33 +294,36 @@ export const AIEcosystem: React.FC = () => {
         </div>
       </div>
 
-      {/* Mobile View (Stacked List) */}
-      <div className="lg:hidden w-full max-w-md mx-auto px-4 z-30 mt-10 space-y-4 pb-20 relative">
-         {ECOSYSTEM_MODULES.map((mod, i) => {
-           const Icon = mod.icon;
-           return (
-             <motion.div
-               key={mod.id}
-               initial={{ opacity: 0, y: 20 }}
-               whileInView={{ opacity: 1, y: 0 }}
-               viewport={{ once: true }}
-               transition={{ delay: i * 0.05 }}
-               className="w-full flex items-center gap-5 p-5 rounded-3xl bg-white/80 backdrop-blur-xl border border-white shadow-[0_10px_30px_rgba(0,0,0,0.05)]"
-               onClick={() => setActiveNode(mod.id)}
-             >
-               <div className="w-14 h-14 rounded-2xl flex items-center justify-center bg-slate-50 border border-slate-100 shadow-inner" style={{ color: mod.color }}>
-                 <Icon className="w-6 h-6" strokeWidth={1.5} />
-               </div>
-               <div className="flex-1">
-                 <h3 className="font-bold text-slate-800 text-lg">{mod.title}</h3>
-                 <div className="flex items-center gap-2 mt-1">
-                   <span className="w-2 h-2 rounded-full animate-pulse" style={{ backgroundColor: mod.color }} />
-                   <p className="text-[10px] font-extrabold text-slate-400 uppercase tracking-widest">Live Syncing</p>
+      {/* Mobile View (App Drawer Grid) */}
+      <div className="lg:hidden w-full max-w-md mx-auto px-4 z-30 mt-10 pb-20 relative">
+         <div className="bg-white/60 backdrop-blur-3xl border border-white rounded-[2.5rem] p-6 sm:p-8 shadow-[0_20px_40px_rgba(0,0,0,0.05)] grid grid-cols-3 sm:grid-cols-4 gap-x-4 gap-y-8">
+           {ECOSYSTEM_MODULES.map((mod, i) => {
+             const Icon = mod.icon;
+             return (
+               <motion.div
+                 key={mod.id}
+                 initial={{ opacity: 0, scale: 0.8 }}
+                 whileInView={{ opacity: 1, scale: 1 }}
+                 viewport={{ once: true }}
+                 transition={{ delay: i * 0.03, type: "spring" }}
+                 className="flex flex-col items-center gap-3 cursor-pointer"
+                 onClick={() => setActiveNode(mod.id)}
+               >
+                 <div 
+                   className="w-[60px] h-[60px] sm:w-[72px] sm:h-[72px] rounded-[1.25rem] flex items-center justify-center bg-white shadow-sm border border-slate-100 relative active:scale-95 transition-transform"
+                   style={{ color: mod.color }}
+                 >
+                   {/* Sync Indicator Dot */}
+                   <span className="absolute -top-1 -right-1 w-3 h-3 border-2 border-white rounded-full animate-pulse" style={{ backgroundColor: mod.color }} />
+                   <Icon className="w-7 h-7 sm:w-8 sm:h-8" strokeWidth={1.5} />
                  </div>
-               </div>
-             </motion.div>
-           )
-         })}
+                 <h3 className="font-semibold text-slate-700 text-[11px] sm:text-xs text-center leading-tight line-clamp-2 max-w-[80px]">
+                   {mod.title}
+                 </h3>
+               </motion.div>
+             )
+           })}
+         </div>
       </div>
       
       {/* Global Animation Styles */}
