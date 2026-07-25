@@ -7,25 +7,25 @@ import {
 } from 'lucide-react';
 
 const ECOSYSTEM_MODULES = [
-  // Inner Orbit
-  { id: 1, title: 'Student Management', icon: Users, angle: 30, rx: 280, ry: 180, color: '#3b82f6' },
-  { id: 3, title: 'AI Face Recognition', icon: ScanFace, angle: 90, rx: 280, ry: 180, color: '#8b5cf6' },
-  { id: 5, title: 'AI Question Gen', icon: Sparkles, angle: 150, rx: 280, ry: 180, color: '#06b6d4' },
-  { id: 7, title: 'Fee Management', icon: CreditCard, angle: 210, rx: 280, ry: 180, color: '#10b981' },
-  { id: 13, title: 'Student Portal', icon: GraduationCap, angle: 270, rx: 280, ry: 180, color: '#3b82f6' },
-  { id: 15, title: 'Analytics', icon: PieChart, angle: 330, rx: 280, ry: 180, color: '#eab308' },
+  // Inner Orbit (pushed out to give the logo breathing room)
+  { id: 1, title: 'Student Management', icon: Users, angle: 30, rx: 380, ry: 260, color: '#3b82f6' },
+  { id: 3, title: 'AI Face Recognition', icon: ScanFace, angle: 90, rx: 380, ry: 260, color: '#8b5cf6' },
+  { id: 5, title: 'AI Question Gen', icon: Sparkles, angle: 150, rx: 380, ry: 260, color: '#06b6d4' },
+  { id: 7, title: 'Fee Management', icon: CreditCard, angle: 210, rx: 380, ry: 260, color: '#10b981' },
+  { id: 13, title: 'Student Portal', icon: GraduationCap, angle: 270, rx: 380, ry: 260, color: '#3b82f6' },
+  { id: 15, title: 'Analytics', icon: PieChart, angle: 330, rx: 380, ry: 260, color: '#eab308' },
 
-  // Outer Orbit
-  { id: 9, title: 'Library', icon: Library, angle: 0, rx: 480, ry: 320, color: '#8b5cf6' },
-  { id: 2, title: 'Attendance', icon: CheckSquare, angle: 36, rx: 480, ry: 320, color: '#10b981' },
-  { id: 10, title: 'Transport', icon: Bus, angle: 72, rx: 480, ry: 320, color: '#f59e0b' },
-  { id: 4, title: 'Question Bank', icon: Database, angle: 108, rx: 480, ry: 320, color: '#f59e0b' },
-  { id: 11, title: 'Parent App', icon: Smartphone, angle: 144, rx: 480, ry: 320, color: '#ec4899' },
-  { id: 12, title: 'Teacher Portal', icon: Presentation, angle: 180, rx: 480, ry: 320, color: '#06b6d4' },
-  { id: 6, title: 'Examination', icon: FileText, angle: 216, rx: 480, ry: 320, color: '#f43f5e' },
-  { id: 8, title: 'Homework', icon: BookOpen, angle: 252, rx: 480, ry: 320, color: '#3b82f6' },
-  { id: 14, title: 'Reports', icon: FileBarChart, angle: 288, rx: 480, ry: 320, color: '#d946ef' },
-  { id: 16, title: 'Certificates', icon: Award, angle: 324, rx: 480, ry: 320, color: '#10b981' },
+  // Outer Orbit (pushed out further)
+  { id: 9, title: 'Library', icon: Library, angle: 0, rx: 580, ry: 400, color: '#8b5cf6' },
+  { id: 2, title: 'Attendance', icon: CheckSquare, angle: 36, rx: 580, ry: 400, color: '#10b981' },
+  { id: 10, title: 'Transport', icon: Bus, angle: 72, rx: 580, ry: 400, color: '#f59e0b' },
+  { id: 4, title: 'Question Bank', icon: Database, angle: 108, rx: 580, ry: 400, color: '#f59e0b' },
+  { id: 11, title: 'Parent App', icon: Smartphone, angle: 144, rx: 580, ry: 400, color: '#ec4899' },
+  { id: 12, title: 'Teacher Portal', icon: Presentation, angle: 180, rx: 580, ry: 400, color: '#06b6d4' },
+  { id: 6, title: 'Examination', icon: FileText, angle: 216, rx: 580, ry: 400, color: '#f43f5e' },
+  { id: 8, title: 'Homework', icon: BookOpen, angle: 252, rx: 580, ry: 400, color: '#3b82f6' },
+  { id: 14, title: 'Reports', icon: FileBarChart, angle: 288, rx: 580, ry: 400, color: '#d946ef' },
+  { id: 16, title: 'Certificates', icon: Award, angle: 324, rx: 580, ry: 400, color: '#10b981' },
 ];
 
 const OrbitalPlanet = ({ mod, hoveredNode, setHoveredNode, index }: any) => {
@@ -242,8 +242,8 @@ export const AIEcosystem: React.FC = () => {
 
         {/* Orbit Rings (Static Background Lines) */}
         <div className="absolute inset-0 flex items-center justify-center pointer-events-none opacity-40">
-           <div className="absolute w-[560px] h-[360px] border border-slate-300/30 rounded-[100%] border-dashed" />
-           <div className="absolute w-[960px] h-[640px] border border-slate-300/20 rounded-[100%] border-dashed" />
+           <div className="absolute w-[760px] h-[520px] border border-slate-300/30 rounded-[100%] border-dashed" />
+           <div className="absolute w-[1160px] h-[800px] border border-slate-300/20 rounded-[100%] border-dashed" />
         </div>
 
         {/* Central VisionOS AI Core */}
@@ -251,26 +251,25 @@ export const AIEcosystem: React.FC = () => {
           style={{ opacity: coreOpacity, scale: coreScale }}
           className="absolute z-40 w-56 h-56 md:w-72 md:h-72 rounded-full flex items-center justify-center group"
         >
-          {/* Outer Glass Shell */}
-          <div className="absolute inset-0 rounded-full bg-white/40 backdrop-blur-2xl border border-white/60 shadow-[0_30px_60px_rgba(59,130,246,0.15),inset_0_0_20px_rgba(255,255,255,1)]" />
+          {/* Outer Glass Shell (Removed Blue Glow) */}
+          <div className="absolute inset-0 rounded-full bg-white/40 backdrop-blur-2xl border border-white/60 shadow-[0_20px_50px_rgba(0,0,0,0.05),inset_0_0_20px_rgba(255,255,255,1)]" />
           
           {/* Animated Energy Rings */}
-          <div className="absolute inset-[-20%] rounded-full border border-blue-400/20 animate-[spin_10s_linear_infinite] border-dashed" />
-          <div className="absolute inset-[-40%] rounded-full border border-cyan-400/10 animate-[spin_15s_linear_infinite_reverse] border-dotted" />
+          <div className="absolute inset-[-20%] rounded-full border border-slate-300/40 animate-[spin_10s_linear_infinite] border-dashed" />
+          <div className="absolute inset-[-40%] rounded-full border border-slate-300/20 animate-[spin_15s_linear_infinite_reverse] border-dotted" />
           
-          {/* Inner Glowing Core */}
-          <div className="absolute inset-10 rounded-full bg-gradient-to-tr from-blue-100 to-cyan-50 blur-xl animate-pulse opacity-70" />
-          <div className="absolute inset-12 rounded-full bg-[radial-gradient(circle_at_center,rgba(59,130,246,0.3),transparent)] blur-md" />
+          {/* Inner Glowing Core (Removed Blue Glow, made it clean white) */}
+          <div className="absolute inset-10 rounded-full bg-white blur-xl opacity-50" />
           
           {/* Center Logo */}
           <div className="relative z-10 flex flex-col items-center justify-center w-full h-full p-12">
             <img 
               src="/logo.png" 
               alt="SchoolOS Core" 
-              className="w-full h-full object-contain hover:scale-110 transition-transform duration-700 drop-shadow-2xl" 
+              className="w-full h-full object-contain hover:scale-105 transition-transform duration-700 drop-shadow-[0_10px_20px_rgba(0,0,0,0.05)]" 
             />
-            <div className="absolute bottom-6 px-3 py-1 rounded-full bg-white/80 backdrop-blur-md shadow-sm border border-slate-100">
-               <span className="text-[10px] font-bold text-blue-600 uppercase tracking-widest">AI Core Online</span>
+            <div className="absolute bottom-6 px-3 py-1 rounded-full bg-white/90 backdrop-blur-md shadow-sm border border-slate-100">
+               <span className="text-[10px] font-bold text-slate-700 uppercase tracking-widest">AI Core Online</span>
             </div>
           </div>
         </motion.div>
