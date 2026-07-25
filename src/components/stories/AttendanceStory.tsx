@@ -72,7 +72,7 @@ export const AttendanceStory: React.FC = () => {
         {/* ------------------------------------------------ */}
         {/* THE MAIN 2D SCENE */}
         {/* ------------------------------------------------ */}
-        <div className="relative w-full max-w-6xl h-[600px] flex items-center justify-center">
+        <div className="relative w-full max-w-6xl h-[600px] flex items-center justify-center scale-[0.5] sm:scale-75 md:scale-100 origin-center mt-20 md:mt-0">
           
           {/* CENTER: The Glowing Abstract Face/Biometric Core */}
           <div className="relative w-[400px] h-[400px] z-10 flex items-center justify-center">

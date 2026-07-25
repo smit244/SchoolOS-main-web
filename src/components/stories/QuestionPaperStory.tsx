@@ -58,7 +58,7 @@ export const QuestionPaperStory: React.FC = () => {
         {/* ------------------------------------------------ */}
         {/* THE MAIN 2D SCENE */}
         {/* ------------------------------------------------ */}
-        <div className="relative w-full max-w-6xl h-[600px] flex items-center justify-center">
+        <div className="relative w-full max-w-6xl h-[600px] flex items-center justify-center scale-[0.45] sm:scale-75 md:scale-100 origin-center mt-20 md:mt-0">
           
           {/* LEFT SIDE: The SVG Vortex */}
           <div className="absolute left-10 lg:left-32 top-1/2 -translate-y-1/2 w-[400px] h-[400px]">
