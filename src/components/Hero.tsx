@@ -301,9 +301,8 @@ export const Hero: React.FC<HeroProps> = ({ onOpenDemo, onOpenTrial }) => {
                       className="absolute top-0 left-0 w-full h-20 bg-gradient-to-b from-transparent via-vision-cyan/20 to-vision-cyan/50 blur-md pointer-events-none z-20"
                     />
                     
-                    {/* AI Face Matrix */}
+                    {/* AI Matrix Scanner */}
                     <div className="relative w-32 h-32 sm:w-48 sm:h-48 border border-vision-cyan/30 rounded-xl flex items-center justify-center bg-vision-blueGlow/10 backdrop-blur-sm overflow-hidden">
-                       <div className="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=200&auto=format&fit=crop')] bg-cover bg-center opacity-40 mix-blend-luminosity group-hover/scanner:opacity-80 transition-opacity duration-1000" />
                        
                        {/* Face Recognition Points */}
                        <motion.div animate={{ scale: [1, 1.2, 1], opacity: [0.5, 1, 0.5] }} transition={{ duration: 2, repeat: Infinity }} className="absolute top-[40%] left-[35%] w-2 h-2 rounded-full bg-vision-cyan shadow-[0_0_10px_#06B6D4]" />
