@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import Lenis from 'lenis';
 import { Navbar } from './components/Navbar';
 import { Hero } from './components/Hero';
-import { SolarSystem } from './components/SolarSystem';
+import { AIEcosystem } from './components/AIEcosystem';
 import { AttendanceStory } from './components/stories/AttendanceStory';
 import { QuestionPaperStory } from './components/stories/QuestionPaperStory';
 import { IOSShowcase } from './components/iOSShowcase';
@@ -57,8 +57,10 @@ function App() {
           onOpenTrial={() => setIsTrialOpen(true)} 
         />
 
-        {/* Unified AI Ecosystem 3D Solar System */}
-        <SolarSystem />
+        {/* Unified AI Ecosystem Section */}
+        <div id="ecosystem" className="w-full relative z-10">
+          <AIEcosystem />
+        </div>
 
         {/* Story Sequence */}
         <AttendanceStory />
