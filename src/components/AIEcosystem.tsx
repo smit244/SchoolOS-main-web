@@ -7,25 +7,25 @@ import {
 } from 'lucide-react';
 
 const ECOSYSTEM_MODULES = [
-  // Inner Orbit (2x smaller)
-  { id: 1, title: 'Student Management', icon: Users, angle: 30, rx: 220, ry: 140, color: '#3b82f6' },
-  { id: 3, title: 'AI Face Recognition', icon: ScanFace, angle: 90, rx: 220, ry: 140, color: '#8b5cf6' },
-  { id: 5, title: 'AI Question Gen', icon: Sparkles, angle: 150, rx: 220, ry: 140, color: '#06b6d4' },
-  { id: 7, title: 'Fee Management', icon: CreditCard, angle: 210, rx: 220, ry: 140, color: '#10b981' },
-  { id: 13, title: 'Student Portal', icon: GraduationCap, angle: 270, rx: 220, ry: 140, color: '#3b82f6' },
-  { id: 15, title: 'Analytics', icon: PieChart, angle: 330, rx: 220, ry: 140, color: '#eab308' },
+  // Inner Orbit
+  { id: 1, title: 'Student Management', icon: Users, angle: 30, rx: 280, ry: 190, color: '#3b82f6' },
+  { id: 3, title: 'AI Face Recognition', icon: ScanFace, angle: 90, rx: 280, ry: 190, color: '#8b5cf6' },
+  { id: 5, title: 'AI Question Gen', icon: Sparkles, angle: 150, rx: 280, ry: 190, color: '#06b6d4' },
+  { id: 7, title: 'Fee Management', icon: CreditCard, angle: 210, rx: 280, ry: 190, color: '#10b981' },
+  { id: 13, title: 'Student Portal', icon: GraduationCap, angle: 270, rx: 280, ry: 190, color: '#3b82f6' },
+  { id: 15, title: 'Analytics', icon: PieChart, angle: 330, rx: 280, ry: 190, color: '#eab308' },
 
-  // Outer Orbit (2x smaller)
-  { id: 9, title: 'Library', icon: Library, angle: 0, rx: 380, ry: 250, color: '#8b5cf6' },
-  { id: 2, title: 'Attendance', icon: CheckSquare, angle: 36, rx: 380, ry: 250, color: '#10b981' },
-  { id: 10, title: 'Transport', icon: Bus, angle: 72, rx: 380, ry: 250, color: '#f59e0b' },
-  { id: 4, title: 'Question Bank', icon: Database, angle: 108, rx: 380, ry: 250, color: '#f59e0b' },
-  { id: 11, title: 'Parent App', icon: Smartphone, angle: 144, rx: 380, ry: 250, color: '#ec4899' },
-  { id: 12, title: 'Teacher Portal', icon: Presentation, angle: 180, rx: 380, ry: 250, color: '#06b6d4' },
-  { id: 6, title: 'Examination', icon: FileText, angle: 216, rx: 380, ry: 250, color: '#f43f5e' },
-  { id: 8, title: 'Homework', icon: BookOpen, angle: 252, rx: 380, ry: 250, color: '#3b82f6' },
-  { id: 14, title: 'Reports', icon: FileBarChart, angle: 288, rx: 380, ry: 250, color: '#d946ef' },
-  { id: 16, title: 'Certificates', icon: Award, angle: 324, rx: 380, ry: 250, color: '#10b981' },
+  // Outer Orbit
+  { id: 9, title: 'Library', icon: Library, angle: 0, rx: 440, ry: 300, color: '#8b5cf6' },
+  { id: 2, title: 'Attendance', icon: CheckSquare, angle: 36, rx: 440, ry: 300, color: '#10b981' },
+  { id: 10, title: 'Transport', icon: Bus, angle: 72, rx: 440, ry: 300, color: '#f59e0b' },
+  { id: 4, title: 'Question Bank', icon: Database, angle: 108, rx: 440, ry: 300, color: '#f59e0b' },
+  { id: 11, title: 'Parent App', icon: Smartphone, angle: 144, rx: 440, ry: 300, color: '#ec4899' },
+  { id: 12, title: 'Teacher Portal', icon: Presentation, angle: 180, rx: 440, ry: 300, color: '#06b6d4' },
+  { id: 6, title: 'Examination', icon: FileText, angle: 216, rx: 440, ry: 300, color: '#f43f5e' },
+  { id: 8, title: 'Homework', icon: BookOpen, angle: 252, rx: 440, ry: 300, color: '#3b82f6' },
+  { id: 14, title: 'Reports', icon: FileBarChart, angle: 288, rx: 440, ry: 300, color: '#d946ef' },
+  { id: 16, title: 'Certificates', icon: Award, angle: 324, rx: 440, ry: 300, color: '#10b981' },
 ];
 
 const OrbitalPlanet = ({ mod, hoveredNode, setHoveredNode, setActiveNode, index }: any) => {
@@ -247,8 +247,8 @@ export const AIEcosystem: React.FC = () => {
 
           {/* Orbit Rings (Static Background Lines) */}
           <div className="absolute inset-0 flex items-center justify-center pointer-events-none opacity-40">
-             <div className="absolute w-[440px] h-[280px] border border-slate-300/30 rounded-[100%] border-dashed" />
-             <div className="absolute w-[760px] h-[500px] border border-slate-300/20 rounded-[100%] border-dashed" />
+             <div className="absolute w-[560px] h-[380px] border border-slate-300/30 rounded-[100%] border-dashed" />
+             <div className="absolute w-[880px] h-[600px] border border-slate-300/20 rounded-[100%] border-dashed" />
           </div>
 
           {/* Central VisionOS AI Core (Scaled Down by 2x) */}
