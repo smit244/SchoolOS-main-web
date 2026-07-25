@@ -21,7 +21,7 @@ export const BentoFeatures = () => {
           >
             <Zap className="w-4 h-4" /> Powering Every Department
           </motion.div>
-          <h2 className="text-4xl md:text-5xl lg:text-6xl font-extrabold text-slate-900 tracking-tight mb-4">
+          <h2 className="text-3xl md:text-4xl lg:text-6xl font-extrabold text-slate-900 tracking-tight mb-4">
             Everything you need. <br />
             <span className="text-slate-400">Nothing you don't.</span>
           </h2>
@@ -47,7 +47,7 @@ export const BentoFeatures = () => {
             </div>
 
             {/* Decorative UI inside card */}
-            <div className="absolute -bottom-10 -right-10 w-[80%] h-[60%] bg-slate-800 rounded-tl-[2rem] border-t border-l border-slate-700 p-6 flex flex-col gap-4 shadow-2xl group-hover:-translate-y-4 transition-transform duration-500">
+            <div className="absolute -bottom-4 -right-4 md:-bottom-10 md:-right-10 w-[90%] md:w-[80%] h-[60%] bg-slate-800 rounded-tl-[2rem] border-t border-l border-slate-700 p-4 md:p-6 flex flex-col gap-4 shadow-2xl group-hover:-translate-y-4 transition-transform duration-500">
                <div className="w-full h-8 bg-slate-700/50 rounded-lg" />
                <div className="flex gap-4 h-full">
                  <div className="w-1/3 h-full bg-blue-500/20 border border-blue-500/30 rounded-xl" />
@@ -115,7 +115,7 @@ export const BentoFeatures = () => {
               <div className="w-10 h-10 rounded-xl bg-pink-50 flex items-center justify-center border border-pink-100 mb-4">
                 <Map className="w-5 h-5 text-pink-600" />
               </div>
-              <h3 className="text-2xl font-bold text-slate-900 mb-2">Live Transport Tracking</h3>
+              <h3 className="text-xl md:text-2xl font-bold text-slate-900 mb-2">Live Transport Tracking</h3>
               <p className="text-slate-500">Parents track school buses in real-time. No more waiting in the rain.</p>
             </div>
             

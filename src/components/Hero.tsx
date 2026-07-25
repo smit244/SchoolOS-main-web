@@ -59,7 +59,7 @@ export const Hero: React.FC<HeroProps> = ({ onOpenDemo, onOpenTrial }) => {
   const titleWords1 = "The future of".split(" ");
   
   return (
-    <section ref={containerRef} className="relative w-full min-h-[100vh] flex items-center justify-center pt-32 pb-20 overflow-hidden perspective-[2000px]">
+    <section ref={containerRef} className="relative w-full min-h-[100vh] flex items-center justify-center pt-24 md:pt-32 pb-20 overflow-hidden perspective-[2000px]">
       
       {/* Dynamic Background Glows (Optimized) */}
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[50vw] h-[50vw] max-w-[600px] max-h-[600px] bg-vision-purple/20 rounded-full blur-[80px] pointer-events-none" />
@@ -87,7 +87,7 @@ export const Hero: React.FC<HeroProps> = ({ onOpenDemo, onOpenTrial }) => {
           initial="hidden"
           animate="visible"
           transition={{ staggerChildren: 0.1 }}
-          className="font-display text-[3.5rem] sm:text-[5rem] lg:text-[7rem] font-bold leading-[1.05] tracking-tight text-slate-900 mb-8 max-w-6xl mx-auto flex flex-wrap justify-center gap-x-4 sm:gap-x-6 items-center"
+          className="font-display text-5xl sm:text-[5rem] lg:text-[7rem] font-bold leading-[1.05] tracking-tight text-slate-900 mb-8 max-w-6xl mx-auto flex flex-wrap justify-center gap-x-4 sm:gap-x-6 items-center"
         >
           {titleWords1.map((word, i) => (
             <motion.span key={i} variants={wordAnimation} className="inline-block">
