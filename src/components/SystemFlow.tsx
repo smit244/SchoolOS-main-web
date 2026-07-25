@@ -146,43 +146,40 @@ export const SystemFlow = () => {
 
         {/* PROCESSING STAGE: Center AI Core */}
         <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 z-20">
-           {/* Outer rotating halo */}
+           {/* Smooth, slow-pulsing outer halos (replaces the harsh dashed borders) */}
            <motion.div 
-             animate={{ rotate: 360 }} 
-             transition={{ duration: 15, repeat: Infinity, ease: "linear" }}
-             className="absolute -inset-10 rounded-full border border-dashed border-slate-300 opacity-50"
+             animate={{ scale: [1, 1.1, 1], opacity: [0.3, 0.6, 0.3] }} 
+             transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
+             className="absolute -inset-12 rounded-full border border-blue-200 bg-blue-50/30 backdrop-blur-sm"
            />
            <motion.div 
-             animate={{ rotate: -360 }} 
-             transition={{ duration: 25, repeat: Infinity, ease: "linear" }}
-             className="absolute -inset-16 rounded-full border border-slate-200 opacity-50"
+             animate={{ scale: [1, 1.05, 1], opacity: [0.5, 0.8, 0.5] }} 
+             transition={{ duration: 4, repeat: Infinity, ease: "easeInOut", delay: 1 }}
+             className="absolute -inset-6 rounded-full border border-purple-200 bg-purple-50/50 backdrop-blur-md"
            />
 
            <motion.div 
-             animate={{ scale: [1, 1.05, 1], boxShadow: ["0 20px 50px rgba(59,130,246,0.15)", "0 20px 80px rgba(168,85,247,0.3)", "0 20px 50px rgba(59,130,246,0.15)"] }}
+             animate={{ boxShadow: ["0 15px 40px rgba(59,130,246,0.1)", "0 15px 60px rgba(168,85,247,0.25)", "0 15px 40px rgba(59,130,246,0.1)"] }}
              transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
-             className="w-48 h-48 rounded-full bg-white/90 backdrop-blur-3xl border border-white shadow-[0_20px_50px_rgba(0,0,0,0.1)] flex items-center justify-center relative overflow-hidden"
+             className="w-48 h-48 rounded-full bg-white backdrop-blur-3xl border border-slate-100 shadow-[0_20px_50px_rgba(0,0,0,0.08)] flex items-center justify-center relative overflow-hidden"
            >
-              {/* Vibrant spinning background mesh inside the core */}
+              {/* Smooth breathing background gradient instead of noisy spinning mesh */}
               <motion.div 
-                animate={{ rotate: 360 }} 
-                transition={{ duration: 10, repeat: Infinity, ease: "linear" }} 
-                className="absolute inset-[-50%] bg-[conic-gradient(from_0deg,transparent_0_280deg,rgba(168,85,247,0.4)_360deg)] mix-blend-multiply" 
-              />
-              <motion.div 
-                animate={{ rotate: -360 }} 
-                transition={{ duration: 12, repeat: Infinity, ease: "linear" }} 
-                className="absolute inset-[-50%] bg-[conic-gradient(from_0deg,transparent_0_280deg,rgba(59,130,246,0.4)_360deg)] mix-blend-multiply" 
+                animate={{ opacity: [0.4, 0.7, 0.4] }} 
+                transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }} 
+                className="absolute inset-0 bg-gradient-to-br from-blue-50 via-white to-purple-50" 
               />
               
-              <div className="absolute inset-3 bg-white rounded-full flex flex-col items-center justify-center z-10 shadow-[inset_0_-10px_20px_rgba(0,0,0,0.05)] border border-slate-100">
-                <div className="relative">
-                  <BrainCircuit className="w-14 h-14 text-slate-800 mb-2" />
-                  <motion.div animate={{ opacity: [0, 1, 0] }} transition={{ duration: 2, repeat: Infinity }} className="absolute inset-0">
-                     <BrainCircuit className="w-14 h-14 text-purple-600" />
+              <div className="absolute inset-2 bg-white rounded-full flex flex-col items-center justify-center z-10 shadow-[inset_0_4px_20px_rgba(0,0,0,0.03)] border border-slate-50">
+                <div className="relative flex flex-col items-center gap-3">
+                  <motion.div
+                    animate={{ scale: [1, 1.03, 1] }}
+                    transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
+                  >
+                    <img src="/logo.png" alt="SchoolOS Logo" className="h-12 object-contain" />
                   </motion.div>
+                  <span className="text-[10px] font-bold text-slate-400 tracking-[0.2em] uppercase">Processing Core</span>
                 </div>
-                <span className="text-[11px] font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-purple-600 tracking-[0.2em]">CORE AI</span>
               </div>
            </motion.div>
         </div>
