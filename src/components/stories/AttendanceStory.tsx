@@ -49,9 +49,9 @@ export const AttendanceStory: React.FC = () => {
         
         {/* Background Ambient Depth */}
         <div className="absolute inset-0 pointer-events-none">
-          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[70vw] h-[70vw] max-w-[1000px] max-h-[1000px] bg-[radial-gradient(circle_at_center,rgba(59,130,246,0.06)_0%,transparent_60%)] rounded-full blur-[100px]" />
-          <div className="absolute top-1/4 left-1/4 w-[40vw] h-[40vw] max-w-[600px] max-h-[600px] bg-[radial-gradient(circle_at_center,rgba(6,182,212,0.08)_0%,transparent_60%)] rounded-full blur-[100px]" />
-          <div className="absolute bottom-1/4 right-1/4 w-[50vw] h-[50vw] max-w-[700px] max-h-[700px] bg-[radial-gradient(circle_at_center,rgba(139,92,246,0.06)_0%,transparent_60%)] rounded-full blur-[100px]" />
+          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[60vw] h-[60vw] max-w-[800px] max-h-[800px] bg-[radial-gradient(circle_at_center,rgba(59,130,246,0.06)_0%,transparent_60%)] rounded-full blur-[80px]" />
+          <div className="absolute top-1/4 left-1/4 w-[40vw] h-[40vw] max-w-[500px] max-h-[500px] bg-[radial-gradient(circle_at_center,rgba(6,182,212,0.08)_0%,transparent_60%)] rounded-full blur-[80px]" />
+          <div className="absolute bottom-1/4 right-1/4 w-[40vw] h-[40vw] max-w-[600px] max-h-[600px] bg-[radial-gradient(circle_at_center,rgba(139,92,246,0.06)_0%,transparent_60%)] rounded-full blur-[80px]" />
         </div>
 
         {/* Text Header */}
@@ -79,14 +79,7 @@ export const AttendanceStory: React.FC = () => {
             
             <svg className="absolute inset-0 w-full h-full overflow-visible" viewBox="0 0 400 400">
               <defs>
-                <filter id="glow" x="-20%" y="-20%" width="140%" height="140%">
-                  <feGaussianBlur stdDeviation="8" result="blur" />
-                  <feMerge>
-                    <feMergeNode in="blur" />
-                    <feMergeNode in="blur" />
-                    <feMergeNode in="SourceGraphic" />
-                  </feMerge>
-                </filter>
+                {/* Removed slow SVG glow filter for performance */}
                 <linearGradient id="lineGlow" x1="0%" y1="0%" x2="100%" y2="100%">
                   <stop offset="0%" stopColor="rgba(6,182,212,0.1)" />
                   <stop offset="50%" stopColor="rgba(59,130,246,0.5)" />
@@ -133,12 +126,14 @@ export const AttendanceStory: React.FC = () => {
 
               {/* Data Particles traveling along paths (Scroll Driven) */}
               <motion.circle 
-                r="6" fill="#06B6D4" filter="url(#glow)"
+                r="6" fill="#06B6D4"
                 style={{ offsetPath: `path('M 100 200 C -50 200 -50 100 -200 100')`, offsetDistance: particlePathProgress, opacity: particleOpacity }}
+                className="will-change-transform shadow-[0_0_15px_rgba(6,182,212,0.8)]"
               />
               <motion.circle 
-                r="6" fill="#8B5CF6" filter="url(#glow)"
+                r="6" fill="#8B5CF6"
                 style={{ offsetPath: `path('M 300 200 C 450 200 450 300 600 300')`, offsetDistance: particlePathProgress, opacity: particleOpacity }}
+                className="will-change-transform shadow-[0_0_15px_rgba(139,92,246,0.8)]"
               />
 
             </svg>
@@ -146,7 +141,7 @@ export const AttendanceStory: React.FC = () => {
             {/* The Horizontal Scanner Laser (Scroll Driven) */}
             <motion.div 
               style={{ y: laserY, opacity: laserOpacity }}
-              className="absolute top-0 left-[-50px] w-[500px] h-[2px] bg-vision-cyan shadow-[0_0_20px_2px_rgba(6,182,212,0.8)] z-20 flex justify-center"
+              className="absolute top-0 left-[-50px] w-[500px] h-[2px] bg-vision-cyan shadow-[0_0_20px_2px_rgba(6,182,212,0.8)] z-20 flex justify-center will-change-transform"
             >
               {/* Laser gradient tail */}
               <div className="absolute bottom-full w-full h-[60px] bg-gradient-to-t from-vision-cyan/30 to-transparent" />
@@ -162,7 +157,7 @@ export const AttendanceStory: React.FC = () => {
           {/* ------------------------------------------------ */}
           <motion.div 
             style={{ y: dashboardY, opacity: dashboardOpacity }}
-            className="absolute left-4 lg:left-20 top-1/4 w-72 lg:w-80 bg-white/80 backdrop-blur-3xl border border-white rounded-[2rem] shadow-[0_30px_80px_rgba(0,0,0,0.1)] p-6 z-20"
+            className="absolute left-4 lg:left-20 top-1/4 w-72 lg:w-80 bg-white/90 backdrop-blur-xl border border-white rounded-[2rem] shadow-[0_30px_80px_rgba(0,0,0,0.1)] p-6 z-20 will-change-transform"
           >
             <div className="flex items-center gap-3 mb-6 border-b border-slate-100 pb-4">
               <div className="w-10 h-10 rounded-full bg-emerald-100 flex items-center justify-center shrink-0">
@@ -211,7 +206,7 @@ export const AttendanceStory: React.FC = () => {
           {/* ------------------------------------------------ */}
           <motion.div 
             style={{ x: notifX, opacity: notifOpacity }}
-            className="absolute right-4 lg:right-20 top-1/2 w-72 lg:w-80 bg-slate-900/95 backdrop-blur-3xl border border-slate-800 rounded-[2rem] shadow-[0_40px_100px_rgba(0,0,0,0.3)] p-5 z-20"
+            className="absolute right-4 lg:right-20 top-1/2 w-72 lg:w-80 bg-slate-900/95 backdrop-blur-xl border border-slate-800 rounded-[2rem] shadow-[0_40px_100px_rgba(0,0,0,0.3)] p-5 z-20 will-change-transform"
           >
             <div className="w-12 h-12 rounded-2xl bg-gradient-to-br from-vision-blueGlow to-vision-cyan flex items-center justify-center mb-4 shadow-[0_10px_20px_rgba(6,182,212,0.3)]">
               <Bell className="w-6 h-6 text-white" />

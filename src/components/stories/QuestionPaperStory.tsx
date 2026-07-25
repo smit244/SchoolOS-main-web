@@ -34,10 +34,10 @@ export const QuestionPaperStory: React.FC = () => {
       
       <div className="sticky top-0 w-full h-screen overflow-hidden flex items-center justify-center">
         
-        {/* Deep ambient background */}
+        {/* Deep ambient background (Optimized) */}
         <div className="absolute inset-0 pointer-events-none">
-          <div className="absolute top-1/2 left-1/4 -translate-y-1/2 w-[50vw] h-[50vw] max-w-[800px] max-h-[800px] bg-[radial-gradient(circle_at_center,rgba(139,92,246,0.08)_0%,transparent_60%)] rounded-full blur-[120px]" />
-          <div className="absolute top-1/2 right-1/4 -translate-y-1/2 w-[40vw] h-[40vw] max-w-[600px] max-h-[600px] bg-[radial-gradient(circle_at_center,rgba(236,72,153,0.05)_0%,transparent_60%)] rounded-full blur-[100px]" />
+          <div className="absolute top-1/2 left-1/4 -translate-y-1/2 w-[40vw] h-[40vw] max-w-[600px] max-h-[600px] bg-[radial-gradient(circle_at_center,rgba(139,92,246,0.08)_0%,transparent_60%)] rounded-full blur-[80px]" />
+          <div className="absolute top-1/2 right-1/4 -translate-y-1/2 w-[30vw] h-[30vw] max-w-[500px] max-h-[500px] bg-[radial-gradient(circle_at_center,rgba(236,72,153,0.05)_0%,transparent_60%)] rounded-full blur-[80px]" />
         </div>
 
         {/* Text Header */}
@@ -63,8 +63,8 @@ export const QuestionPaperStory: React.FC = () => {
           {/* LEFT SIDE: The SVG Vortex */}
           <div className="absolute left-10 lg:left-32 top-1/2 -translate-y-1/2 w-[400px] h-[400px]">
              
-             {/* Vortex Base Rings */}
-             <motion.div style={{ opacity: vortexGlow }} className="absolute inset-0 bg-vision-purple blur-[60px] rounded-full mix-blend-multiply opacity-50" />
+             {/* Vortex Base Rings (Optimized) */}
+             <motion.div style={{ opacity: vortexGlow }} className="absolute inset-0 bg-vision-purple/30 blur-[40px] rounded-full will-change-transform" />
              
              <svg className="absolute inset-0 w-full h-full" viewBox="0 0 400 400">
                <defs>
@@ -77,6 +77,7 @@ export const QuestionPaperStory: React.FC = () => {
                {/* Spinning Swirls */}
                <motion.g 
                  style={{ rotate: particleRotate, originX: "200px", originY: "200px" }}
+                 className="will-change-transform"
                >
                  {[...Array(8)].map((_, i) => (
                    <path 
@@ -91,7 +92,7 @@ export const QuestionPaperStory: React.FC = () => {
                </motion.g>
                
                {/* Sucked-in Particles (Question Bank Data) */}
-               <motion.g style={{ scale: particleScale, rotate: particleRotate, originX: "200px", originY: "200px" }}>
+               <motion.g style={{ scale: particleScale, rotate: particleRotate, originX: "200px", originY: "200px" }} className="will-change-transform">
                  {['?', 'A', 'B', 'C', 'x', '=', '+', 'Q', '1', '2', '?', 'A', 'B', 'C', 'x', '=', '+', 'Q', '1', '2', '?', 'A', 'B', 'C', 'x', '=', '+', 'Q', '1', '2'].map((char, i) => (
                    <text 
                      key={`char-${i}`}
@@ -124,7 +125,7 @@ export const QuestionPaperStory: React.FC = () => {
               x: blueprintX,
               y: blueprintY
             }}
-            className="absolute left-[300px] top-[150px] w-48 h-48 z-30"
+            className="absolute left-[300px] top-[150px] w-48 h-48 z-30 will-change-transform"
           >
             {/* The Blueprint Design */}
             <div className="w-full h-full border-2 border-vision-purple bg-vision-purple/10 rounded-2xl p-3 shadow-[0_0_50px_rgba(139,92,246,0.5)] backdrop-blur-md relative overflow-hidden">
@@ -145,7 +146,7 @@ export const QuestionPaperStory: React.FC = () => {
              {/* The Blank Document */}
              <motion.div 
                style={{ opacity: pdfOpacity, scale: pdfScale }}
-               className="w-full h-full bg-white rounded-xl shadow-[0_30px_60px_rgba(0,0,0,0.15)] border border-slate-100 p-6 flex flex-col gap-4 relative overflow-hidden"
+               className="w-full h-full bg-white rounded-xl shadow-[0_30px_60px_rgba(0,0,0,0.15)] border border-slate-100 p-6 flex flex-col gap-4 relative overflow-hidden will-change-transform"
              >
                 {/* Security Watermark */}
                 <Lock className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-32 h-32 text-slate-50 rotate-[-15deg] pointer-events-none" />
