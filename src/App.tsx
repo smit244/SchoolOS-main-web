@@ -5,8 +5,12 @@ import { Hero } from './components/Hero';
 import { AIEcosystem } from './components/AIEcosystem';
 import { AttendanceStory } from './components/stories/AttendanceStory';
 import { QuestionPaperStory } from './components/stories/QuestionPaperStory';
-import { SystemFlow } from './components/SystemFlow';
+import { BentoFeatures } from './components/BentoFeatures';
 import { Pricing } from './components/Pricing';
+
+function App() {
+  const [isDemoOpen, setIsDemoOpen] = useState(false);
+//... (truncated intentionally in my head, I need to fetch the file to see lines to replace)
 import { FAQ } from './components/FAQ';
 import { Contact } from './components/Contact';
 import { Footer } from './components/Footer';
