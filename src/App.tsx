@@ -1,11 +1,8 @@
 import React, { useEffect, useState } from 'react';
-import Lenis from 'lenis';
-import { Navbar } from './components/Navbar';
-import { Hero } from './components/Hero';
 import { AIEcosystem } from './components/AIEcosystem';
 import { AttendanceStory } from './components/stories/AttendanceStory';
 import { QuestionPaperStory } from './components/stories/QuestionPaperStory';
-import { SmartAutomation } from './components/SmartAutomation';
+import { SystemFlow } from './components/SystemFlow';
 import { Pricing } from './components/Pricing';
 import { FAQ } from './components/FAQ';
 import { Contact } from './components/Contact';
@@ -66,9 +63,9 @@ function App() {
         <AttendanceStory />
         <QuestionPaperStory />
 
-        {/* Smart Automation Flowchart Section */}
+        {/* Animated System Flow Pipeline */}
         <div className="w-full relative z-10">
-          <SmartAutomation />
+          <SystemFlow />
         </div>
 
         {/* Pricing */}
