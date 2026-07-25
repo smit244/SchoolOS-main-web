@@ -152,15 +152,20 @@ export const Hero: React.FC<HeroProps> = ({ onOpenDemo, onOpenTrial }) => {
           <motion.span variants={wordAnimation} className="inline-block">here.</motion.span>
         </motion.h1>
 
-        {/* Subheadline */}
-        <motion.p 
+        {/* Subheadline with Slogan */}
+        <motion.div 
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 1, delay: 0.6, ease: "easeOut" }}
-          className="text-xl sm:text-2xl text-slate-600 max-w-3xl leading-relaxed font-light mx-auto mb-12"
+          className="max-w-3xl mx-auto mb-12 text-center flex flex-col gap-3"
         >
-          An immersive, AI-powered ecosystem designed for modern educational institutions. Manage everything from admissions to exams in one beautiful workspace.
-        </motion.p>
+          <h2 className="text-2xl sm:text-3xl text-slate-800 font-semibold tracking-tight">
+            Everything Your School Needs. One Powerful Platform.
+          </h2>
+          <p className="text-lg sm:text-xl text-slate-600 leading-relaxed font-light">
+            An immersive, AI-powered ecosystem designed for modern educational institutions. Manage everything from admissions to exams in one beautiful workspace.
+          </p>
+        </motion.div>
 
         {/* Magnetic CTAs */}
         <motion.div 
