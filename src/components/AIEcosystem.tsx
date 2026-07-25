@@ -200,7 +200,7 @@ export const AIEcosystem: React.FC = () => {
           
           {/* Core Content */}
           <div className="relative z-10 flex flex-col items-center">
-            <Sparkles className="w-12 h-12 text-vision-blueGlow mb-2 filter drop-shadow-[0_0_10px_rgba(59,130,246,0.8)]" />
+            <img src="/logo.png" alt="SchoolOS Logo" className="w-16 h-16 object-contain mb-2 drop-shadow-[0_0_15px_rgba(59,130,246,0.6)]" />
             <span className="font-display font-extrabold text-slate-900 tracking-[0.2em] text-sm">AI CORE</span>
           </div>
           
