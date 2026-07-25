@@ -61,10 +61,10 @@ export const Hero: React.FC<HeroProps> = ({ onOpenDemo, onOpenTrial }) => {
   return (
     <section ref={containerRef} className="relative w-full min-h-[100vh] flex items-center justify-center pt-32 pb-20 overflow-hidden perspective-[2000px]">
       
-      {/* Dynamic Background Glows */}
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[60vw] h-[60vw] max-w-[800px] max-h-[800px] bg-vision-purple/30 rounded-full blur-[120px] pointer-events-none animate-pulse-slow" />
-      <div className="absolute top-1/4 left-1/4 w-[40vw] h-[40vw] max-w-[600px] max-h-[600px] bg-vision-cyan/30 rounded-full blur-[100px] pointer-events-none animate-spin-slow" />
-      <div className="absolute bottom-1/4 right-1/4 w-[50vw] h-[50vw] max-w-[700px] max-h-[700px] bg-vision-blueGlow/30 rounded-full blur-[100px] pointer-events-none" style={{ animation: 'spin 20s linear infinite reverse' }} />
+      {/* Dynamic Background Glows (Optimized) */}
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[50vw] h-[50vw] max-w-[600px] max-h-[600px] bg-vision-purple/20 rounded-full blur-[80px] pointer-events-none" />
+      <div className="absolute top-1/4 left-1/4 w-[30vw] h-[30vw] max-w-[400px] max-h-[400px] bg-vision-cyan/20 rounded-full blur-[80px] pointer-events-none" />
+      <div className="absolute bottom-1/4 right-1/4 w-[40vw] h-[40vw] max-w-[500px] max-h-[500px] bg-vision-blueGlow/20 rounded-full blur-[80px] pointer-events-none" />
 
       <motion.div 
         style={{ y, opacity, scale }}
@@ -136,17 +136,16 @@ export const Hero: React.FC<HeroProps> = ({ onOpenDemo, onOpenTrial }) => {
           </button>
         </motion.div>
 
-        {/* Floating 3D Elements Mockup with Mouse Parallax */}
         <motion.div 
           initial={{ opacity: 0, y: 150, rotateX: 30 }}
           animate={{ opacity: 1, y: 0, rotateX: 0 }}
           transition={{ duration: 1.5, delay: 1, type: "spring", bounce: 0.2 }}
           style={{ rotateX, rotateY }}
-          className="relative w-full max-w-6xl mx-auto h-[400px] sm:h-[600px] lg:h-[700px] flex items-center justify-center transform-style-3d mt-10 perspective-[2000px]"
+          className="relative w-full max-w-6xl mx-auto h-[400px] sm:h-[600px] lg:h-[700px] flex items-center justify-center transform-style-3d mt-10 perspective-[2000px] will-change-transform"
         >
           
           {/* Main Desktop Dashboard Mockup */}
-          <div className="absolute left-0 w-full md:w-[85%] h-full rounded-[2.5rem] border border-white/80 bg-white/40 backdrop-blur-3xl shadow-[0_30px_80px_rgba(0,0,0,0.08)] overflow-hidden group">
+          <div className="absolute left-0 w-full md:w-[85%] h-full rounded-[2.5rem] border border-white/80 bg-white/40 backdrop-blur-xl shadow-[0_30px_80px_rgba(0,0,0,0.08)] overflow-hidden group">
             {/* Inner Interface Mockup */}
             <div className="absolute inset-2 rounded-[2rem] border border-white/60 bg-gradient-to-b from-white/80 to-white/30 overflow-hidden flex shadow-inner">
               
@@ -163,14 +162,14 @@ export const Hero: React.FC<HeroProps> = ({ onOpenDemo, onOpenTrial }) => {
               
               {/* Main Area */}
               <div className="flex-1 p-6 sm:p-8 relative bg-white/20">
-                 {/* Animated Inner Background Glow */}
+                 {/* Animated Inner Background Glow (Optimized) */}
                  <motion.div 
                    style={{ x: floatX1, y: floatY1 }}
-                   className="absolute top-0 right-0 w-[600px] h-[600px] bg-vision-purple/20 blur-[100px] rounded-full pointer-events-none opacity-60" 
+                   className="absolute top-0 right-0 w-[400px] h-[400px] bg-vision-purple/20 blur-[80px] rounded-full pointer-events-none opacity-50 will-change-transform" 
                  />
                  <motion.div 
                    style={{ x: floatX2, y: floatY2 }}
-                   className="absolute bottom-0 left-0 w-[500px] h-[500px] bg-vision-cyan/20 blur-[100px] rounded-full pointer-events-none opacity-50" 
+                   className="absolute bottom-0 left-0 w-[300px] h-[300px] bg-vision-cyan/20 blur-[80px] rounded-full pointer-events-none opacity-40 will-change-transform" 
                  />
                  
                  <div className="w-1/2 sm:w-1/3 h-10 bg-slate-900/10 rounded-xl mb-8 relative z-10 shadow-sm" />
@@ -221,7 +220,7 @@ export const Hero: React.FC<HeroProps> = ({ onOpenDemo, onOpenTrial }) => {
           {/* Floating Mobile Mockup */}
           <motion.div 
             style={{ x: floatX2, y: floatY1 }}
-            className="absolute right-0 lg:-right-8 bottom-0 lg:bottom-10 w-[260px] lg:w-[300px] h-[520px] lg:h-[600px] rounded-[3rem] border-[8px] border-white/90 bg-white/40 backdrop-blur-3xl shadow-[0_40px_100px_rgba(0,0,0,0.15)] overflow-hidden z-30 hidden md:block group/mobile"
+            className="absolute right-0 lg:-right-8 bottom-0 lg:bottom-10 w-[260px] lg:w-[300px] h-[520px] lg:h-[600px] rounded-[3rem] border-[8px] border-white/90 bg-white/40 backdrop-blur-xl shadow-[0_40px_100px_rgba(0,0,0,0.15)] overflow-hidden z-30 hidden md:block group/mobile will-change-transform"
           >
              {/* iPhone Dynamic Island */}
              <div className="absolute top-3 left-1/2 -translate-x-1/2 w-24 h-7 bg-slate-900 rounded-full z-20 flex items-center justify-between px-2 shadow-inner">
