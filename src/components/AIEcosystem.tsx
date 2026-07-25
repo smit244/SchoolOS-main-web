@@ -62,9 +62,8 @@ export const AIEcosystem: React.FC = () => {
     <section ref={containerRef} className="relative w-full min-h-[120vh] py-32 overflow-hidden bg-transparent perspective-[2000px]">
       
       {/* Background Ambient Lighting */}
-      <div className="absolute inset-0 pointer-events-none">
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[80vw] h-[80vw] max-w-[1200px] max-h-[1200px] bg-[radial-gradient(circle_at_center,rgba(59,130,246,0.04)_0%,transparent_60%)] rounded-full blur-[100px]" />
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[40vw] h-[40vw] max-w-[600px] max-h-[600px] bg-[radial-gradient(circle_at_center,rgba(6,182,212,0.06)_0%,transparent_60%)] rounded-full blur-[80px]" />
+      <div className="absolute inset-0 pointer-events-none bg-[#f4f7fc]/50">
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[80vw] h-[80vw] max-w-[1200px] max-h-[1200px] bg-[radial-gradient(circle_at_center,rgba(59,130,246,0.06)_0%,transparent_60%)] rounded-full blur-[100px]" />
       </div>
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center mb-32">
@@ -90,125 +89,53 @@ export const AIEcosystem: React.FC = () => {
       {/* Neural Network Visualization Area */}
       <div className="relative w-full h-[900px] flex items-center justify-center mt-32">
         
-        {/* SVG Visualization Layer (Rings, Curves, Particles) */}
-        <svg className="absolute inset-0 w-full h-full pointer-events-none z-0" style={{ filter: 'drop-shadow(0 0 10px rgba(6,182,212,0.4))' }}>
-          <defs>
-            {/* Elegant Line Gradient */}
-            <linearGradient id="neuralGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-              <stop offset="0%" stopColor="rgba(59,130,246,0.1)" />
-              <stop offset="50%" stopColor="rgba(139,92,246,0.4)" />
-              <stop offset="100%" stopColor="rgba(6,182,212,0.1)" />
-            </linearGradient>
-            
-            {/* Particle Glow Filter */}
-            <filter id="intenseGlow" x="-20%" y="-20%" width="140%" height="140%">
-              <feGaussianBlur stdDeviation="6" result="blur" />
-              <feMerge>
-                <feMergeNode in="blur" />
-                <feMergeNode in="blur" />
-                <feMergeNode in="SourceGraphic" />
-              </feMerge>
-            </filter>
-          </defs>
-          
+        {/* SVG Visualization Layer (Clean Dotted Rings) */}
+        <svg className="absolute inset-0 w-full h-full pointer-events-none z-0">
           <g transform="translate(50%, 50%)" className="hidden lg:block">
-            
-            {/* Orbital Rings */}
-            <motion.ellipse 
-              cx="0" cy="0" rx="300" ry="200" 
-              fill="none" stroke="rgba(59,130,246,0.1)" strokeWidth="1" strokeDasharray="4 8"
+            {/* Concentric Dotted Rings matching the design */}
+            <motion.circle 
+              cx="0" cy="0" r="280" 
+              fill="none" stroke="#3b82f6" strokeOpacity="0.2" strokeWidth="1" strokeDasharray="4 8"
               animate={{ rotate: 360 }}
-              transition={{ duration: 120, repeat: Infinity, ease: "linear" }}
-            />
-            <motion.ellipse 
-              cx="0" cy="0" rx="480" ry="320" 
-              fill="none" stroke="rgba(6,182,212,0.05)" strokeWidth="1" strokeDasharray="2 12"
-              animate={{ rotate: -360 }}
               transition={{ duration: 150, repeat: Infinity, ease: "linear" }}
             />
-
-            {/* Connecting Synapses & Particles */}
-            {ECOSYSTEM_MODULES.map((mod, i) => {
-              const pos = getPosition(mod.angle, mod.rx, mod.ry);
-              const path = getBezierPath(pos.x, pos.y, mod.angle);
-              const isHovered = hoveredNode === mod.id;
-              
-              return (
-                <g key={`synapse-${i}`}>
-                  {/* Glowing Bezier Curve */}
-                  <motion.path 
-                    d={path}
-                    fill="none"
-                    stroke="url(#neuralGrad)" 
-                    strokeWidth={isHovered ? "4" : "1.5"}
-                    initial={{ pathLength: 0, opacity: 0 }}
-                    whileInView={{ pathLength: 1, opacity: isHovered ? 1 : 0.6 }}
-                    viewport={{ once: true, margin: "-100px" }}
-                    transition={{ duration: 2, delay: i * 0.05 + 0.5, ease: "easeInOut" }}
-                    style={{ filter: isHovered ? 'drop-shadow(0 0 6px rgba(139,92,246,0.6))' : 'none' }}
-                  />
-                  
-                  {/* Live Data Traveling Particle */}
-                  <motion.circle 
-                    r="4" 
-                    fill="#06B6D4"
-                    filter="url(#intenseGlow)"
-                    initial={{ offsetDistance: "0%", opacity: 0 }}
-                    animate={{ 
-                      offsetDistance: ["0%", "100%"],
-                      opacity: [0, 1, 1, 0]
-                    }}
-                    transition={{ 
-                      duration: 3 + Math.random() * 2, 
-                      repeat: Infinity, 
-                      delay: Math.random() * 5,
-                      ease: "easeInOut"
-                    }}
-                    style={{
-                      offsetPath: `path('${path}')`,
-                    }}
-                  />
-                </g>
-              );
-            })}
+            <motion.circle 
+              cx="0" cy="0" r="380" 
+              fill="none" stroke="#3b82f6" strokeOpacity="0.1" strokeWidth="1" strokeDasharray="2 10"
+              animate={{ rotate: -360 }}
+              transition={{ duration: 200, repeat: Infinity, ease: "linear" }}
+            />
+            <motion.circle 
+              cx="0" cy="0" r="500" 
+              fill="none" stroke="#3b82f6" strokeOpacity="0.05" strokeWidth="1" strokeDasharray="1 12"
+              animate={{ rotate: 360 }}
+              transition={{ duration: 250, repeat: Infinity, ease: "linear" }}
+            />
           </g>
         </svg>
 
-        {/* Central Round Circle with Logo */}
+        {/* Central Clean Circle with Logo */}
         <motion.div 
           style={{ opacity: coreOpacity, scale: coreScale }}
-          className="absolute z-20 w-48 h-48 md:w-72 md:h-72 rounded-full flex items-center justify-center group cursor-pointer"
+          className="absolute z-20 w-48 h-48 md:w-[320px] md:h-[320px] rounded-full flex items-center justify-center group cursor-pointer"
         >
-          {/* Outer Glass Casing */}
-          <div className="absolute inset-0 rounded-full bg-white/40 border border-white/80 backdrop-blur-3xl shadow-[0_30px_80px_rgba(0,0,0,0.1),inset_0_0_40px_rgba(255,255,255,1)]" />
+          {/* Main White Circle with subtle glow matching design */}
+          <div className="absolute inset-0 rounded-full bg-white border-[3px] border-vision-blueGlow/10 shadow-[0_20px_50px_rgba(59,130,246,0.15)] overflow-hidden">
+            {/* Soft inner radial gradient for depth */}
+            <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(6,182,212,0.1),transparent_50%),radial-gradient(circle_at_bottom_left,rgba(139,92,246,0.1),transparent_50%)]" />
+          </div>
           
-          {/* Inner Energy Core */}
-          <div className="absolute inset-4 rounded-full bg-gradient-to-tr from-vision-cyan/30 via-white/50 to-vision-blueGlow/30 animate-pulse-slow mix-blend-multiply" />
-          <div className="absolute inset-8 rounded-full bg-gradient-to-br from-vision-purple/20 to-transparent blur-md" />
-          
-          {/* Rotating Rings */}
-          <motion.div 
-            animate={{ rotate: 360 }}
-            transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
-            className="absolute inset-[-15px] rounded-full border-[1.5px] border-dashed border-vision-blueGlow/40" 
-          />
-          <motion.div 
-            animate={{ rotate: -360 }}
-            transition={{ duration: 15, repeat: Infinity, ease: "linear" }}
-            className="absolute inset-[15px] rounded-full border border-vision-cyan/50" 
-          />
+          {/* Outer glowing ring (very subtle) */}
+          <div className="absolute inset-[-20px] rounded-full border border-vision-blueGlow/20 animate-pulse-slow" />
           
           {/* Core Content - Just the Logo */}
-          <div className="relative z-10 flex items-center justify-center w-full h-full p-8 md:p-12">
+          <div className="relative z-10 flex items-center justify-center w-full h-full p-10 md:p-14">
             <img 
               src="/logo.png" 
               alt="SchoolOS Logo" 
-              className="w-full h-full object-contain drop-shadow-[0_10px_30px_rgba(59,130,246,0.3)] hover:scale-110 transition-transform duration-500" 
+              className="w-full h-full object-contain hover:scale-105 transition-transform duration-500" 
             />
           </div>
-          
-          {/* Hover intense glow */}
-          <div className="absolute inset-0 rounded-full bg-white/0 group-hover:bg-white/20 transition-colors duration-500 blur-xl pointer-events-none" />
         </motion.div>
 
         {/* Floating Nodes (Desktop Circular Layout) */}
@@ -240,32 +167,26 @@ export const AIEcosystem: React.FC = () => {
                 >
                   {/* Continuous Organic Floating */}
                   <motion.div 
-                    animate={{ y: ["-6px", "6px", "-6px"] }}
-                    transition={{ duration: 4, repeat: Infinity, ease: "easeInOut", delay: i * 0.2 }}
+                    animate={{ y: ["-8px", "8px", "-8px"] }}
+                    transition={{ duration: 5, repeat: Infinity, ease: "easeInOut", delay: i * 0.3 }}
+                    className="flex flex-col items-center gap-3"
                   >
                     <motion.div 
                       animate={{ 
-                        scale: isHovered ? 1.15 : 1,
+                        scale: isHovered ? 1.1 : 1,
                         boxShadow: isHovered 
-                          ? '0 25px 50px rgba(6,182,212,0.25), inset 0 0 0 2px rgba(255,255,255,1)' 
-                          : '0 10px 30px rgba(0,0,0,0.08), inset 0 0 0 1px rgba(255,255,255,0.8)'
+                          ? '0 20px 40px rgba(59,130,246,0.15)' 
+                          : '0 10px 30px rgba(0,0,0,0.06)'
                       }}
-                      transition={{ duration: 0.4, type: "spring", bounce: 0.4 }}
-                      className={`relative w-20 h-20 rounded-[1.25rem] flex items-center justify-center backdrop-blur-2xl transition-colors duration-500 overflow-hidden ${
-                        isHovered ? 'bg-white border-transparent' : 'bg-white/50 border border-slate-200/50'
-                      }`}
+                      transition={{ duration: 0.3 }}
+                      className="relative w-[85px] h-[85px] rounded-[1.5rem] bg-white flex items-center justify-center transition-colors duration-300 border border-white"
                     >
-                      {/* Inner Glow on Hover */}
-                      <div className={`absolute inset-0 bg-gradient-to-br from-vision-cyan/10 to-vision-purple/10 opacity-0 transition-opacity duration-500 ${isHovered ? 'opacity-100' : ''}`} />
-                      
-                      <Icon className={`w-8 h-8 relative z-10 transition-colors duration-300 ${isHovered ? 'text-vision-blueGlow drop-shadow-[0_0_8px_rgba(59,130,246,0.5)]' : 'text-slate-600'}`} />
+                      <Icon className={`w-8 h-8 relative z-10 transition-colors duration-300 ${isHovered ? 'text-vision-blueGlow' : 'text-slate-600'}`} strokeWidth={1.5} />
                     </motion.div>
                     
-                    {/* Label */}
-                    <div className={`mt-3 px-4 py-1.5 rounded-full backdrop-blur-xl border transition-all duration-300 text-center ${
-                      isHovered ? 'bg-white text-slate-900 border-slate-200 shadow-lg scale-105' : 'bg-white/40 text-slate-600 border-transparent'
-                    }`}>
-                      <span className="text-sm font-bold whitespace-nowrap">{mod.title}</span>
+                    {/* Separate Pill Label */}
+                    <div className="px-4 py-2 rounded-full bg-white/90 backdrop-blur-md shadow-[0_4px_15px_rgba(0,0,0,0.04)] border border-white">
+                      <span className="text-xs font-bold text-slate-700 whitespace-nowrap">{mod.title}</span>
                     </div>
 
                     {/* Hover Mini Dashboard Preview */}
