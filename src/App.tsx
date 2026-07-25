@@ -5,7 +5,6 @@ import { Hero } from './components/Hero';
 import { AIEcosystem } from './components/AIEcosystem';
 import { AttendanceStory } from './components/stories/AttendanceStory';
 import { QuestionPaperStory } from './components/stories/QuestionPaperStory';
-import { IOSShowcase } from './components/iOSShowcase';
 import { Pricing } from './components/Pricing';
 import { FAQ } from './components/FAQ';
 import { Contact } from './components/Contact';
@@ -66,10 +65,7 @@ function App() {
         <AttendanceStory />
         <QuestionPaperStory />
 
-        {/* Device Showcase Section */}
-        <div className="w-full relative z-10 py-32">
-          <IOSShowcase />
-        </div>
+        {/* Space for future section */}
 
         {/* Pricing */}
         <div id="pricing" className="w-full relative z-10 py-20">
