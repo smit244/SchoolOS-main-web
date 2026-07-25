@@ -95,21 +95,39 @@ export const Hero: React.FC<HeroProps> = ({ onOpenDemo, onOpenTrial }) => {
             </motion.span>
           ))}
           
-          <motion.div variants={wordAnimation} className="relative inline-flex items-center justify-center mx-2 my-2 sm:my-0">
-             {/* The Glowing Glass Pill */}
-             <div className="relative px-6 sm:px-10 py-1 sm:py-2 rounded-full bg-white/40 backdrop-blur-xl border border-white shadow-[0_10px_40px_rgba(59,130,246,0.15)] group overflow-hidden flex items-center justify-center">
-                
-                {/* Animated Gradient Border Inside Pill */}
-                <div className="absolute inset-0 rounded-full border-[3px] border-transparent bg-gradient-to-r from-blue-500 via-purple-500 to-cyan-500 [mask-image:linear-gradient(white,white),linear-gradient(white,white)] [mask-clip:padding-box,border-box] [mask-composite:exclude] opacity-50" />
-                
-                {/* Highlight Glow Behind Text inside Pill */}
-                <div className="absolute inset-0 bg-gradient-to-r from-blue-500/10 to-cyan-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
+          <motion.div variants={wordAnimation} className="relative inline-flex items-center justify-center mx-3 sm:mx-6 group">
+             {/* Massive Pulsating Background Aura */}
+             <div className="absolute -inset-6 bg-gradient-to-r from-pink-500 via-purple-500 to-cyan-500 blur-3xl opacity-30 group-hover:opacity-60 transition-opacity duration-700 animate-pulse rounded-full" />
+             
+             {/* Liquid Gradient Flowing Text */}
+             <motion.span 
+               animate={{ backgroundPosition: ["0% center", "200% center"] }}
+               transition={{ duration: 4, repeat: Infinity, ease: "linear" }}
+               className="relative z-10 italic pr-2 font-black text-transparent bg-clip-text pb-2 sm:pb-4 drop-shadow-sm scale-110 sm:scale-125 transform-gpu"
+               style={{
+                 backgroundImage: 'linear-gradient(90deg, #FF0080, #7928CA, #00DFD8, #FF0080)',
+                 backgroundSize: '200% auto',
+               }}
+             >
+               learning
+             </motion.span>
 
-                {/* Text inside Pill */}
-                <span className="relative z-10 bg-gradient-to-r from-blue-600 via-purple-600 to-cyan-600 bg-clip-text text-transparent transform group-hover:scale-105 transition-transform duration-500 pb-2">
-                  learning
-                </span>
-             </div>
+             {/* Floating Glowing Sparkles (Creative elements) */}
+             <motion.div 
+                animate={{ rotate: 360, y: [0, -10, 0], scale: [1, 1.2, 1] }} 
+                transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }} 
+                className="absolute -top-6 -right-8 sm:-top-8 sm:-right-12 z-20 pointer-events-none"
+             >
+                <Sparkles className="w-10 h-10 sm:w-14 sm:h-14 text-pink-400 drop-shadow-[0_0_15px_rgba(244,63,94,0.8)]" fill="currentColor" />
+             </motion.div>
+
+             <motion.div 
+                animate={{ rotate: -360, y: [0, 15, 0], scale: [1, 1.3, 1] }} 
+                transition={{ duration: 5, repeat: Infinity, ease: "easeInOut", delay: 1 }} 
+                className="absolute -bottom-4 -left-6 sm:-bottom-6 sm:-left-10 z-20 pointer-events-none"
+             >
+                <Sparkles className="w-8 h-8 sm:w-10 sm:h-10 text-cyan-400 drop-shadow-[0_0_15px_rgba(6,182,212,0.8)]" fill="currentColor" />
+             </motion.div>
           </motion.div>
 
           <motion.span variants={wordAnimation} className="inline-block">is</motion.span>
