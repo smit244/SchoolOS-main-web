@@ -52,12 +52,12 @@ export const AIEcosystem: React.FC = () => {
   };
 
   return (
-    <section ref={containerRef} className="relative w-full min-h-[120vh] py-32 overflow-hidden bg-[#020617] perspective-[2000px]">
+    <section ref={containerRef} className="relative w-full min-h-[120vh] py-32 overflow-hidden bg-[#f4f7fc] perspective-[2000px]">
       
-      {/* Deep Space Ambient Lighting */}
+      {/* Light Theme Ambient Lighting */}
       <div className="absolute inset-0 pointer-events-none">
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[80vw] h-[80vw] max-w-[1200px] max-h-[1200px] bg-[radial-gradient(circle_at_center,rgba(59,130,246,0.08)_0%,transparent_60%)] rounded-full blur-[100px]" />
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[40vw] h-[40vw] max-w-[600px] max-h-[600px] bg-[radial-gradient(circle_at_center,rgba(6,182,212,0.1)_0%,transparent_60%)] rounded-full blur-[80px]" />
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[80vw] h-[80vw] max-w-[1200px] max-h-[1200px] bg-[radial-gradient(circle_at_center,rgba(59,130,246,0.05)_0%,transparent_60%)] rounded-full blur-[100px]" />
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[40vw] h-[40vw] max-w-[600px] max-h-[600px] bg-[radial-gradient(circle_at_center,rgba(6,182,212,0.08)_0%,transparent_60%)] rounded-full blur-[80px]" />
       </div>
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center mb-32">
@@ -65,17 +65,17 @@ export const AIEcosystem: React.FC = () => {
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-white/5 border border-white/10 backdrop-blur-xl mb-6 shadow-[0_10px_30px_rgba(0,0,0,0.2)]"
+          className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-white border border-slate-200 backdrop-blur-xl mb-6 shadow-sm"
         >
-          <Activity className="w-4 h-4 text-vision-cyan" />
-          <span className="text-sm font-bold text-white tracking-wide">Dynamic Orbital Layout</span>
+          <Activity className="w-4 h-4 text-vision-blueGlow" />
+          <span className="text-sm font-bold text-slate-700 tracking-wide">Dynamic Orbital Layout</span>
         </motion.div>
         
-        <h2 className="font-display text-5xl md:text-7xl font-bold tracking-tighter text-white mb-6 leading-[1.05]">
+        <h2 className="font-display text-5xl md:text-7xl font-bold tracking-tighter text-slate-900 mb-6 leading-[1.05]">
           A deeply connected <br className="hidden sm:block" />
           <span className="text-transparent bg-clip-text bg-gradient-to-r from-vision-blueGlow via-vision-purple to-vision-cyan">AI Ecosystem.</span>
         </h2>
-        <p className="text-lg md:text-2xl text-slate-400 max-w-3xl mx-auto font-light leading-relaxed">
+        <p className="text-lg md:text-2xl text-slate-500 max-w-3xl mx-auto font-light leading-relaxed">
           Hover over any floating node to trace its data path directly to the SchoolOS core in real-time.
         </p>
       </div>
@@ -87,11 +87,11 @@ export const AIEcosystem: React.FC = () => {
         <svg className="absolute inset-0 w-full h-full pointer-events-none z-0">
           <defs>
             <linearGradient id="neuralGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-              <stop offset="0%" stopColor="rgba(59,130,246,0.3)" />
-              <stop offset="100%" stopColor="rgba(6,182,212,0.1)" />
+              <stop offset="0%" stopColor="rgba(59,130,246,0.15)" />
+              <stop offset="100%" stopColor="rgba(6,182,212,0.05)" />
             </linearGradient>
             <filter id="intenseGlow" x="-20%" y="-20%" width="140%" height="140%">
-              <feGaussianBlur stdDeviation="4" result="blur" />
+              <feGaussianBlur stdDeviation="3" result="blur" />
               <feMerge>
                 <feMergeNode in="blur" />
                 <feMergeNode in="SourceGraphic" />
@@ -101,8 +101,8 @@ export const AIEcosystem: React.FC = () => {
           
           <g transform="translate(50%, 50%)" className="hidden lg:block">
             {/* Concentric subtle rings */}
-            <motion.circle cx="0" cy="0" r="300" fill="none" stroke="rgba(255,255,255,0.03)" strokeWidth="1" strokeDasharray="4 8" animate={{ rotate: 360 }} transition={{ duration: 150, repeat: Infinity, ease: "linear" }} />
-            <motion.circle cx="0" cy="0" r="450" fill="none" stroke="rgba(255,255,255,0.02)" strokeWidth="1" strokeDasharray="2 10" animate={{ rotate: -360 }} transition={{ duration: 200, repeat: Infinity, ease: "linear" }} />
+            <motion.circle cx="0" cy="0" r="300" fill="none" stroke="rgba(0,0,0,0.05)" strokeWidth="1" strokeDasharray="4 8" animate={{ rotate: 360 }} transition={{ duration: 150, repeat: Infinity, ease: "linear" }} />
+            <motion.circle cx="0" cy="0" r="450" fill="none" stroke="rgba(0,0,0,0.03)" strokeWidth="1" strokeDasharray="2 10" animate={{ rotate: -360 }} transition={{ duration: 200, repeat: Infinity, ease: "linear" }} />
 
             {/* Beams */}
             {ECOSYSTEM_MODULES.map((mod, i) => {
@@ -116,26 +116,26 @@ export const AIEcosystem: React.FC = () => {
                     d={path}
                     fill="none"
                     stroke={isHovered ? mod.color : "url(#neuralGrad)"} 
-                    strokeWidth={isHovered ? "3" : "1"}
+                    strokeWidth={isHovered ? "3" : "1.5"}
                     initial={{ pathLength: 0, opacity: 0 }}
-                    whileInView={{ pathLength: 1, opacity: isHovered ? 0.8 : 0.2 }}
+                    whileInView={{ pathLength: 1, opacity: isHovered ? 0.6 : 0.4 }}
                     viewport={{ once: true, margin: "-100px" }}
                     transition={{ duration: 2, delay: i * 0.05, ease: "easeInOut" }}
-                    style={{ filter: isHovered ? `drop-shadow(0 0 8px ${mod.color})` : 'none' }}
+                    style={{ filter: isHovered ? `drop-shadow(0 0 6px ${mod.color}80)` : 'none' }}
                   />
                   
                   {/* Traveling Data Packet */}
                   <motion.circle 
-                    r={isHovered ? "4" : "2"} 
+                    r={isHovered ? "5" : "3"} 
                     fill={mod.color}
                     filter="url(#intenseGlow)"
                     initial={{ offsetDistance: "0%", opacity: 0 }}
                     animate={{ 
                       offsetDistance: ["0%", "100%"],
-                      opacity: isHovered ? [0, 1, 1, 0] : [0, 0.4, 0.4, 0]
+                      opacity: isHovered ? [0, 1, 1, 0] : [0, 0.6, 0.6, 0]
                     }}
                     transition={{ 
-                      duration: isHovered ? 1.5 : 4, 
+                      duration: isHovered ? 1.5 : 3.5, 
                       repeat: Infinity, 
                       ease: "linear"
                     }}
@@ -147,22 +147,23 @@ export const AIEcosystem: React.FC = () => {
           </g>
         </svg>
 
-        {/* Central Glowing Core */}
+        {/* Central Clean Core */}
         <motion.div 
           style={{ opacity: coreOpacity, scale: coreScale }}
           className="absolute z-20 w-48 h-48 md:w-64 md:h-64 rounded-full flex items-center justify-center group cursor-pointer"
         >
-          {/* Glass Outer Shell */}
-          <div className="absolute inset-0 rounded-full bg-white/5 border border-white/10 backdrop-blur-md shadow-[0_0_50px_rgba(59,130,246,0.2)]" />
-          {/* Intense Inner Core */}
-          <div className="absolute inset-8 rounded-full bg-gradient-to-tr from-vision-cyan/30 to-vision-blueGlow/30 blur-md animate-pulse" />
+          {/* Main White Circle */}
+          <div className="absolute inset-0 rounded-full bg-white border border-slate-200/80 shadow-[0_20px_50px_rgba(59,130,246,0.1)] overflow-hidden" />
+          
+          {/* Subtle Inner Glow */}
+          <div className="absolute inset-0 rounded-full bg-[radial-gradient(circle_at_top_right,rgba(6,182,212,0.1),transparent_50%),radial-gradient(circle_at_bottom_left,rgba(139,92,246,0.1),transparent_50%)]" />
           
           {/* Logo */}
           <div className="relative z-10 flex items-center justify-center w-full h-full p-10">
             <img 
               src="/logo.png" 
               alt="SchoolOS Logo" 
-              className="w-full h-full object-contain drop-shadow-[0_0_20px_rgba(255,255,255,0.4)] hover:scale-110 transition-transform duration-500" 
+              className="w-full h-full object-contain hover:scale-105 transition-transform duration-500" 
             />
           </div>
         </motion.div>
@@ -188,24 +189,25 @@ export const AIEcosystem: React.FC = () => {
                   onClick={() => setActiveNode(mod.id)}
                   className="flex flex-col items-center gap-3 cursor-pointer group"
                 >
-                  <motion.div animate={{ y: ["-5px", "5px", "-5px"] }} transition={{ duration: 4, repeat: Infinity, delay: i * 0.2 }}>
+                  <motion.div animate={{ y: ["-6px", "6px", "-6px"] }} transition={{ duration: 4, repeat: Infinity, delay: i * 0.2 }}>
                     
-                    {/* The Premium Node Design */}
+                    {/* Light Theme Premium Node Design */}
                     <motion.div 
                       animate={{ scale: isHovered ? 1.15 : 1 }}
-                      className={`relative w-[70px] h-[70px] rounded-2xl flex items-center justify-center backdrop-blur-xl transition-all duration-300 border ${
-                        isHovered ? 'bg-white/10 border-white/30' : 'bg-white/5 border-white/10'
+                      className={`relative w-[70px] h-[70px] rounded-2xl flex items-center justify-center bg-white transition-all duration-300 border ${
+                        isHovered ? 'border-transparent' : 'border-slate-200/60'
                       }`}
-                      style={{ boxShadow: isHovered ? `0 0 30px ${mod.color}40, inset 0 0 20px rgba(255,255,255,0.1)` : '0 10px 20px rgba(0,0,0,0.2)' }}
+                      style={{ boxShadow: isHovered ? `0 15px 35px ${mod.color}30` : '0 10px 20px rgba(0,0,0,0.04)' }}
                     >
-                      <Icon className="w-7 h-7 relative z-10 transition-all duration-300" style={{ color: isHovered ? '#fff' : mod.color, filter: isHovered ? `drop-shadow(0 0 8px ${mod.color})` : 'none' }} strokeWidth={1.5} />
+                      {/* Inner colored glow on hover */}
+                      <div className="absolute inset-0 rounded-2xl opacity-0 transition-opacity duration-300 group-hover:opacity-100" style={{ background: `radial-gradient(circle at center, ${mod.color}15, transparent)` }} />
+                      
+                      <Icon className="w-7 h-7 relative z-10 transition-colors duration-300" style={{ color: isHovered ? mod.color : '#475569' }} strokeWidth={1.5} />
                     </motion.div>
                     
-                    {/* Floating Label */}
-                    <div className={`absolute top-[80px] left-1/2 -translate-x-1/2 px-3 py-1.5 rounded-full border transition-all duration-300 whitespace-nowrap ${
-                      isHovered ? 'bg-white/10 border-white/20 backdrop-blur-md opacity-100' : 'bg-transparent border-transparent opacity-60'
-                    }`}>
-                      <span className="text-xs font-bold text-white">{mod.title}</span>
+                    {/* Separate Pill Label */}
+                    <div className="absolute top-[80px] left-1/2 -translate-x-1/2 px-4 py-1.5 rounded-full bg-white/90 backdrop-blur-md shadow-sm border border-slate-100 transition-all duration-300 whitespace-nowrap group-hover:scale-105 group-hover:shadow-md">
+                      <span className={`text-xs font-bold transition-colors ${isHovered ? 'text-slate-900' : 'text-slate-600'}`}>{mod.title}</span>
                     </div>
 
                   </motion.div>
@@ -226,13 +228,13 @@ export const AIEcosystem: React.FC = () => {
                  whileInView={{ opacity: 1, y: 0 }}
                  viewport={{ once: true }}
                  transition={{ delay: i * 0.05 }}
-                 className="w-full flex items-center gap-4 p-4 rounded-2xl bg-white/5 border border-white/10 backdrop-blur-md"
+                 className="w-full flex items-center gap-4 p-4 rounded-2xl bg-white border border-slate-100 shadow-sm"
                >
-                 <div className="w-12 h-12 rounded-xl flex items-center justify-center bg-white/5 border border-white/10" style={{ color: mod.color }}>
+                 <div className="w-12 h-12 rounded-xl flex items-center justify-center bg-slate-50 border border-slate-100" style={{ color: mod.color }}>
                    <Icon className="w-5 h-5" />
                  </div>
                  <div className="flex-1">
-                   <h3 className="font-bold text-white text-base">{mod.title}</h3>
+                   <h3 className="font-bold text-slate-800 text-base">{mod.title}</h3>
                    <div className="flex items-center gap-1.5 mt-0.5">
                      <span className="w-1.5 h-1.5 rounded-full animate-pulse" style={{ backgroundColor: mod.color }} />
                      <p className="text-[10px] font-semibold text-slate-400 uppercase tracking-wider">Syncing Data</p>
