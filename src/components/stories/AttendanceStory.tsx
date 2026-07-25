@@ -24,9 +24,9 @@ export const AttendanceStory: React.FC = () => {
   const dashboardY = useTransform(scrollYProgress, [0.5, 0.6], [50, 0]);
   const dashboardOpacity = useTransform(scrollYProgress, [0.5, 0.6], [0, 1]);
 
-  // 4. Push Notification appears (0.6 to 0.8)
-  const notifX = useTransform(scrollYProgress, [0.6, 0.7], [100, 0]);
-  const notifOpacity = useTransform(scrollYProgress, [0.6, 0.7], [0, 1]);
+  // 4. Push Notification appears and exits (0.6 to 0.95)
+  const notifX = useTransform(scrollYProgress, [0.6, 0.7, 0.85, 0.95], [150, 0, 0, -150]);
+  const notifOpacity = useTransform(scrollYProgress, [0.6, 0.7, 0.85, 0.95], [0, 1, 1, 0]);
 
   // Abstract Face Nodes (Glowing dots inside the face)
   const faceNodes = [
@@ -206,7 +206,7 @@ export const AttendanceStory: React.FC = () => {
           {/* ------------------------------------------------ */}
           <motion.div 
             style={{ x: notifX, opacity: notifOpacity }}
-            className="absolute left-1/2 -translate-x-1/2 lg:translate-x-0 lg:left-auto lg:right-20 top-[60%] lg:top-1/2 w-72 lg:w-80 bg-slate-900/95 backdrop-blur-xl border border-slate-800 rounded-[2rem] shadow-[0_40px_100px_rgba(0,0,0,0.3)] p-5 z-20 will-change-transform"
+            className="absolute left-1/2 -translate-x-1/2 lg:translate-x-0 lg:left-auto lg:right-20 top-[60%] lg:top-1/2 w-80 lg:w-96 bg-slate-900/95 backdrop-blur-xl border border-slate-800 rounded-[2rem] shadow-[0_40px_100px_rgba(0,0,0,0.3)] p-6 z-20 will-change-transform"
           >
             <div className="w-12 h-12 rounded-2xl bg-gradient-to-br from-vision-blueGlow to-vision-cyan flex items-center justify-center mb-4 shadow-[0_10px_20px_rgba(6,182,212,0.3)]">
               <Bell className="w-6 h-6 text-white" />
