@@ -298,10 +298,10 @@ export const QuestionPaperStory: React.FC = () => {
               
               <motion.div 
                 initial={{ opacity: 0 }}
-                whileInView={{ opacity: 1 }}
-                transition={{ delay: 0.5, duration: 0.5 }}
+                whileInView={{ opacity: [0, 1, 0] }}
+                transition={{ delay: 0.8, duration: 0.6, times: [0, 0.5, 1] }}
                 viewport={{ once: true }}
-                className="absolute inset-0 bg-vision-purple/20 backdrop-blur-sm flex items-center justify-center"
+                className="absolute inset-0 bg-vision-purple/20 backdrop-blur-sm flex items-center justify-center pointer-events-none"
               >
                  <div className="w-full h-full border-4 border-vision-purple m-4 rounded-xl shadow-[inset_0_0_30px_rgba(139,92,246,0.5)]" />
               </motion.div>
