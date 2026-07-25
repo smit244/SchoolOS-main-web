@@ -200,7 +200,7 @@ export const Hero: React.FC<HeroProps> = ({ onOpenDemo, onOpenTrial }) => {
           animate={{ opacity: 1, y: 0, rotateX: 0 }}
           transition={{ duration: 1.5, delay: 1, type: "spring", bounce: 0.2 }}
           style={{ rotateX, rotateY }}
-          className="relative w-full max-w-6xl mx-auto h-[400px] sm:h-[600px] lg:h-[700px] flex items-center justify-center transform-style-3d mt-10 perspective-[2000px] will-change-transform"
+          className="relative w-full max-w-6xl mx-auto h-[500px] sm:h-[600px] lg:h-[700px] flex items-center justify-center transform-style-3d mt-10 perspective-[2000px] will-change-transform"
         >
           
           {/* Main Desktop Dashboard Mockup */}
