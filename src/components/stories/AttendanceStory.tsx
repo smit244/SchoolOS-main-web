@@ -157,7 +157,7 @@ export const AttendanceStory: React.FC = () => {
           {/* ------------------------------------------------ */}
           <motion.div 
             style={{ y: dashboardY, opacity: dashboardOpacity }}
-            className="absolute left-4 lg:left-20 top-1/4 w-72 lg:w-80 bg-white/90 backdrop-blur-xl border border-white rounded-[2rem] shadow-[0_30px_80px_rgba(0,0,0,0.1)] p-6 z-20 will-change-transform"
+            className="absolute left-1/2 -translate-x-1/2 lg:translate-x-0 lg:left-20 top-[5%] lg:top-1/4 w-72 lg:w-80 bg-white/90 backdrop-blur-xl border border-white rounded-[2rem] shadow-[0_30px_80px_rgba(0,0,0,0.1)] p-6 z-20 will-change-transform"
           >
             <div className="flex items-center gap-3 mb-6 border-b border-slate-100 pb-4">
               <div className="w-10 h-10 rounded-full bg-emerald-100 flex items-center justify-center shrink-0">
@@ -206,7 +206,7 @@ export const AttendanceStory: React.FC = () => {
           {/* ------------------------------------------------ */}
           <motion.div 
             style={{ x: notifX, opacity: notifOpacity }}
-            className="absolute right-4 lg:right-20 top-1/2 w-72 lg:w-80 bg-slate-900/95 backdrop-blur-xl border border-slate-800 rounded-[2rem] shadow-[0_40px_100px_rgba(0,0,0,0.3)] p-5 z-20 will-change-transform"
+            className="absolute left-1/2 -translate-x-1/2 lg:translate-x-0 lg:left-auto lg:right-20 top-[60%] lg:top-1/2 w-72 lg:w-80 bg-slate-900/95 backdrop-blur-xl border border-slate-800 rounded-[2rem] shadow-[0_40px_100px_rgba(0,0,0,0.3)] p-5 z-20 will-change-transform"
           >
             <div className="w-12 h-12 rounded-2xl bg-gradient-to-br from-vision-blueGlow to-vision-cyan flex items-center justify-center mb-4 shadow-[0_10px_20px_rgba(6,182,212,0.3)]">
               <Bell className="w-6 h-6 text-white" />

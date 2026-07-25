@@ -61,7 +61,7 @@ export const QuestionPaperStory: React.FC = () => {
         <div className="relative w-full max-w-6xl h-[600px] flex items-center justify-center scale-[0.45] sm:scale-75 md:scale-100 origin-center mt-20 md:mt-0">
           
           {/* LEFT SIDE: The SVG Vortex */}
-          <div className="absolute left-10 lg:left-32 top-1/2 -translate-y-1/2 w-[400px] h-[400px]">
+          <div className="absolute left-1/2 -translate-x-1/2 lg:translate-x-0 lg:left-32 top-[10%] lg:top-1/2 -translate-y-1/2 w-[400px] h-[400px]">
              
              {/* Vortex Base Rings (Optimized) */}
              <motion.div style={{ opacity: vortexGlow }} className="absolute inset-0 bg-vision-purple/30 blur-[40px] rounded-full will-change-transform" />
@@ -125,7 +125,7 @@ export const QuestionPaperStory: React.FC = () => {
               x: blueprintX,
               y: blueprintY
             }}
-            className="absolute left-[300px] top-[150px] w-48 h-48 z-30 will-change-transform"
+            className="absolute left-1/2 -translate-x-1/2 lg:translate-x-0 lg:left-[300px] top-[40%] lg:top-[150px] w-48 h-48 z-30 will-change-transform"
           >
             {/* The Blueprint Design */}
             <div className="w-full h-full border-2 border-vision-purple bg-vision-purple/10 rounded-2xl p-3 shadow-[0_0_50px_rgba(139,92,246,0.5)] backdrop-blur-md relative overflow-hidden">
@@ -141,7 +141,7 @@ export const QuestionPaperStory: React.FC = () => {
           </motion.div>
 
           {/* RIGHT SIDE: The PDF Document Output */}
-          <div className="absolute right-10 lg:right-40 top-1/2 -translate-y-1/2 w-72 h-96 z-20">
+          <div className="absolute left-1/2 -translate-x-1/2 lg:translate-x-0 lg:left-auto lg:right-40 top-[70%] lg:top-1/2 -translate-y-1/2 w-72 h-96 z-20">
              
              {/* The Blank Document */}
              <motion.div 
