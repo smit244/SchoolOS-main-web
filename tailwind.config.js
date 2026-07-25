@@ -22,8 +22,8 @@ export default {
         }
       },
       fontFamily: {
-        sans: ['"Inter"', '-apple-system', 'sans-serif'],
-        display: ['"Space Grotesk"', 'sans-serif'],
+        sans: ['"Plus Jakarta Sans"', '-apple-system', 'sans-serif'],
+        display: ['"Outfit"', 'sans-serif'],
       },
       boxShadow: {
         'glass-panel': '0 8px 32px 0 rgba(0, 0, 0, 0.05), inset 0 0 0 1px rgba(255, 255, 255, 1)',
