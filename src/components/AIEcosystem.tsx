@@ -196,9 +196,9 @@ export const AIEcosystem: React.FC = () => {
                       className={`relative w-[70px] h-[70px] rounded-2xl flex items-center justify-center backdrop-blur-xl transition-all duration-300 border ${
                         isHovered ? 'bg-white/10 border-white/30' : 'bg-white/5 border-white/10'
                       }`}
-                      style={{ boxShadow: isHovered ? \`0 0 30px \${mod.color}40, inset 0 0 20px rgba(255,255,255,0.1)\` : '0 10px 20px rgba(0,0,0,0.2)' }}
+                      style={{ boxShadow: isHovered ? `0 0 30px ${mod.color}40, inset 0 0 20px rgba(255,255,255,0.1)` : '0 10px 20px rgba(0,0,0,0.2)' }}
                     >
-                      <Icon className="w-7 h-7 relative z-10 transition-all duration-300" style={{ color: isHovered ? '#fff' : mod.color, filter: isHovered ? \`drop-shadow(0 0 8px \${mod.color})\` : 'none' }} strokeWidth={1.5} />
+                      <Icon className="w-7 h-7 relative z-10 transition-all duration-300" style={{ color: isHovered ? '#fff' : mod.color, filter: isHovered ? `drop-shadow(0 0 8px ${mod.color})` : 'none' }} strokeWidth={1.5} />
                     </motion.div>
                     
                     {/* Floating Label */}
