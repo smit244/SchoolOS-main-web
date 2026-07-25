@@ -292,8 +292,6 @@ export const AIEcosystem: React.FC = () => {
           ))}
           
         </div>
-
-        </div>
       </div>
 
       {/* Mobile View (Stacked List) */}
