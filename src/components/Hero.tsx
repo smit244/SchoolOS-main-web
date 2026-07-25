@@ -82,7 +82,7 @@ export const Hero: React.FC<HeroProps> = ({ onOpenDemo, onOpenTrial }) => {
           <span className="text-sm font-semibold text-slate-700 relative z-10 tracking-wide">Introducing SchoolOS Intelligence</span>
         </motion.div>
 
-        {/* Cinematic Headline with Glass Pill */}
+        {/* Cinematic Headline */}
         <motion.h1 
           initial="hidden"
           animate="visible"
@@ -94,6 +94,9 @@ export const Hero: React.FC<HeroProps> = ({ onOpenDemo, onOpenTrial }) => {
               {word}
             </motion.span>
           ))}
+          
+          {/* Force Line Break */}
+          <div className="w-full h-0" />
           
           <motion.div variants={wordAnimation} className="relative inline-flex flex-col items-center justify-center mx-2 sm:mx-4 group">
              
