@@ -174,38 +174,19 @@ export const AIEcosystem: React.FC = () => {
           </g>
         </svg>
 
-        {/* Central AI Core (Highly Animated) */}
+        {/* Central Big Logo */}
         <motion.div 
           style={{ opacity: coreOpacity, scale: coreScale }}
-          className="absolute z-20 w-40 h-40 md:w-56 md:h-56 rounded-full flex items-center justify-center group cursor-pointer"
+          className="absolute z-20 w-48 h-48 md:w-[350px] md:h-[350px] flex items-center justify-center cursor-pointer"
         >
-          {/* Outer Glass Casing */}
-          <div className="absolute inset-0 rounded-full bg-white/40 border border-white/80 backdrop-blur-3xl shadow-[0_30px_80px_rgba(0,0,0,0.1),inset_0_0_40px_rgba(255,255,255,1)]" />
-          
-          {/* Inner Energy Core */}
-          <div className="absolute inset-4 rounded-full bg-gradient-to-tr from-vision-cyan/30 via-white/50 to-vision-blueGlow/30 animate-pulse-slow mix-blend-multiply" />
-          <div className="absolute inset-8 rounded-full bg-gradient-to-br from-vision-purple/20 to-transparent blur-md" />
-          
-          {/* Rotating Rings */}
-          <motion.div 
-            animate={{ rotate: 360 }}
-            transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
-            className="absolute inset-[-15px] rounded-full border-[1.5px] border-dashed border-vision-blueGlow/40" 
-          />
-          <motion.div 
-            animate={{ rotate: -360 }}
-            transition={{ duration: 15, repeat: Infinity, ease: "linear" }}
-            className="absolute inset-[15px] rounded-full border border-vision-cyan/50" 
-          />
-          
-          {/* Core Content */}
-          <div className="relative z-10 flex flex-col items-center">
-            <img src="/logo.png" alt="SchoolOS Logo" className="w-16 h-16 object-contain mb-2 drop-shadow-[0_0_15px_rgba(59,130,246,0.6)]" />
-            <span className="font-display font-extrabold text-slate-900 tracking-[0.2em] text-sm">AI CORE</span>
+          {/* Big Logo without the glass circle */}
+          <div className="relative z-10 flex items-center justify-center w-full h-full">
+            <img 
+              src="/logo.png" 
+              alt="SchoolOS Logo" 
+              className="w-full h-full object-contain drop-shadow-[0_20px_50px_rgba(59,130,246,0.2)] hover:scale-110 hover:drop-shadow-[0_30px_60px_rgba(6,182,212,0.4)] transition-all duration-700" 
+            />
           </div>
-          
-          {/* Hover intense glow */}
-          <div className="absolute inset-0 rounded-full bg-white/0 group-hover:bg-white/20 transition-colors duration-500 blur-xl" />
         </motion.div>
 
         {/* Floating Nodes (Desktop Circular Layout) */}
