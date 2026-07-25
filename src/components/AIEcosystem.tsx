@@ -7,25 +7,25 @@ import {
 } from 'lucide-react';
 
 const ECOSYSTEM_MODULES = [
-  // Inner Orbit (pushed out to give the logo breathing room)
-  { id: 1, title: 'Student Management', icon: Users, angle: 30, rx: 380, ry: 260, color: '#3b82f6' },
-  { id: 3, title: 'AI Face Recognition', icon: ScanFace, angle: 90, rx: 380, ry: 260, color: '#8b5cf6' },
-  { id: 5, title: 'AI Question Gen', icon: Sparkles, angle: 150, rx: 380, ry: 260, color: '#06b6d4' },
-  { id: 7, title: 'Fee Management', icon: CreditCard, angle: 210, rx: 380, ry: 260, color: '#10b981' },
-  { id: 13, title: 'Student Portal', icon: GraduationCap, angle: 270, rx: 380, ry: 260, color: '#3b82f6' },
-  { id: 15, title: 'Analytics', icon: PieChart, angle: 330, rx: 380, ry: 260, color: '#eab308' },
+  // Inner Orbit (2x smaller)
+  { id: 1, title: 'Student Management', icon: Users, angle: 30, rx: 220, ry: 140, color: '#3b82f6' },
+  { id: 3, title: 'AI Face Recognition', icon: ScanFace, angle: 90, rx: 220, ry: 140, color: '#8b5cf6' },
+  { id: 5, title: 'AI Question Gen', icon: Sparkles, angle: 150, rx: 220, ry: 140, color: '#06b6d4' },
+  { id: 7, title: 'Fee Management', icon: CreditCard, angle: 210, rx: 220, ry: 140, color: '#10b981' },
+  { id: 13, title: 'Student Portal', icon: GraduationCap, angle: 270, rx: 220, ry: 140, color: '#3b82f6' },
+  { id: 15, title: 'Analytics', icon: PieChart, angle: 330, rx: 220, ry: 140, color: '#eab308' },
 
-  // Outer Orbit (pushed out further)
-  { id: 9, title: 'Library', icon: Library, angle: 0, rx: 580, ry: 400, color: '#8b5cf6' },
-  { id: 2, title: 'Attendance', icon: CheckSquare, angle: 36, rx: 580, ry: 400, color: '#10b981' },
-  { id: 10, title: 'Transport', icon: Bus, angle: 72, rx: 580, ry: 400, color: '#f59e0b' },
-  { id: 4, title: 'Question Bank', icon: Database, angle: 108, rx: 580, ry: 400, color: '#f59e0b' },
-  { id: 11, title: 'Parent App', icon: Smartphone, angle: 144, rx: 580, ry: 400, color: '#ec4899' },
-  { id: 12, title: 'Teacher Portal', icon: Presentation, angle: 180, rx: 580, ry: 400, color: '#06b6d4' },
-  { id: 6, title: 'Examination', icon: FileText, angle: 216, rx: 580, ry: 400, color: '#f43f5e' },
-  { id: 8, title: 'Homework', icon: BookOpen, angle: 252, rx: 580, ry: 400, color: '#3b82f6' },
-  { id: 14, title: 'Reports', icon: FileBarChart, angle: 288, rx: 580, ry: 400, color: '#d946ef' },
-  { id: 16, title: 'Certificates', icon: Award, angle: 324, rx: 580, ry: 400, color: '#10b981' },
+  // Outer Orbit (2x smaller)
+  { id: 9, title: 'Library', icon: Library, angle: 0, rx: 380, ry: 250, color: '#8b5cf6' },
+  { id: 2, title: 'Attendance', icon: CheckSquare, angle: 36, rx: 380, ry: 250, color: '#10b981' },
+  { id: 10, title: 'Transport', icon: Bus, angle: 72, rx: 380, ry: 250, color: '#f59e0b' },
+  { id: 4, title: 'Question Bank', icon: Database, angle: 108, rx: 380, ry: 250, color: '#f59e0b' },
+  { id: 11, title: 'Parent App', icon: Smartphone, angle: 144, rx: 380, ry: 250, color: '#ec4899' },
+  { id: 12, title: 'Teacher Portal', icon: Presentation, angle: 180, rx: 380, ry: 250, color: '#06b6d4' },
+  { id: 6, title: 'Examination', icon: FileText, angle: 216, rx: 380, ry: 250, color: '#f43f5e' },
+  { id: 8, title: 'Homework', icon: BookOpen, angle: 252, rx: 380, ry: 250, color: '#3b82f6' },
+  { id: 14, title: 'Reports', icon: FileBarChart, angle: 288, rx: 380, ry: 250, color: '#d946ef' },
+  { id: 16, title: 'Certificates', icon: Award, angle: 324, rx: 380, ry: 250, color: '#10b981' },
 ];
 
 const OrbitalPlanet = ({ mod, hoveredNode, setHoveredNode, setActiveNode, index }: any) => {
@@ -230,10 +230,10 @@ export const AIEcosystem: React.FC = () => {
       </div>
 
       {/* Floating Orbital Engine Area */}
-      <div className="relative w-full h-[700px] 2xl:h-[1000px] flex items-center justify-center mt-10 lg:mt-20">
+      <div className="relative w-full h-[600px] lg:h-[700px] flex items-center justify-center mt-10">
         
-        {/* Scale wrapper to make sure it fits perfectly on laptops without changing math */}
-        <div className="relative flex items-center justify-center w-full h-full scale-[0.6] lg:scale-[0.7] xl:scale-[0.85] 2xl:scale-100 origin-center">
+        {/* Scale wrapper relaxed so text stays readable since orbits are now physically smaller */}
+        <div className="relative flex items-center justify-center w-full h-full scale-[0.7] lg:scale-90 xl:scale-100 origin-center">
         
           {/* Global SVG Defs */}
           <svg className="w-0 h-0 absolute pointer-events-none">
@@ -247,14 +247,14 @@ export const AIEcosystem: React.FC = () => {
 
           {/* Orbit Rings (Static Background Lines) */}
           <div className="absolute inset-0 flex items-center justify-center pointer-events-none opacity-40">
-             <div className="absolute w-[760px] h-[520px] border border-slate-300/30 rounded-[100%] border-dashed" />
-             <div className="absolute w-[1160px] h-[800px] border border-slate-300/20 rounded-[100%] border-dashed" />
+             <div className="absolute w-[440px] h-[280px] border border-slate-300/30 rounded-[100%] border-dashed" />
+             <div className="absolute w-[760px] h-[500px] border border-slate-300/20 rounded-[100%] border-dashed" />
           </div>
 
-          {/* Central VisionOS AI Core */}
+          {/* Central VisionOS AI Core (Scaled Down by 2x) */}
           <motion.div 
             style={{ opacity: coreOpacity, scale: coreScale }}
-            className="absolute z-40 w-56 h-56 md:w-72 md:h-72 rounded-full flex items-center justify-center group"
+            className="absolute z-40 w-32 h-32 md:w-44 md:h-44 rounded-full flex items-center justify-center group"
           >
             {/* Outer Glass Shell (Removed Blue Glow) */}
             <div className="absolute inset-0 rounded-full bg-white/40 backdrop-blur-2xl border border-white/60 shadow-[0_20px_50px_rgba(0,0,0,0.05),inset_0_0_20px_rgba(255,255,255,1)]" />
@@ -263,18 +263,18 @@ export const AIEcosystem: React.FC = () => {
             <div className="absolute inset-[-20%] rounded-full border border-slate-300/40 animate-[spin_10s_linear_infinite] border-dashed" />
             <div className="absolute inset-[-40%] rounded-full border border-slate-300/20 animate-[spin_15s_linear_infinite_reverse] border-dotted" />
             
-            {/* Inner Glowing Core (Removed Blue Glow, made it clean white) */}
-            <div className="absolute inset-10 rounded-full bg-white blur-xl opacity-50" />
+            {/* Inner Glowing Core */}
+            <div className="absolute inset-6 rounded-full bg-white blur-xl opacity-50" />
             
             {/* Center Logo */}
-            <div className="relative z-10 flex flex-col items-center justify-center w-full h-full p-12">
+            <div className="relative z-10 flex flex-col items-center justify-center w-full h-full p-6">
               <img 
                 src="/logo.png" 
                 alt="SchoolOS Core" 
                 className="w-full h-full object-contain hover:scale-105 transition-transform duration-700 drop-shadow-[0_10px_20px_rgba(0,0,0,0.05)]" 
               />
-              <div className="absolute bottom-6 px-3 py-1 rounded-full bg-white/90 backdrop-blur-md shadow-sm border border-slate-100">
-                 <span className="text-[10px] font-bold text-slate-700 uppercase tracking-widest">AI Core Online</span>
+              <div className="absolute bottom-1 md:bottom-2 px-2 py-0.5 md:py-1 rounded-full bg-white/90 backdrop-blur-md shadow-sm border border-slate-100">
+                 <span className="text-[8px] md:text-[10px] font-bold text-slate-700 uppercase tracking-widest">Online</span>
               </div>
             </div>
           </motion.div>
