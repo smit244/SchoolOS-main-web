@@ -10,17 +10,7 @@ export const Footer: React.FC = () => {
           
           <div className="lg:col-span-2 space-y-4">
             <a href="#" className="flex items-center gap-3">
-              <div className="w-10 h-10 rounded-2xl bg-gradient-to-tr from-vision-blueGlow via-vision-purple to-vision-cyan p-0.5 shadow-sm">
-                <div className="w-full h-full bg-white rounded-[14px] flex items-center justify-center">
-                  <Sparkles className="w-5 h-5 text-vision-blueGlow" />
-                </div>
-              </div>
-              <div className="flex flex-col">
-                <span className="font-display text-2xl font-bold tracking-tight text-slate-900">
-                  School<span className="text-vision-blueGlow">OS</span>
-                </span>
-                <span className="text-[10px] text-slate-500 font-semibold uppercase tracking-wider -mt-1">Complete Ecosystem</span>
-              </div>
+              <img src="/logo.png" alt="SchoolOS Logo" className="h-16 object-contain" />
             </a>
 
             <p className="text-sm text-slate-500 leading-relaxed max-w-sm font-light">

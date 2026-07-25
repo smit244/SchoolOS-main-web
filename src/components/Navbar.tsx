@@ -49,12 +49,7 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenDemo, onOpenTrial }) => {
         
         {/* Logo */}
         <a href="#" onClick={(e) => handleScrollTo(e, 'root')} className="flex items-center gap-2 group shrink-0 pl-2">
-          <div className="w-8 h-8 rounded-[10px] bg-slate-900 flex items-center justify-center text-white font-extrabold group-hover:scale-105 transition-all relative overflow-hidden shadow-lg">
-             <Sparkles className="w-4 h-4 text-white relative z-10" />
-          </div>
-          <span className={`font-display text-lg font-bold tracking-tighter hidden sm:block transition-colors duration-500 text-slate-900`}>
-            School<span className="text-vision-blueGlow">OS</span>
-          </span>
+          <img src="/logo.png" alt="SchoolOS Logo" className="h-10 object-contain group-hover:scale-105 transition-transform" />
         </a>
 
         {/* 3 Centered Nav Items */}
