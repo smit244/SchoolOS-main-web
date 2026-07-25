@@ -174,19 +174,41 @@ export const AIEcosystem: React.FC = () => {
           </g>
         </svg>
 
-        {/* Central Big Logo */}
+        {/* Central Round Circle with Logo */}
         <motion.div 
           style={{ opacity: coreOpacity, scale: coreScale }}
-          className="absolute z-20 w-48 h-48 md:w-[350px] md:h-[350px] flex items-center justify-center cursor-pointer"
+          className="absolute z-20 w-48 h-48 md:w-72 md:h-72 rounded-full flex items-center justify-center group cursor-pointer"
         >
-          {/* Big Logo without the glass circle */}
-          <div className="relative z-10 flex items-center justify-center w-full h-full">
+          {/* Outer Glass Casing */}
+          <div className="absolute inset-0 rounded-full bg-white/40 border border-white/80 backdrop-blur-3xl shadow-[0_30px_80px_rgba(0,0,0,0.1),inset_0_0_40px_rgba(255,255,255,1)]" />
+          
+          {/* Inner Energy Core */}
+          <div className="absolute inset-4 rounded-full bg-gradient-to-tr from-vision-cyan/30 via-white/50 to-vision-blueGlow/30 animate-pulse-slow mix-blend-multiply" />
+          <div className="absolute inset-8 rounded-full bg-gradient-to-br from-vision-purple/20 to-transparent blur-md" />
+          
+          {/* Rotating Rings */}
+          <motion.div 
+            animate={{ rotate: 360 }}
+            transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
+            className="absolute inset-[-15px] rounded-full border-[1.5px] border-dashed border-vision-blueGlow/40" 
+          />
+          <motion.div 
+            animate={{ rotate: -360 }}
+            transition={{ duration: 15, repeat: Infinity, ease: "linear" }}
+            className="absolute inset-[15px] rounded-full border border-vision-cyan/50" 
+          />
+          
+          {/* Core Content - Just the Logo */}
+          <div className="relative z-10 flex items-center justify-center w-full h-full p-8 md:p-12">
             <img 
               src="/logo.png" 
               alt="SchoolOS Logo" 
-              className="w-full h-full object-contain drop-shadow-[0_20px_50px_rgba(59,130,246,0.2)] hover:scale-110 hover:drop-shadow-[0_30px_60px_rgba(6,182,212,0.4)] transition-all duration-700" 
+              className="w-full h-full object-contain drop-shadow-[0_10px_30px_rgba(59,130,246,0.3)] hover:scale-110 transition-transform duration-500" 
             />
           </div>
+          
+          {/* Hover intense glow */}
+          <div className="absolute inset-0 rounded-full bg-white/0 group-hover:bg-white/20 transition-colors duration-500 blur-xl pointer-events-none" />
         </motion.div>
 
         {/* Floating Nodes (Desktop Circular Layout) */}
