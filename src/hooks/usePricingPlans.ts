@@ -11,8 +11,7 @@ export const usePricingPlans = () => {
     const fetchPlans = async () => {
       try {
         setIsLoading(true);
-        // Replace this URL with your actual backend endpoint later
-        const response = await fetch('https://api.schoolos.in/v1/pricing-plans');
+        const response = await fetch('http://localhost/SchoolOS/api/v1/pricing-plans/');
         
         if (!response.ok) {
           throw new Error('Network response was not ok');
