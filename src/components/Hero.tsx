@@ -1,6 +1,6 @@
 import React, { useRef, useEffect, useState } from 'react';
 import { motion, useScroll, useTransform, useMotionValue, useSpring, AnimatePresence } from 'framer-motion';
-import { Sparkles, ArrowRight, Shield, Zap, Activity, Users, CreditCard, BookOpen, BrainCircuit } from 'lucide-react';
+import { Sparkles, ArrowRight, Shield, Zap, Activity, Users, CreditCard, BookOpen, BrainCircuit, Play } from 'lucide-react';
 
 interface HeroProps {
   onOpenDemo: () => void;
@@ -175,23 +175,24 @@ export const Hero: React.FC<HeroProps> = ({ onOpenDemo, onOpenTrial }) => {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 1, delay: 0.8, ease: "easeOut" }}
-          className="flex flex-col sm:flex-row items-center justify-center gap-6 mb-16 relative z-20"
+          className="flex flex-col sm:flex-row items-center justify-center gap-4 animate-slide-up-delayed w-full max-w-md mx-auto sm:max-w-none relative z-20"
         >
-          <button
-            onClick={onOpenTrial}
-            className="group relative px-8 py-4 rounded-full bg-slate-900 text-white font-bold text-lg overflow-hidden transition-all hover:scale-110 active:scale-95 flex items-center gap-2 shadow-[0_10px_40px_rgba(15,23,42,0.2)] hover:shadow-[0_15px_50px_rgba(15,23,42,0.3)]"
+          <a
+            href="https://app.schoolos.in/register"
+            className="group relative w-full sm:w-auto px-8 py-4 bg-slate-900 rounded-full font-bold text-white overflow-hidden shadow-[0_0_40px_rgba(37,99,235,0.2)] hover:shadow-[0_0_60px_rgba(37,99,235,0.4)] transition-all flex items-center justify-center gap-2 hover:scale-105 active:scale-95"
           >
-            <div className="absolute inset-0 bg-gradient-to-r from-vision-blueGlow to-vision-purple opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-            <span className="relative z-10">Start 3-Day Free Trial</span>
-            <ArrowRight className="w-5 h-5 relative z-10 group-hover:translate-x-2 transition-transform duration-300" />
-          </button>
+            <div className="absolute inset-0 bg-gradient-to-r from-vision-blueGlow via-vision-cyan to-vision-purpleGlow opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+            <span className="relative z-10">Start for Free</span>
+            <ArrowRight className="w-5 h-5 relative z-10 group-hover:translate-x-1 transition-transform" />
+          </a>
           
-          <button
-            onClick={onOpenDemo}
-            className="group px-8 py-4 rounded-full bg-white/60 border border-slate-200/80 text-slate-800 font-bold text-lg hover:bg-white transition-all backdrop-blur-xl flex items-center gap-2 shadow-sm hover:shadow-lg hover:scale-105 active:scale-95"
+          <a
+            href="https://app.schoolos.in/login"
+            className="w-full sm:w-auto px-8 py-4 rounded-full font-bold text-slate-700 bg-white/60 border border-slate-200/50 backdrop-blur-xl hover:bg-white hover:text-slate-900 transition-all flex items-center justify-center gap-2 shadow-[0_15px_35px_rgba(0,0,0,0.05)] hover:shadow-[0_20px_40px_rgba(0,0,0,0.1)] hover:scale-105 active:scale-95"
           >
-            <span>Book a live demo</span>
-          </button>
+            <Play className="w-5 h-5" />
+            <span>Login to Portal</span>
+          </a>
         </motion.div>
 
         <motion.div 
