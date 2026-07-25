@@ -1,6 +1,6 @@
 import React, { useRef, useEffect, useState } from 'react';
 import { motion, useScroll, useTransform, useMotionValue, useSpring, AnimatePresence } from 'framer-motion';
-import { Sparkles, ArrowRight, Shield, Zap, Activity } from 'lucide-react';
+import { Sparkles, ArrowRight, Shield, Zap, Activity, Users, CreditCard, BookOpen, BrainCircuit } from 'lucide-react';
 
 interface HeroProps {
   onOpenDemo: () => void;
@@ -209,13 +209,31 @@ export const Hero: React.FC<HeroProps> = ({ onOpenDemo, onOpenTrial }) => {
               
               {/* Sidebar */}
               <div className="w-64 h-full border-r border-slate-200/50 p-6 hidden lg:flex flex-col gap-4 bg-white/30 backdrop-blur-md">
-                <div className="w-full h-10 bg-slate-900/10 rounded-xl mb-6 shadow-sm" />
-                {[...Array(6)].map((_, i) => (
-                  <div key={i} className="w-full h-8 bg-slate-900/5 rounded-lg mb-2 flex items-center px-3 gap-3 hover:bg-white/50 transition-colors cursor-pointer">
-                     <div className="w-4 h-4 rounded-full bg-slate-200" />
-                     <div className="h-2 flex-1 rounded-full bg-slate-200" />
-                  </div>
-                ))}
+                <div className="w-full h-10 mb-6 flex items-center gap-3">
+                   <div className="w-8 h-8 rounded-lg bg-vision-blueGlow flex items-center justify-center shadow-lg shadow-vision-blueGlow/30">
+                     <BrainCircuit className="w-5 h-5 text-white" />
+                   </div>
+                   <span className="font-bold text-slate-800 text-lg">SchoolOS</span>
+                </div>
+                
+                <div className="w-full h-10 rounded-xl bg-vision-blueGlow/10 flex items-center px-4 gap-3 cursor-pointer border border-vision-blueGlow/20">
+                   <Activity className="w-4 h-4 text-vision-blueGlow" />
+                   <span className="font-semibold text-vision-blueGlow text-sm">Dashboard</span>
+                </div>
+                {[
+                  { icon: Users, label: 'Students' },
+                  { icon: BookOpen, label: 'Academics' },
+                  { icon: CreditCard, label: 'Finance' },
+                  { icon: Shield, label: 'Security' }
+                ].map((item, i) => {
+                  const Icon = item.icon;
+                  return (
+                    <div key={i} className="w-full h-10 rounded-xl bg-transparent hover:bg-white/50 transition-colors flex items-center px-4 gap-3 cursor-pointer group">
+                       <Icon className="w-4 h-4 text-slate-400 group-hover:text-vision-purple transition-colors" />
+                       <span className="font-medium text-slate-500 group-hover:text-slate-700 text-sm">{item.label}</span>
+                    </div>
+                  )
+                })}
               </div>
               
               {/* Main Area */}
@@ -230,46 +248,85 @@ export const Hero: React.FC<HeroProps> = ({ onOpenDemo, onOpenTrial }) => {
                    className="absolute bottom-0 left-0 w-[300px] h-[300px] bg-vision-cyan/20 blur-[80px] rounded-full pointer-events-none opacity-40 will-change-transform" 
                  />
                  
-                 <div className="w-1/2 sm:w-1/3 h-10 bg-slate-900/10 rounded-xl mb-8 relative z-10 shadow-sm" />
+                 <div className="w-1/2 sm:w-1/3 h-10 mb-8 relative z-10 flex items-center gap-2">
+                    <span className="text-xl font-bold text-slate-800">Overview</span>
+                    <span className="px-2 py-1 bg-emerald-100 text-emerald-600 rounded-md text-[10px] font-bold uppercase tracking-wide">Live</span>
+                 </div>
                  
                  {/* 3 Top Stat Cards */}
                  <div className="grid grid-cols-2 md:grid-cols-3 gap-4 sm:gap-6 relative z-10">
-                    {[1, 2, 3].map(i => (
+                    {[
+                      { title: 'Total Students', value: '2,450', trend: '+12%', color: 'text-vision-blueGlow', bg: 'bg-vision-blueGlow/10' },
+                      { title: 'Attendance Rate', value: '98.5%', trend: '+2.1%', color: 'text-vision-cyan', bg: 'bg-vision-cyan/10' },
+                      { title: 'Active AI Nodes', value: '34', trend: 'Optimal', color: 'text-vision-purple', bg: 'bg-vision-purple/10' }
+                    ].map((stat, i) => (
                       <motion.div 
                         key={i} 
                         whileHover={{ y: -5 }}
-                        className={`h-32 sm:h-40 rounded-2xl bg-white/60 border border-white/80 backdrop-blur-md shadow-sm p-4 sm:p-5 flex flex-col justify-between ${i === 3 ? 'hidden md:flex' : ''}`}
+                        className={`h-32 sm:h-40 rounded-2xl bg-white/70 border border-white backdrop-blur-xl shadow-sm p-4 sm:p-5 flex flex-col justify-between ${i === 2 ? 'hidden md:flex' : ''} group overflow-hidden relative`}
                       >
-                        <div className="w-8 h-8 rounded-full bg-slate-100 flex items-center justify-center">
-                          <Activity className="w-4 h-4 text-vision-blueGlow" />
+                        <div className="flex items-center justify-between relative z-10">
+                           <div className={`w-8 h-8 rounded-full ${stat.bg} flex items-center justify-center`}>
+                             <Activity className={`w-4 h-4 ${stat.color}`} />
+                           </div>
+                           <span className={`text-xs font-bold ${stat.color}`}>{stat.trend}</span>
                         </div>
-                        <div className="space-y-2">
-                          <div className="h-4 sm:h-6 w-1/2 bg-slate-900/10 rounded-md" />
-                          <div className="h-2 w-3/4 bg-slate-900/5 rounded-full" />
+                        <div className="space-y-1 relative z-10">
+                          <h3 className="text-2xl sm:text-3xl font-display font-bold text-slate-800">{stat.value}</h3>
+                          <p className="text-xs sm:text-sm font-medium text-slate-500">{stat.title}</p>
+                        </div>
+                        {/* Sparkline Background */}
+                        <div className="absolute bottom-0 left-0 w-full h-16 opacity-20 pointer-events-none">
+                          <svg className="w-full h-full" preserveAspectRatio="none" viewBox="0 0 100 100">
+                             <motion.path 
+                               d={i === 0 ? "M0,100 L20,80 L40,90 L60,40 L80,50 L100,20 L100,100 Z" : i === 1 ? "M0,100 L20,50 L40,60 L60,30 L80,20 L100,10 L100,100 Z" : "M0,100 L20,40 L40,80 L60,50 L80,30 L100,40 L100,100 Z"} 
+                               fill="currentColor" 
+                               className={stat.color}
+                             />
+                          </svg>
                         </div>
                       </motion.div>
                     ))}
                  </div>
                  
-                 {/* Abstract Animated Visualization Area */}
-                 <div className="w-full h-48 sm:h-64 mt-6 rounded-2xl bg-gradient-to-tr from-white/80 to-white/40 border border-white/80 relative z-10 backdrop-blur-xl p-6 shadow-sm flex items-center justify-center overflow-hidden">
-                    <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(59,130,246,0.05)_0%,transparent_100%)]" />
+                 {/* Abstract Animated AI Scanner Area */}
+                 <div className="w-full h-48 sm:h-64 mt-6 rounded-2xl bg-slate-900 border border-slate-800 relative z-10 p-6 shadow-2xl flex items-center justify-center overflow-hidden group/scanner">
+                    {/* Grid Background */}
+                    <div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.05)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.05)_1px,transparent_1px)] bg-[size:20px_20px] [mask-image:radial-gradient(ellipse_at_center,black_40%,transparent_70%)]" />
                     
-                    {/* Floating Data Nodes inside dashboard */}
+                    {/* Glowing Scan Line */}
                     <motion.div 
-                      animate={{ rotate: 360 }}
-                      transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
-                      className="relative w-32 h-32 sm:w-48 sm:h-48 rounded-full border border-vision-cyan/20 flex items-center justify-center"
-                    >
-                       <div className="absolute w-3 h-3 sm:w-4 sm:h-4 rounded-full bg-vision-cyan shadow-[0_0_15px_rgba(6,182,212,0.5)] -top-1.5 sm:-top-2" />
-                       <div className="absolute w-2 h-2 sm:w-3 sm:h-3 rounded-full bg-vision-purple shadow-[0_0_15px_rgba(139,92,246,0.5)] -bottom-1 sm:-bottom-1.5" />
+                      animate={{ y: ["-100%", "200%"] }}
+                      transition={{ duration: 3, repeat: Infinity, ease: "linear" }}
+                      className="absolute top-0 left-0 w-full h-20 bg-gradient-to-b from-transparent via-vision-cyan/20 to-vision-cyan/50 blur-md pointer-events-none z-20"
+                    />
+                    
+                    {/* AI Face Matrix */}
+                    <div className="relative w-32 h-32 sm:w-48 sm:h-48 border border-vision-cyan/30 rounded-xl flex items-center justify-center bg-vision-blueGlow/10 backdrop-blur-sm overflow-hidden">
+                       <div className="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=200&auto=format&fit=crop')] bg-cover bg-center opacity-40 mix-blend-luminosity group-hover/scanner:opacity-80 transition-opacity duration-1000" />
                        
-                       <div className="w-16 h-16 sm:w-24 sm:h-24 rounded-full border border-vision-blueGlow/30 flex items-center justify-center">
-                         <div className="w-8 h-8 sm:w-12 sm:h-12 rounded-full bg-vision-blueGlow/20 animate-pulse flex items-center justify-center">
-                           <div className="w-4 h-4 sm:w-6 sm:h-6 rounded-full bg-vision-blueGlow shadow-[0_0_20px_rgba(59,130,246,0.8)]" />
-                         </div>
+                       {/* Face Recognition Points */}
+                       <motion.div animate={{ scale: [1, 1.2, 1], opacity: [0.5, 1, 0.5] }} transition={{ duration: 2, repeat: Infinity }} className="absolute top-[40%] left-[35%] w-2 h-2 rounded-full bg-vision-cyan shadow-[0_0_10px_#06B6D4]" />
+                       <motion.div animate={{ scale: [1, 1.2, 1], opacity: [0.5, 1, 0.5] }} transition={{ duration: 2, repeat: Infinity, delay: 0.5 }} className="absolute top-[40%] right-[35%] w-2 h-2 rounded-full bg-vision-cyan shadow-[0_0_10px_#06B6D4]" />
+                       <motion.div animate={{ scale: [1, 1.5, 1], opacity: [0.5, 1, 0.5] }} transition={{ duration: 2, repeat: Infinity, delay: 1 }} className="absolute bottom-[35%] left-1/2 -translate-x-1/2 w-3 h-3 rounded-full bg-vision-purple shadow-[0_0_15px_#8B5CF6]" />
+                       
+                       {/* Overlay scan box */}
+                       <div className="absolute inset-4 border border-vision-cyan/50 rounded-lg" />
+                       <div className="absolute top-4 left-4 w-3 h-3 border-t-2 border-l-2 border-vision-cyan" />
+                       <div className="absolute top-4 right-4 w-3 h-3 border-t-2 border-r-2 border-vision-cyan" />
+                       <div className="absolute bottom-4 left-4 w-3 h-3 border-b-2 border-l-2 border-vision-cyan" />
+                       <div className="absolute bottom-4 right-4 w-3 h-3 border-b-2 border-r-2 border-vision-cyan" />
+                    </div>
+                    
+                    {/* Side Floating Stats */}
+                    <div className="absolute right-8 top-1/2 -translate-y-1/2 hidden sm:flex flex-col gap-4 z-20">
+                       <div className="bg-white/10 backdrop-blur-md border border-white/20 px-3 py-1.5 rounded-lg text-xs font-mono text-vision-cyan flex items-center gap-2 shadow-[0_0_15px_rgba(6,182,212,0.2)]">
+                         <span className="w-1.5 h-1.5 rounded-full bg-vision-cyan animate-ping" /> Face Rec Online
                        </div>
-                    </motion.div>
+                       <div className="bg-white/10 backdrop-blur-md border border-white/20 px-3 py-1.5 rounded-lg text-xs font-mono text-vision-purple flex items-center gap-2 shadow-[0_0_15px_rgba(139,92,246,0.2)]">
+                         Match: 99.8%
+                       </div>
+                    </div>
                  </div>
               </div>
             </div>
@@ -289,38 +346,47 @@ export const Hero: React.FC<HeroProps> = ({ onOpenDemo, onOpenTrial }) => {
              {/* Mobile Content */}
              <div className="absolute inset-0 bg-gradient-to-b from-white/90 to-white/40 p-5 pt-16 flex flex-col gap-4">
                 
-                {/* Mobile Header Card */}
-                <motion.div 
-                  whileHover={{ scale: 1.05 }}
-                  className="w-full h-14 bg-white/80 rounded-2xl border border-white shadow-sm flex items-center px-4 gap-3 cursor-pointer"
-                >
-                  <div className="w-8 h-8 rounded-full bg-gradient-to-tr from-vision-cyan to-vision-blueGlow flex items-center justify-center shadow-md">
-                    <Sparkles className="w-4 h-4 text-white" />
-                  </div>
-                  <div className="flex-1 space-y-1.5">
-                    <div className="w-2/3 h-2 bg-slate-800/20 rounded-full" />
-                    <div className="w-1/3 h-1.5 bg-slate-800/10 rounded-full" />
-                  </div>
-                </motion.div>
-                
-                {/* Mobile Main Chart Card */}
-                <div className="flex-1 bg-white/60 rounded-3xl border border-white shadow-sm p-5 relative overflow-hidden flex flex-col justify-end group-hover/mobile:bg-white/80 transition-colors">
-                   <div className="absolute -right-10 -top-10 w-40 h-40 bg-vision-blueGlow/20 blur-3xl rounded-full" />
-                   <div className="absolute -left-10 top-20 w-32 h-32 bg-vision-purple/20 blur-3xl rounded-full" />
-                   
-                   {/* Fake mobile chart */}
-                   <div className="flex items-end gap-2 h-[60%] w-full relative z-10">
-                      {[50, 30, 80, 45, 95, 60].map((h, i) => (
-                        <motion.div 
-                          key={i} 
-                          initial={{ height: 0 }}
-                          whileInView={{ height: `${h}%` }}
-                          transition={{ duration: 1, delay: i * 0.1 }}
-                          className="flex-1 bg-gradient-to-t from-vision-purple to-vision-cyan rounded-t-sm opacity-90 shadow-sm" 
-                        />
-                      ))}
+                 {/* Mobile Student Profile Card */}
+                 <motion.div 
+                   whileHover={{ scale: 1.05 }}
+                   className="w-full bg-white/90 rounded-2xl border border-white shadow-lg p-4 cursor-pointer flex flex-col gap-3 relative z-10"
+                 >
+                   <div className="flex items-center gap-3">
+                     <img src="https://images.unsplash.com/photo-1517841905240-472988babdf9?q=80&w=150&auto=format&fit=crop" className="w-10 h-10 rounded-full border-2 border-vision-cyan p-0.5 object-cover" alt="Student" />
+                     <div>
+                       <div className="font-bold text-slate-800 text-sm">Emma Thompson</div>
+                       <div className="text-xs font-medium text-vision-purple">Grade 10-A</div>
+                     </div>
                    </div>
-                </div>
+                   <div className="w-full bg-slate-100 rounded-lg p-2 flex justify-between items-center text-xs">
+                     <span className="text-slate-500 font-medium">Status</span>
+                     <span className="text-emerald-600 font-bold flex items-center gap-1"><span className="w-1.5 h-1.5 bg-emerald-500 rounded-full animate-pulse" /> Present</span>
+                   </div>
+                 </motion.div>
+                 
+                 {/* Mobile Live Feed */}
+                 <div className="flex-1 bg-white/60 rounded-3xl border border-white shadow-sm p-4 relative overflow-hidden flex flex-col gap-2 group-hover/mobile:bg-white/80 transition-colors z-10">
+                    <div className="text-[10px] font-bold text-slate-400 uppercase tracking-wider mb-1 px-1">Live Activity</div>
+                    
+                    {[
+                      { icon: CreditCard, title: 'Term Fee Paid', time: '2m ago', color: 'text-vision-blueGlow', bg: 'bg-vision-blueGlow/10' },
+                      { icon: BookOpen, title: 'Math Quiz Scored', time: '1h ago', color: 'text-vision-purple', bg: 'bg-vision-purple/10' },
+                      { icon: Activity, title: 'Bus GPS Updated', time: '3h ago', color: 'text-vision-cyan', bg: 'bg-vision-cyan/10' },
+                    ].map((item, i) => {
+                      const Icon = item.icon;
+                      return (
+                        <div key={i} className="flex items-center gap-3 p-2 rounded-xl hover:bg-white/50 transition-colors cursor-pointer">
+                           <div className={`w-8 h-8 rounded-full ${item.bg} flex items-center justify-center shrink-0`}>
+                              <Icon className={`w-4 h-4 ${item.color}`} />
+                           </div>
+                           <div className="flex-1 min-w-0">
+                              <div className="text-xs font-semibold text-slate-800 truncate">{item.title}</div>
+                              <div className="text-[9px] font-medium text-slate-500">{item.time}</div>
+                           </div>
+                        </div>
+                      )
+                    })}
+                 </div>
 
                 {/* Mobile Bottom Status Card */}
                 <div className="w-full h-24 bg-slate-900 rounded-3xl border border-slate-800 shadow-xl p-5 flex items-center gap-4 relative overflow-hidden">
