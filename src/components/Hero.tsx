@@ -56,6 +56,17 @@ export const Hero: React.FC<HeroProps> = ({ onOpenDemo, onOpenTrial }) => {
     visible: { opacity: 1, y: 0, transition: { duration: 0.8, ease: "easeOut" as any } }
   };
 
+  // Dynamic text rotation
+  const rotatingWords = ["learning", "management", "education", "growth"];
+  const [wordIndex, setWordIndex] = useState(0);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setWordIndex((prev) => (prev + 1) % rotatingWords.length);
+    }, 3000);
+    return () => clearInterval(interval);
+  }, []);
+
   const titleWords1 = "The future of".split(" ");
   
   return (
@@ -82,22 +93,37 @@ export const Hero: React.FC<HeroProps> = ({ onOpenDemo, onOpenTrial }) => {
           <span className="text-sm font-semibold text-slate-700 relative z-10 tracking-wide">Introducing SchoolOS Intelligence</span>
         </motion.div>
 
-        {/* Cinematic Headline with Staggered Words */}
+        {/* Cinematic Headline with 3D Rotating Words */}
         <motion.h1 
           initial="hidden"
           animate="visible"
           transition={{ staggerChildren: 0.1 }}
-          className="font-display text-[4rem] sm:text-[6rem] lg:text-[7.5rem] font-medium leading-[1.05] tracking-tighter text-slate-900 mb-8 max-w-5xl mx-auto flex flex-wrap justify-center gap-x-4 sm:gap-x-8"
+          className="font-display text-[3.5rem] sm:text-[5rem] lg:text-[7rem] font-bold leading-[1.05] tracking-tight text-slate-900 mb-8 max-w-6xl mx-auto flex flex-wrap justify-center gap-x-4 sm:gap-x-6 items-center"
         >
           {titleWords1.map((word, i) => (
             <motion.span key={i} variants={wordAnimation} className="inline-block">
               {word}
             </motion.span>
           ))}
-          <motion.span variants={wordAnimation} className="relative inline-block mt-2 sm:mt-0">
-            <span className="absolute inset-0 bg-gradient-to-r from-vision-blueGlow via-vision-purple to-vision-cyan bg-clip-text text-transparent blur-2xl opacity-40 animate-pulse-slow" />
-            <span className="relative bg-gradient-to-r from-vision-blueGlow via-vision-purple to-vision-cyan bg-clip-text text-transparent">learning</span>
-          </motion.span>
+          
+          <motion.div variants={wordAnimation} className="relative inline-flex items-center justify-center min-w-[280px] sm:min-w-[400px] lg:min-w-[550px] h-[4rem] sm:h-[6rem] lg:h-[8rem] overflow-hidden ml-2 perspective-[1000px]">
+             {/* Background blur glow that stays static */}
+             <div className="absolute inset-0 bg-gradient-to-r from-vision-blueGlow via-vision-purple to-vision-cyan blur-2xl opacity-30 animate-pulse-slow pointer-events-none" />
+             
+             <AnimatePresence mode="popLayout">
+               <motion.span
+                 key={wordIndex}
+                 initial={{ y: 50, opacity: 0, rotateX: -90 }}
+                 animate={{ y: 0, opacity: 1, rotateX: 0 }}
+                 exit={{ y: -50, opacity: 0, rotateX: 90 }}
+                 transition={{ duration: 0.8, type: "spring", bounce: 0.4 }}
+                 className="inline-block whitespace-nowrap bg-gradient-to-r from-blue-600 via-purple-600 to-cyan-500 bg-clip-text text-transparent origin-center pb-2"
+               >
+                 {rotatingWords[wordIndex]}
+               </motion.span>
+             </AnimatePresence>
+          </motion.div>
+
           <motion.span variants={wordAnimation} className="inline-block">is</motion.span>
           <motion.span variants={wordAnimation} className="inline-block">here.</motion.span>
         </motion.h1>
