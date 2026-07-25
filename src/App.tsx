@@ -7,10 +7,6 @@ import { AttendanceStory } from './components/stories/AttendanceStory';
 import { QuestionPaperStory } from './components/stories/QuestionPaperStory';
 import { BentoFeatures } from './components/BentoFeatures';
 import { Pricing } from './components/Pricing';
-
-function App() {
-  const [isDemoOpen, setIsDemoOpen] = useState(false);
-//... (truncated intentionally in my head, I need to fetch the file to see lines to replace)
 import { FAQ } from './components/FAQ';
 import { Contact } from './components/Contact';
 import { Footer } from './components/Footer';
@@ -70,9 +66,9 @@ function App() {
         <AttendanceStory />
         <QuestionPaperStory />
 
-        {/* Animated System Flow Pipeline */}
-        <div className="w-full relative z-10">
-          <SystemFlow />
+        {/* Features Bento Grid */}
+        <div id="features" className="w-full relative z-10">
+          <BentoFeatures />
         </div>
 
         {/* Pricing */}
