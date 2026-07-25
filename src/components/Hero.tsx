@@ -56,17 +56,6 @@ export const Hero: React.FC<HeroProps> = ({ onOpenDemo, onOpenTrial }) => {
     visible: { opacity: 1, y: 0, transition: { duration: 0.8, ease: "easeOut" as any } }
   };
 
-  // Dynamic text rotation
-  const rotatingWords = ["learning", "management", "education", "growth"];
-  const [wordIndex, setWordIndex] = useState(0);
-
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setWordIndex((prev) => (prev + 1) % rotatingWords.length);
-    }, 3000);
-    return () => clearInterval(interval);
-  }, []);
-
   const titleWords1 = "The future of".split(" ");
   
   return (
@@ -93,7 +82,7 @@ export const Hero: React.FC<HeroProps> = ({ onOpenDemo, onOpenTrial }) => {
           <span className="text-sm font-semibold text-slate-700 relative z-10 tracking-wide">Introducing SchoolOS Intelligence</span>
         </motion.div>
 
-        {/* Cinematic Headline with 3D Rotating Words */}
+        {/* Cinematic Headline with Glass Pill */}
         <motion.h1 
           initial="hidden"
           animate="visible"
@@ -106,22 +95,21 @@ export const Hero: React.FC<HeroProps> = ({ onOpenDemo, onOpenTrial }) => {
             </motion.span>
           ))}
           
-          <motion.div variants={wordAnimation} className="relative inline-flex items-center justify-center min-w-[280px] sm:min-w-[400px] lg:min-w-[550px] h-[4rem] sm:h-[6rem] lg:h-[8rem] overflow-hidden ml-2 perspective-[1000px]">
-             {/* Background blur glow that stays static */}
-             <div className="absolute inset-0 bg-gradient-to-r from-vision-blueGlow via-vision-purple to-vision-cyan blur-2xl opacity-30 animate-pulse-slow pointer-events-none" />
-             
-             <AnimatePresence mode="popLayout">
-               <motion.span
-                 key={wordIndex}
-                 initial={{ y: 50, opacity: 0, rotateX: -90 }}
-                 animate={{ y: 0, opacity: 1, rotateX: 0 }}
-                 exit={{ y: -50, opacity: 0, rotateX: 90 }}
-                 transition={{ duration: 0.8, type: "spring", bounce: 0.4 }}
-                 className="inline-block whitespace-nowrap bg-gradient-to-r from-blue-600 via-purple-600 to-cyan-500 bg-clip-text text-transparent origin-center pb-2"
-               >
-                 {rotatingWords[wordIndex]}
-               </motion.span>
-             </AnimatePresence>
+          <motion.div variants={wordAnimation} className="relative inline-flex items-center justify-center mx-2 my-2 sm:my-0">
+             {/* The Glowing Glass Pill */}
+             <div className="relative px-6 sm:px-10 py-1 sm:py-2 rounded-full bg-white/40 backdrop-blur-xl border border-white shadow-[0_10px_40px_rgba(59,130,246,0.15)] group overflow-hidden flex items-center justify-center">
+                
+                {/* Animated Gradient Border Inside Pill */}
+                <div className="absolute inset-0 rounded-full border-[3px] border-transparent bg-gradient-to-r from-blue-500 via-purple-500 to-cyan-500 [mask-image:linear-gradient(white,white),linear-gradient(white,white)] [mask-clip:padding-box,border-box] [mask-composite:exclude] opacity-50" />
+                
+                {/* Highlight Glow Behind Text inside Pill */}
+                <div className="absolute inset-0 bg-gradient-to-r from-blue-500/10 to-cyan-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
+
+                {/* Text inside Pill */}
+                <span className="relative z-10 bg-gradient-to-r from-blue-600 via-purple-600 to-cyan-600 bg-clip-text text-transparent transform group-hover:scale-105 transition-transform duration-500 pb-2">
+                  learning
+                </span>
+             </div>
           </motion.div>
 
           <motion.span variants={wordAnimation} className="inline-block">is</motion.span>
