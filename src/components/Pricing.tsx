@@ -24,7 +24,7 @@ export const Pricing: React.FC<PricingProps> = () => {
             <Sparkles className="w-4 h-4 text-vision-blueGlow" />
             <span>Transparent Pricing</span>
           </div>
-          <h2 className="font-display text-4xl sm:text-6xl font-bold text-slate-900 tracking-tight">
+          <h2 className="font-display text-4xl sm:text-5xl lg:text-6xl font-bold text-slate-900 tracking-tight">
             Simple plans for <span className="text-transparent bg-clip-text bg-gradient-to-r from-vision-blueGlow to-vision-cyan">every school.</span>
           </h2>
           <p className="text-lg sm:text-xl text-slate-600 font-light">
@@ -78,7 +78,7 @@ export const Pricing: React.FC<PricingProps> = () => {
               return (
                 <div
                   key={plan.id}
-                  className={`relative p-8 rounded-[2.5rem] flex flex-col justify-between transition-all duration-500 ${
+                  className={`relative p-6 sm:p-8 rounded-[2.5rem] flex flex-col justify-between transition-all duration-500 ${
                     plan.popular
                       ? 'bg-white border border-slate-200 shadow-[0_30px_60px_rgba(0,0,0,0.08)] scale-105 z-10'
                       : 'bg-white/60 border border-slate-200/50 backdrop-blur-xl shadow-[0_15px_35px_rgba(0,0,0,0.03)] hover:bg-white hover:shadow-[0_20px_40px_rgba(0,0,0,0.05)]'
@@ -97,7 +97,7 @@ export const Pricing: React.FC<PricingProps> = () => {
                     </div>
 
                     <div className="flex items-baseline gap-1 py-4 border-b border-slate-100">
-                      <span className="text-5xl font-extrabold text-slate-900 font-display">₹{price}</span>
+                      <span className="text-4xl sm:text-5xl font-extrabold text-slate-900 font-display">₹{price}</span>
                       <span className="text-sm text-slate-500 font-medium">/ month</span>
                     </div>
 
