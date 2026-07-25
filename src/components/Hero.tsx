@@ -95,38 +95,56 @@ export const Hero: React.FC<HeroProps> = ({ onOpenDemo, onOpenTrial }) => {
             </motion.span>
           ))}
           
-          <motion.div variants={wordAnimation} className="relative inline-flex items-center justify-center mx-3 sm:mx-6 group">
-             {/* Massive Pulsating Background Aura */}
-             <div className="absolute -inset-6 bg-gradient-to-r from-pink-500 via-purple-500 to-cyan-500 blur-3xl opacity-30 group-hover:opacity-60 transition-opacity duration-700 animate-pulse rounded-full" />
+          <motion.div variants={wordAnimation} className="relative inline-flex flex-col items-center justify-center mx-2 sm:mx-4 group">
              
-             {/* Liquid Gradient Flowing Text */}
-             <motion.span 
-               animate={{ backgroundPosition: ["0% center", "200% center"] }}
-               transition={{ duration: 4, repeat: Infinity, ease: "linear" }}
-               className="relative z-10 italic pr-2 font-black text-transparent bg-clip-text pb-2 sm:pb-4 drop-shadow-sm scale-110 sm:scale-125 transform-gpu"
-               style={{
-                 backgroundImage: 'linear-gradient(90deg, #FF0080, #7928CA, #00DFD8, #FF0080)',
-                 backgroundSize: '200% auto',
-               }}
-             >
+             {/* Beautiful Gradient Text (Normal Size) */}
+             <span className="relative z-10 bg-gradient-to-r from-blue-600 via-indigo-500 to-cyan-500 bg-clip-text text-transparent">
                learning
-             </motion.span>
+             </span>
 
-             {/* Floating Glowing Sparkles (Creative elements) */}
-             <motion.div 
-                animate={{ rotate: 360, y: [0, -10, 0], scale: [1, 1.2, 1] }} 
-                transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }} 
-                className="absolute -top-6 -right-8 sm:-top-8 sm:-right-12 z-20 pointer-events-none"
-             >
-                <Sparkles className="w-10 h-10 sm:w-14 sm:h-14 text-pink-400 drop-shadow-[0_0_15px_rgba(244,63,94,0.8)]" fill="currentColor" />
-             </motion.div>
+             {/* Creative Animated Hand-drawn Swoosh Underline */}
+             <div className="absolute -bottom-2 sm:-bottom-4 left-0 w-full h-4 sm:h-6 overflow-visible pointer-events-none">
+               <svg className="w-full h-full overflow-visible" viewBox="0 0 100 20" preserveAspectRatio="none">
+                 <motion.path 
+                   d="M-5 15 Q 30 25, 60 10 T 105 10" 
+                   fill="none" 
+                   stroke="url(#swooshGradient1)" 
+                   strokeWidth="3" 
+                   strokeLinecap="round" 
+                   initial={{ pathLength: 0, opacity: 0 }}
+                   animate={{ pathLength: 1, opacity: 1 }}
+                   transition={{ duration: 1.2, delay: 0.5, ease: "easeInOut" }}
+                 />
+                 <motion.path 
+                   d="M0 20 Q 25 30, 50 15 T 100 20" 
+                   fill="none" 
+                   stroke="url(#swooshGradient2)" 
+                   strokeWidth="2" 
+                   strokeLinecap="round" 
+                   initial={{ pathLength: 0, opacity: 0 }}
+                   animate={{ pathLength: 1, opacity: 0.6 }}
+                   transition={{ duration: 1.2, delay: 0.7, ease: "easeInOut" }}
+                 />
+                 <defs>
+                   <linearGradient id="swooshGradient1" x1="0%" y1="0%" x2="100%" y2="0%">
+                     <stop offset="0%" stopColor="#3B82F6" />
+                     <stop offset="100%" stopColor="#06B6D4" />
+                   </linearGradient>
+                   <linearGradient id="swooshGradient2" x1="0%" y1="0%" x2="100%" y2="0%">
+                     <stop offset="0%" stopColor="#8B5CF6" />
+                     <stop offset="100%" stopColor="#3B82F6" />
+                   </linearGradient>
+                 </defs>
+               </svg>
+             </div>
 
+             {/* Small elegant accent sparkle */}
              <motion.div 
-                animate={{ rotate: -360, y: [0, 15, 0], scale: [1, 1.3, 1] }} 
-                transition={{ duration: 5, repeat: Infinity, ease: "easeInOut", delay: 1 }} 
-                className="absolute -bottom-4 -left-6 sm:-bottom-6 sm:-left-10 z-20 pointer-events-none"
+                animate={{ rotate: 180, scale: [1, 1.2, 1] }} 
+                transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }} 
+                className="absolute -top-1 -right-6 sm:-top-2 sm:-right-8 z-20 pointer-events-none"
              >
-                <Sparkles className="w-8 h-8 sm:w-10 sm:h-10 text-cyan-400 drop-shadow-[0_0_15px_rgba(6,182,212,0.8)]" fill="currentColor" />
+                <Sparkles className="w-5 h-5 sm:w-6 sm:h-6 text-vision-cyan drop-shadow-[0_0_10px_rgba(6,182,212,0.8)]" />
              </motion.div>
           </motion.div>
 
