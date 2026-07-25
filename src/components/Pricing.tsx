@@ -97,7 +97,7 @@ export const Pricing: React.FC<PricingProps> = () => {
                     </div>
 
                     <div className="flex items-baseline gap-1 py-4 border-b border-slate-100">
-                      <span className="text-5xl font-extrabold text-slate-900 font-display">${price}</span>
+                      <span className="text-5xl font-extrabold text-slate-900 font-display">₹{price}</span>
                       <span className="text-sm text-slate-500 font-medium">/ month</span>
                     </div>
 
