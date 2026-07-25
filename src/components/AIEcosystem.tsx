@@ -7,22 +7,25 @@ import {
 } from 'lucide-react';
 
 const ECOSYSTEM_MODULES = [
-  { id: 1, title: 'Student Management', icon: Users, angle: 15, rx: 320, ry: 190, color: '#3b82f6' },
-  { id: 2, title: 'Attendance', icon: CheckSquare, angle: 55, rx: 420, ry: 250, color: '#10b981' },
-  { id: 3, title: 'AI Face Recognition', icon: ScanFace, angle: 85, rx: 280, ry: 210, color: '#8b5cf6' },
-  { id: 4, title: 'Question Bank', icon: Database, angle: 130, rx: 460, ry: 300, color: '#f59e0b' },
-  { id: 5, title: 'AI Question Gen', icon: Sparkles, angle: 170, rx: 340, ry: 200, color: '#06b6d4' },
-  { id: 6, title: 'Examination', icon: FileText, angle: 210, rx: 480, ry: 280, color: '#f43f5e' },
-  { id: 7, title: 'Fee Management', icon: CreditCard, angle: 260, rx: 290, ry: 230, color: '#10b981' },
-  { id: 8, title: 'Homework', icon: BookOpen, angle: 300, rx: 430, ry: 270, color: '#3b82f6' },
-  { id: 9, title: 'Library', icon: Library, angle: 35, rx: 500, ry: 330, color: '#8b5cf6' },
-  { id: 10, title: 'Transport', icon: Bus, angle: 105, rx: 520, ry: 350, color: '#f59e0b' },
-  { id: 11, title: 'Parent App', icon: Smartphone, angle: 145, rx: 310, ry: 260, color: '#ec4899' },
-  { id: 12, title: 'Teacher Portal', icon: Presentation, angle: 190, rx: 530, ry: 340, color: '#06b6d4' },
-  { id: 13, title: 'Student Portal', icon: GraduationCap, angle: 235, rx: 350, ry: 220, color: '#3b82f6' },
-  { id: 14, title: 'Reports', icon: FileBarChart, angle: 280, rx: 510, ry: 360, color: '#d946ef' },
-  { id: 15, title: 'Analytics', icon: PieChart, angle: 325, rx: 300, ry: 180, color: '#eab308' },
-  { id: 16, title: 'Certificates', icon: Award, angle: 345, rx: 450, ry: 320, color: '#10b981' },
+  // --- INNER RING (6 items, evenly spaced by 60 degrees) ---
+  { id: 1, title: 'Student Management', icon: Users, angle: 30, rx: 320, ry: 220, color: '#3b82f6' },
+  { id: 3, title: 'AI Face Recognition', icon: ScanFace, angle: 90, rx: 320, ry: 220, color: '#8b5cf6' },
+  { id: 5, title: 'AI Question Gen', icon: Sparkles, angle: 150, rx: 320, ry: 220, color: '#06b6d4' },
+  { id: 7, title: 'Fee Management', icon: CreditCard, angle: 210, rx: 320, ry: 220, color: '#10b981' },
+  { id: 13, title: 'Student Portal', icon: GraduationCap, angle: 270, rx: 320, ry: 220, color: '#3b82f6' },
+  { id: 15, title: 'Analytics', icon: PieChart, angle: 330, rx: 320, ry: 220, color: '#eab308' },
+
+  // --- OUTER RING (10 items, evenly spaced by 36 degrees) ---
+  { id: 9, title: 'Library', icon: Library, angle: 0, rx: 520, ry: 360, color: '#8b5cf6' },
+  { id: 2, title: 'Attendance', icon: CheckSquare, angle: 36, rx: 520, ry: 360, color: '#10b981' },
+  { id: 10, title: 'Transport', icon: Bus, angle: 72, rx: 520, ry: 360, color: '#f59e0b' },
+  { id: 4, title: 'Question Bank', icon: Database, angle: 108, rx: 520, ry: 360, color: '#f59e0b' },
+  { id: 11, title: 'Parent App', icon: Smartphone, angle: 144, rx: 520, ry: 360, color: '#ec4899' },
+  { id: 12, title: 'Teacher Portal', icon: Presentation, angle: 180, rx: 520, ry: 360, color: '#06b6d4' },
+  { id: 6, title: 'Examination', icon: FileText, angle: 216, rx: 520, ry: 360, color: '#f43f5e' },
+  { id: 8, title: 'Homework', icon: BookOpen, angle: 252, rx: 520, ry: 360, color: '#3b82f6' },
+  { id: 14, title: 'Reports', icon: FileBarChart, angle: 288, rx: 520, ry: 360, color: '#d946ef' },
+  { id: 16, title: 'Certificates', icon: Award, angle: 324, rx: 520, ry: 360, color: '#10b981' },
 ];
 
 export const AIEcosystem: React.FC = () => {
@@ -187,7 +190,7 @@ export const AIEcosystem: React.FC = () => {
                   onMouseEnter={() => setHoveredNode(mod.id)}
                   onMouseLeave={() => setHoveredNode(null)}
                   onClick={() => setActiveNode(mod.id)}
-                  className="flex flex-col items-center gap-3 cursor-pointer group"
+                  className={`flex flex-col items-center gap-3 cursor-pointer group relative ${isHovered || activeNode === mod.id ? 'z-50' : 'z-10'}`}
                 >
                   <motion.div animate={{ y: ["-6px", "6px", "-6px"] }} transition={{ duration: 4, repeat: Infinity, delay: i * 0.2 }}>
                     
