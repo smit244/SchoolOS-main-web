@@ -229,8 +229,8 @@ export const AIEcosystem: React.FC = () => {
         </p>
       </div>
 
-      {/* Floating Orbital Engine Area */}
-      <div className="relative w-full h-[600px] lg:h-[700px] flex items-center justify-center mt-10">
+      {/* Floating Orbital Engine Area (Desktop Only) */}
+      <div className="hidden lg:flex relative w-full h-[700px] items-center justify-center mt-10">
         
         {/* Scale wrapper relaxed so text stays readable since orbits are now physically smaller */}
         <div className="relative flex items-center justify-center w-full h-full scale-[0.7] lg:scale-90 xl:scale-100 origin-center">
@@ -293,34 +293,36 @@ export const AIEcosystem: React.FC = () => {
           
         </div>
 
-        {/* Mobile View (Stacked List) */}
-        <div className="lg:hidden w-full max-w-md mx-auto px-4 z-30 mt-80 space-y-4 pb-20 relative">
-           {ECOSYSTEM_MODULES.map((mod, i) => {
-             const Icon = mod.icon;
-             return (
-               <motion.div
-                 key={mod.id}
-                 initial={{ opacity: 0, y: 20 }}
-                 whileInView={{ opacity: 1, y: 0 }}
-                 viewport={{ once: true }}
-                 transition={{ delay: i * 0.05 }}
-                 className="w-full flex items-center gap-5 p-5 rounded-3xl bg-white/80 backdrop-blur-xl border border-white shadow-[0_10px_30px_rgba(0,0,0,0.05)]"
-                 onClick={() => setActiveNode(mod.id)}
-               >
-                 <div className="w-14 h-14 rounded-2xl flex items-center justify-center bg-slate-50 border border-slate-100 shadow-inner" style={{ color: mod.color }}>
-                   <Icon className="w-6 h-6" strokeWidth={1.5} />
-                 </div>
-                 <div className="flex-1">
-                   <h3 className="font-bold text-slate-800 text-lg">{mod.title}</h3>
-                   <div className="flex items-center gap-2 mt-1">
-                     <span className="w-2 h-2 rounded-full animate-pulse" style={{ backgroundColor: mod.color }} />
-                     <p className="text-[10px] font-extrabold text-slate-400 uppercase tracking-widest">Live Syncing</p>
-                   </div>
-                 </div>
-               </motion.div>
-             )
-           })}
         </div>
+      </div>
+
+      {/* Mobile View (Stacked List) */}
+      <div className="lg:hidden w-full max-w-md mx-auto px-4 z-30 mt-10 space-y-4 pb-20 relative">
+         {ECOSYSTEM_MODULES.map((mod, i) => {
+           const Icon = mod.icon;
+           return (
+             <motion.div
+               key={mod.id}
+               initial={{ opacity: 0, y: 20 }}
+               whileInView={{ opacity: 1, y: 0 }}
+               viewport={{ once: true }}
+               transition={{ delay: i * 0.05 }}
+               className="w-full flex items-center gap-5 p-5 rounded-3xl bg-white/80 backdrop-blur-xl border border-white shadow-[0_10px_30px_rgba(0,0,0,0.05)]"
+               onClick={() => setActiveNode(mod.id)}
+             >
+               <div className="w-14 h-14 rounded-2xl flex items-center justify-center bg-slate-50 border border-slate-100 shadow-inner" style={{ color: mod.color }}>
+                 <Icon className="w-6 h-6" strokeWidth={1.5} />
+               </div>
+               <div className="flex-1">
+                 <h3 className="font-bold text-slate-800 text-lg">{mod.title}</h3>
+                 <div className="flex items-center gap-2 mt-1">
+                   <span className="w-2 h-2 rounded-full animate-pulse" style={{ backgroundColor: mod.color }} />
+                   <p className="text-[10px] font-extrabold text-slate-400 uppercase tracking-widest">Live Syncing</p>
+                 </div>
+               </div>
+             </motion.div>
+           )
+         })}
       </div>
       
       {/* Global Animation Styles */}
