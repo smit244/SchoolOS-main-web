@@ -11,8 +11,8 @@ export const Pricing: React.FC<PricingProps> = () => {
   const [billingCycle, setBillingCycle] = useState<'monthly' | 'yearly'>('yearly');
   const { plans, isLoading } = usePricingPlans();
 
-  // Temporary links for authentication until real ones are provided
-  const REGISTER_URL = "https://app.schoolos.in/register";
+  // Registration Link
+  const REGISTER_URL = "/schoolos/register.php";
 
   return (
     <section id="pricing" className="py-24 relative overflow-hidden">

@@ -73,14 +73,14 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenDemo, onOpenTrial }) => {
         {/* CTAs */}
         <div className="flex items-center gap-2 pr-1">
           <a 
-            href="https://app.schoolos.in/login"
+            href="/schoolos/portals.php"
             className={`hidden sm:block text-sm font-bold px-4 py-2 transition-colors rounded-2xl text-slate-700 hover:text-slate-900 hover:bg-slate-100/50`}
           >
             Login
           </a>
           
           <a
-            href="https://app.schoolos.in/register"
+            href="/schoolos/register.php"
             className={`relative px-5 py-2.5 rounded-[18px] font-bold text-sm overflow-hidden group shadow-lg transition-transform hover:scale-105 active:scale-95 flex items-center gap-2 bg-slate-900 text-white`}
           >
             <div className="absolute inset-0 bg-gradient-to-r from-vision-cyan to-vision-blueGlow opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
@@ -123,7 +123,7 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenDemo, onOpenTrial }) => {
               </a>
             ))}
             <a 
-              href="https://app.schoolos.in/login"
+              href="/schoolos/portals.php"
               className={`mt-4 w-full py-3 rounded-2xl font-bold text-center transition-colors block ${
                 scrolled 
                   ? 'bg-white/10 text-white hover:bg-white/20' 
