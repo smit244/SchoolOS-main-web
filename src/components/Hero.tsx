@@ -172,6 +172,9 @@ export const Hero: React.FC<HeroProps> = ({ onOpenDemo, onOpenTrial }) => {
 
         {/* Magnetic CTAs */}
         <motion.div 
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 1, delay: 0.8, ease: "easeOut" }}
           className="flex flex-col sm:flex-row items-center justify-center gap-4 animate-slide-up-delayed w-full max-w-md mx-auto sm:max-w-none relative z-20"
         >
           <a
