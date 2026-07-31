@@ -172,10 +172,8 @@ export const Hero: React.FC<HeroProps> = ({ onOpenDemo, onOpenTrial }) => {
 
         {/* Magnetic CTAs */}
         <motion.div 
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 1, delay: 0.8, ease: "easeOut" }}
           className="flex flex-col sm:flex-row items-center justify-center gap-4 animate-slide-up-delayed w-full max-w-md mx-auto sm:max-w-none relative z-20"
+        >
           <a
             href="/schoolos/register.php"
             className="group relative w-full sm:w-auto px-8 py-4 bg-slate-900 rounded-full font-bold text-white overflow-hidden shadow-[0_0_40px_rgba(37,99,235,0.2)] hover:shadow-[0_0_60px_rgba(37,99,235,0.4)] transition-all flex items-center justify-center gap-2 hover:scale-105 active:scale-95"
