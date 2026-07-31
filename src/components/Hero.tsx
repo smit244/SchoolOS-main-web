@@ -1,6 +1,6 @@
 import React, { useRef, useEffect, useState } from 'react';
 import { motion, useScroll, useTransform, useMotionValue, useSpring, AnimatePresence } from 'framer-motion';
-import { Sparkles, ArrowRight, Shield, Zap, Activity, Users, CreditCard, BookOpen, BrainCircuit, Play } from 'lucide-react';
+import { Sparkles, ArrowRight, Shield, Zap, Activity, Users, CreditCard, BookOpen, BrainCircuit, Play, ShieldCheck } from 'lucide-react';
 
 interface HeroProps {
   onOpenDemo: () => void;
