@@ -40,7 +40,7 @@ export const Footer: React.FC = () => {
               <li><a href="#ecosystem" className="text-slate-500 hover:text-vision-blueGlow transition-colors">Feature Specs</a></li>
               <li><a href="#pricing" className="text-slate-500 hover:text-vision-blueGlow transition-colors">Pricing</a></li>
               <li><a href="#faq" className="text-slate-500 hover:text-vision-blueGlow transition-colors">Help Center</a></li>
-              <li><a href="#contact" className="text-slate-500 hover:text-vision-blueGlow transition-colors">Book Demo</a></li>
+              <li><a href="/schoolos/partner-register.php" className="text-slate-500 hover:text-vision-blueGlow transition-colors">Partner Program</a></li>
             </ul>
           </div>
 
