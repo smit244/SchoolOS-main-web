@@ -176,31 +176,21 @@ export const Hero: React.FC<HeroProps> = ({ onOpenDemo, onOpenTrial }) => {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 1, delay: 0.8, ease: "easeOut" }}
           className="flex flex-col sm:flex-row items-center justify-center gap-4 animate-slide-up-delayed w-full max-w-md mx-auto sm:max-w-none relative z-20"
-        >
-          <motion.a 
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 0.8 }}
+          <a
             href="/schoolos/register.php"
-            className="group relative inline-flex items-center justify-center gap-2 h-14 px-8 rounded-full bg-slate-900 text-white font-semibold text-lg overflow-hidden transition-all hover:scale-105 hover:shadow-[0_20px_40px_-10px_rgba(15,23,42,0.4)] active:scale-95"
+            className="group relative w-full sm:w-auto px-8 py-4 bg-slate-900 rounded-full font-bold text-white overflow-hidden shadow-[0_0_40px_rgba(37,99,235,0.2)] hover:shadow-[0_0_60px_rgba(37,99,235,0.4)] transition-all flex items-center justify-center gap-2 hover:scale-105 active:scale-95"
           >
-            <div className="absolute inset-0 bg-gradient-to-r from-vision-blueGlow via-vision-cyan to-vision-purple opacity-0 group-hover:opacity-20 transition-opacity duration-500" />
-            <span className="relative z-10 flex items-center gap-2">
-              Start Free Trial
-              <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
-            </span>
-          </motion.a>
+            <div className="absolute inset-0 bg-gradient-to-r from-vision-blueGlow via-vision-cyan to-vision-purpleGlow opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+            <span className="relative z-10">Start Free &rarr;</span>
+          </a>
           
-          <motion.a 
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 0.9 }}
+          <a
             href="/schoolos/portals.php"
-            className="group inline-flex items-center justify-center gap-2 h-14 px-8 rounded-full bg-white text-slate-700 font-semibold text-lg border-2 border-slate-200 transition-all hover:border-slate-300 hover:bg-slate-50 active:scale-95"
+            className="w-full sm:w-auto px-8 py-4 rounded-full font-bold text-slate-700 bg-white/60 border border-slate-200/50 backdrop-blur-xl hover:bg-white hover:text-slate-900 transition-all flex items-center justify-center gap-2 shadow-[0_15px_35px_rgba(0,0,0,0.05)] hover:shadow-[0_20px_40px_rgba(0,0,0,0.1)] hover:scale-105 active:scale-95"
           >
-            <ShieldCheck className="w-5 h-5 text-slate-400 group-hover:text-vision-blueGlow transition-colors" />
-            <span>Login to Portal</span>
-          </motion.a>
+            <ShieldCheck className="w-5 h-5 text-vision-blueGlow" />
+            <span>Login</span>
+          </a>
         </motion.div>
 
         <motion.div 
